@@ -1,3 +1,17 @@
 <resources>
-    <string name="app_name">FirstProject</string>
+    <string name="app_name">SecondProject</string>
+    <string name="spinner.text.choose_a_position">Choose a position</string>
+    <string name="textview.text.name">Name :</string>
+    <string name="textview.text.age">Age :</string>
+    <string name="textview.text.gender">Gender :</string>
+    <string name="textview.text.title">Title</string>
+
+    <string-array name="spinner_arrays">
+        <item>First</item>
+        <item>Second</item>
+        <item>Third</item>
+        <item>Fourth</item>
+        <item>Fiveth</item>
+        <item>Sixth</item>
+    </string-array>
 </resources>
