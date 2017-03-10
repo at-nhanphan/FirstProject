@@ -1,7 +1,10 @@
 package com.example.naunem.firstproject;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,10 +20,12 @@ import java.util.ArrayList;
 public class ListUserAdapter extends RecyclerView.Adapter<ListUserAdapter.ViewHolder> {
     ArrayList<User> mLists = new ArrayList<>();
     Context mContext;
-    public ListUserAdapter(Context context, ArrayList<User> lists){
+
+    public ListUserAdapter(Context context, ArrayList<User> lists) {
         this.mContext = context;
         this.mLists = lists;
     }
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_user, parent, false);
@@ -30,7 +35,7 @@ public class ListUserAdapter extends RecyclerView.Adapter<ListUserAdapter.ViewHo
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         User user = mLists.get(position);
-
+        holder.mImgAvatar.setImageResource(user.getImage());
         holder.mTvName.setText(user.getName());
         holder.mTvAge.setText(user.getAge());
         holder.mTvGender.setText(user.getGender());
@@ -46,12 +51,25 @@ public class ListUserAdapter extends RecyclerView.Adapter<ListUserAdapter.ViewHo
         TextView mTvName;
         TextView mTvAge;
         TextView mTvGender;
-        public ViewHolder(View itemView) {
+
+        public ViewHolder(final View itemView) {
             super(itemView);
             mImgAvatar = (ImageView) itemView.findViewById(R.id.imgLogo);
             mTvName = (TextView) itemView.findViewById(R.id.tvName);
             mTvAge = (TextView) itemView.findViewById(R.id.tvAge);
             mTvGender = (TextView) itemView.findViewById(R.id.tvGender);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(mContext.getApplicationContext(), DetailUserActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putParcelable("data", mLists.get(getLayoutPosition()));
+                    intent.putExtra("object", bundle);
+                    mContext.startActivity(intent);
+
+                    Log.d("TAG", "onClick: " + getLayoutPosition());
+                }
+            });
         }
     }
 }

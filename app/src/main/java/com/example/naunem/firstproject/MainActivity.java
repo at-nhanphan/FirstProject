@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         LinearLayoutManager ln = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         mRecyclerViewListUser.setLayoutManager(ln);
 
-        ArrayList<User> datas = DataUser.getDataUser();
+        ArrayList<User> datas = DataUser.getDataUser(this);
 
         mAdapter = new ListUserAdapter(this, datas);
         mRecyclerViewListUser.setAdapter(mAdapter);
