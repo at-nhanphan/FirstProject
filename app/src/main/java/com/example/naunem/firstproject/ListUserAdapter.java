@@ -128,7 +128,6 @@ public class ListUserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                     bundle.putParcelable("data", mLists.get(getLayoutPosition()));
                     intent.putExtra("object", bundle);
                     mContext.startActivity(intent);
-                    Log.d("dfdfdf", "onClick: " + getLayoutPosition());
                 }
             });
             mImgFavorite.setOnClickListener(new View.OnClickListener() {
