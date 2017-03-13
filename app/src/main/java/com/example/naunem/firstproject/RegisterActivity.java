@@ -62,7 +62,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         mLists.add(mChkCommic);
     }
 
-    /** get Gender of user
+    /** get Gender of mUser
      *
      * @return String mGender
      */
@@ -76,7 +76,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         return "\nGender: " + mGender;
     }
 
-    /** get Hobby of user
+    /** get Hobby of mUser
      *
      * @return String mHobby
      */

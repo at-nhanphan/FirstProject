@@ -1,6 +1,5 @@
 package com.example.naunem.firstproject;
 
-import android.hardware.usb.UsbRequest;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,6 +15,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ImageView mImgSettings;
     RecyclerView mRecyclerViewListUser;
     ListUserAdapter mAdapter;
+    android.os.Handler mHandler = new android.os.Handler();
+    LinearLayoutManager mLayoutManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,13 +29,39 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mImgSettings.setOnClickListener(this);
         mRecyclerViewListUser = (RecyclerView) findViewById(R.id.recyclerViewListUser);
 
-        LinearLayoutManager ln = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-        mRecyclerViewListUser.setLayoutManager(ln);
-
-        ArrayList<User> datas = DataUser.getDataUser(this);
-
-        mAdapter = new ListUserAdapter(this, datas);
+        mRecyclerViewListUser.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(this);
+        mRecyclerViewListUser.setLayoutManager(mLayoutManager);
+        final ArrayList<User> mDatas = DataUser.getDataUser(this);
+        mAdapter = new ListUserAdapter(this, mDatas, mRecyclerViewListUser);
         mRecyclerViewListUser.setAdapter(mAdapter);
+        mAdapter.notifyDataSetChanged();
+
+        mAdapter.setOnLoadMoreListener(new OnLoadMoreListener() {
+            @Override
+            public void onLoadMore() {
+                //add null , so the adapter will check view_type and show progress bar at bottom
+                mDatas.add(null);
+                mAdapter.notifyItemInserted(mDatas.size() - 1);
+                mHandler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        //   remove progress item
+                        mDatas.remove(mDatas.size() - 1);
+                        mAdapter.notifyItemRemoved(mDatas.size());
+                        //add items one by one
+                        int start = mDatas.size();
+                        int end = start + 20;
+                        for (int i = start; i < end; i++) {
+                            mDatas.add(new User(R.drawable.ic_boy, "User " +i, "Age" +i, "Gender " +i, R.drawable.ic_unlike, false));
+                            mAdapter.notifyItemInserted(mDatas.size());
+                        }
+                        mAdapter.setLoaded();
+                        //or you can add all at once but do not forget to call mAdapter.notifyDataSetChanged();
+                    }
+                }, 1000);
+            }
+        });
     }
 
     @Override

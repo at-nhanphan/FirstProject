@@ -51,4 +51,12 @@
         android:layout_marginRight="10dp"
         android:maxLines="1"
         android:ellipsize="end"/>
+
+    <ImageView
+        android:id="@+id/imgFavorite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/select_favorite"
+        android:layout_alignParentRight="true"
+        android:layout_margin="20dp" />
 </RelativeLayout>

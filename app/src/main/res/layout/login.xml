@@ -14,7 +14,7 @@
         android:layout_below="@+id/temp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:background="#4fe4e4"/>
+        android:background="@drawable/custom_button"/>
 
     <TextView
         android:id="@+id/tvCreateAccount"

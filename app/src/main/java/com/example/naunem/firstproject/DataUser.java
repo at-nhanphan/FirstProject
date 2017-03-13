@@ -15,11 +15,13 @@ public class DataUser {
     public static ArrayList<User> getDataUser(Context context) {
         ArrayList<User> lists = new ArrayList<>();
 
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 20; i++) {
             int image = 0;
             String name = "User " + i;
             String age = "Age: " + i;
             String gender = null;
+            int favorite = 0;
+            boolean isFavorite = false;
             if (i % 2 == 0) {
                 image = R.drawable.ic_boy;
                 gender = "Gender: Male " + i;
@@ -27,7 +29,8 @@ public class DataUser {
                 image = R.drawable.ic_girl;
                 gender = "Gender: Female " + i;
             }
-            lists.add(new User(image, name, age, gender));
+            favorite = R.drawable.ic_star_border;
+            lists.add(new User(image, name, age, gender, favorite, isFavorite));
         }
         return lists;
     }
