@@ -1,15 +1,17 @@
 package com.example.naunem.firstproject;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, MyOnClickListener {
 
     ImageView mImgBack;
     ImageView mImgSettings;
@@ -17,6 +19,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ListUserAdapter mAdapter;
     android.os.Handler mHandler = new android.os.Handler();
     LinearLayoutManager mLayoutManager;
+    ArrayList<User> mDatas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +35,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mRecyclerViewListUser.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerViewListUser.setLayoutManager(mLayoutManager);
-        final ArrayList<User> mDatas = DataUser.getDataUser(this);
-        mAdapter = new ListUserAdapter(this, mDatas, mRecyclerViewListUser);
+        mDatas = DataUser.getDataUser(this);
+        mAdapter = new ListUserAdapter(this, mDatas, mRecyclerViewListUser, this);
+
         mRecyclerViewListUser.setAdapter(mAdapter);
         mAdapter.notifyDataSetChanged();
 
@@ -53,7 +57,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         int start = mDatas.size();
                         int end = start + 20;
                         for (int i = start; i < end; i++) {
-                            mDatas.add(new User(R.drawable.ic_boy, "User " +i, "Age" +i, "Gender " +i, R.drawable.ic_unlike, false));
+                            User user = DataUser.getUserById(i);
+                            mDatas.add(user);
                             mAdapter.notifyItemInserted(mDatas.size());
                         }
                         mAdapter.setLoaded();
@@ -73,6 +78,33 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.imgSettings:
                 // TODO: 09/03/2017 make settings method
                 break;
+        }
+    }
+
+    @Override
+    public void onClickListener(int position) {
+        Intent intent = new Intent(this, DetailUserActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("data", mDatas.get(position));
+        intent.putExtra("object", bundle);
+        intent.putExtra("index", position);
+        startActivityForResult(intent, 1);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1) {
+            if (resultCode == RESULT_OK) {
+                boolean isCheck = data.getBooleanExtra("isCheck", false);
+                int index = data.getIntExtra("index", -1);
+                mDatas.get(index).setFavorite(isCheck);
+                Log.d("xem nao", "onActivityResult: " + index);
+                if (index != -1) {
+                    mDatas.set(index, mDatas.get(index));
+                    mAdapter.notifyDataSetChanged();
+                }
+            }
         }
     }
 }

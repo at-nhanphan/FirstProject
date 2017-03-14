@@ -1,5 +1,6 @@
 package com.example.naunem.firstproject;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -12,13 +13,15 @@ import android.widget.TextView;
  * Created by naunem on 10/03/2017.
  */
 
-public class DetailUserActivity extends AppCompatActivity {
+public class DetailUserActivity extends AppCompatActivity implements View.OnClickListener {
     TextView mTvName;
     TextView mTvAge;
     TextView mTvGender;
     ImageView mImgAvatar;
     ImageView mImgFavorite;
     User mUser;
+    boolean mIsCheck;
+    private int mIndex;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -29,16 +32,14 @@ public class DetailUserActivity extends AppCompatActivity {
         mTvGender = (TextView) findViewById(R.id.tvGender);
         mImgAvatar = (ImageView) findViewById(R.id.imgLogo);
         mImgFavorite = (ImageView) findViewById(R.id.imgFavorite);
-        mImgFavorite.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mUser.setFavorite(!mUser.isFavorite());
-            }
-        });
+        mImgFavorite.setOnClickListener(this);
 
         mUser = getIntent().getBundleExtra("object").getParcelable("data");
+        mIndex = getIntent().getIntExtra("index", -1);
+        Log.d("dfdjfajf", "onCreate: " + mIndex);
 
         Log.d("toi muon biet", "onCreate: " + mUser.isFavorite());
+        mIsCheck = mUser.isFavorite();
         mImgAvatar.setImageResource(mUser.getImage());
         mTvName.setText(mUser.getName());
         mTvAge.setText(mUser.getAge());
@@ -48,7 +49,23 @@ public class DetailUserActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        Intent intent = new Intent();
+        intent.putExtra("isCheck", mIsCheck);
+        if (mIndex != -1) {
+            intent.putExtra("index", mIndex);
+        }
+        setResult(RESULT_OK, intent);
+        finish();
+    }
 
+    @Override
+    public void onClick(View v) {
+        if (mIsCheck) {
+            mImgFavorite.setSelected(!mIsCheck);
+            mIsCheck = false;
+        } else {
+            mImgFavorite.setSelected(!mIsCheck);
+            mIsCheck = true;
+        }
     }
 }
