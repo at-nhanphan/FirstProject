@@ -31,10 +31,20 @@ public class ListUserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private int mTotalItemCount;
     private OnLoadMoreListener mOnLoadMoreListener;
     private MyOnClickListener mMyOnClickListener;
+    private ArrayList<User> mFavorites = new ArrayList<>();
 
-    public ListUserAdapter(Context context, ArrayList<User> lists, RecyclerView recyclerView) {
+    public ArrayList<User> getmLists() {
+        return mLists;
+    }
+
+    public ListUserAdapter() {
+
+    }
+
+    public ListUserAdapter(Context context, ArrayList<User> lists, RecyclerView recyclerView, MyOnClickListener listener) {
         this.mContext = context;
         this.mLists = lists;
+        this.mMyOnClickListener = listener;
 
         if (recyclerView.getLayoutManager() instanceof LinearLayoutManager) {
 
@@ -46,7 +56,7 @@ public class ListUserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                     super.onScrolled(recyclerView, dx, dy);
                     mTotalItemCount = linearLayoutManager.getItemCount();
                     mLastVisibleItem = linearLayoutManager.findLastVisibleItemPosition();
-                    Toast.makeText(mContext, "fdfdf" + mTotalItemCount, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "size: " + mTotalItemCount, Toast.LENGTH_SHORT).show();
                     if (!mLoading && mTotalItemCount <= (mLastVisibleItem + mVisibleThreshold)) {
                         // End has been reached
                         // Do something
@@ -108,8 +118,6 @@ public class ListUserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         TextView mTvGender;
         ProgressBar mProgressBar;
         ImageView mImgFavorite;
-        boolean click = false;
-        Bundle bundle = new Bundle();
         User user;
 
         public ViewHolder(final View itemView) {
@@ -124,19 +132,19 @@ public class ListUserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(mContext.getApplicationContext(), DetailUserActivity.class);
-                    bundle.putParcelable("data", mLists.get(getLayoutPosition()));
-                    intent.putExtra("object", bundle);
-                    mContext.startActivity(intent);
-                    Log.d("dfdfdf", "onClick: " + getLayoutPosition());
+                    mMyOnClickListener.onClickListener(getLayoutPosition());
                 }
             });
+
             mImgFavorite.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     user = mLists.get(getLayoutPosition());
                     user.setFavorite(!user.isFavorite());
                     notifyDataSetChanged();
+                    if (user.isFavorite()) {
+                        mFavorites.add(mLists.get(getLayoutPosition()));
+                    }
                 }
             });
         }
