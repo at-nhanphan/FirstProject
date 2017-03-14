@@ -5,5 +5,5 @@ package com.example.naunem.firstproject;
  */
 
 public interface MyOnClickListener {
-    void onClickListener();
+    void onClickListener(int position);
 }

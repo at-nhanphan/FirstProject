@@ -34,4 +34,23 @@ public class DataUser {
         }
         return lists;
     }
+
+    public static User getUserById(int position) {
+        int image = 0;
+        String name = "User " + position;
+        String age = "Age: " + position;
+        String gender = null;
+        int favorite = 0;
+        boolean isFavorite = false;
+        if (position % 2 == 0) {
+            image = R.drawable.ic_boy;
+            gender = "Gender: Male " + position;
+        } else {
+            image = R.drawable.ic_girl;
+            gender = "Gender: Female " + position;
+        }
+        favorite = R.drawable.ic_star_border;
+        User user = new User(image, name, age, gender, favorite, isFavorite);
+        return user;
+    }
 }
