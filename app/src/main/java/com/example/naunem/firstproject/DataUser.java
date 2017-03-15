@@ -1,9 +1,8 @@
 package com.example.naunem.firstproject;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.util.Log;
+
+import com.example.naunem.firstproject.models.User;
 
 import java.util.ArrayList;
 

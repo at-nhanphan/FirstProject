@@ -1,11 +1,11 @@
-package com.example.naunem.firstproject;
+package com.example.naunem.firstproject.adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,19 +14,25 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.naunem.firstproject.R;
+import com.example.naunem.firstproject.activities.FavoriteActivity;
+import com.example.naunem.firstproject.interfaces.MyOnClickListener;
+import com.example.naunem.firstproject.interfaces.OnLoadMoreListener;
+import com.example.naunem.firstproject.models.User;
+
 import java.util.ArrayList;
 
 /**
  * Created by naunem on 10/03/2017.
  */
 
-public class ListUserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class UserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     ArrayList<User> mLists = new ArrayList<>();
     Context mContext;
     private final int VIEW_ITEM = 1;
     private final int VIEW_PROG = 0;
     private boolean mLoading;
-    private int mVisibleThreshold = 5;
+    private int mVisibleThreshold = 2;
     private int mLastVisibleItem;
     private int mTotalItemCount;
     private OnLoadMoreListener mOnLoadMoreListener;
@@ -37,11 +43,11 @@ public class ListUserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         return mLists;
     }
 
-    public ListUserAdapter() {
+    public UserAdapter() {
 
     }
 
-    public ListUserAdapter(Context context, ArrayList<User> lists, RecyclerView recyclerView, MyOnClickListener listener) {
+    public UserAdapter(Context context, ArrayList<User> lists, RecyclerView recyclerView, MyOnClickListener listener) {
         this.mContext = context;
         this.mLists = lists;
         this.mMyOnClickListener = listener;
@@ -143,7 +149,11 @@ public class ListUserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                     user.setFavorite(!user.isFavorite());
                     notifyDataSetChanged();
                     if (user.isFavorite()) {
-                        mFavorites.add(mLists.get(getLayoutPosition()));
+                        Intent intent = new Intent(mContext, FavoriteActivity.class);
+                        Bundle bundle = new Bundle();
+                        bundle.putParcelable("favorite", user);
+                        intent.putExtra("data", bundle);
+                        ((Activity) mContext).startActivityForResult(intent, 2);
                     }
                 }
             });

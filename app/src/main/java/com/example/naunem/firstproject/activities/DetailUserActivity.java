@@ -1,4 +1,4 @@
-package com.example.naunem.firstproject;
+package com.example.naunem.firstproject.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +8,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.naunem.firstproject.R;
+import com.example.naunem.firstproject.models.User;
 
 /**
  * Created by naunem on 10/03/2017.

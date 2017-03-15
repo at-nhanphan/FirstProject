@@ -1,49 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="10dp">
 
-    tools:context="com.example.naunem.firstproject.MainActivity">
-
-    <LinearLayout
-        android:id="@+id/llHeader"
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/btnTestRecyclerView"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#e2640a"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:background="@drawable/custom_button"
+        android:text="@string/button.text.name1"
+        android:layout_marginBottom="10dp"/>
 
-        <ImageView
-            android:id="@+id/imgBack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/ic_back" />
-
-        <TextView
-            android:id="@+id/tvTitle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:text="@string/textview.text.title"
-            android:textSize="30sp"
-            android:maxLines="1"/>
-
-        <ImageView
-            android:id="@+id/imgSettings"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/ic_setting" />
-
-    </LinearLayout>
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerViewListUser"
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/btnTestIntent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/llHeader">
-    </android.support.v7.widget.RecyclerView>
-
-</RelativeLayout>
+        android:background="@drawable/custom_button"
+        android:text="@string/button.text.name2"/>
+</LinearLayout>
