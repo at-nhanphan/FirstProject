@@ -26,7 +26,6 @@ public class FavoriteActivity extends AppCompatActivity {
 
     public void init(){
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerViewFavorite);
-        mAdapter = new FavoriteAdapter(this, mListUsers, mRecyclerView);
     }
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,6 +40,7 @@ public class FavoriteActivity extends AppCompatActivity {
         mUser = getIntent().getBundleExtra("data").getParcelable("favorite");
         Log.d("favorite", "onCreate: " + mUser.getName());
         mListUsers.add(mUser);
+        mAdapter = new FavoriteAdapter(this, mListUsers, mRecyclerView);
         mRecyclerView.setAdapter(mAdapter);
     }
 }

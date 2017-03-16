@@ -19,4 +19,12 @@
         android:layout_height="wrap_content"
         android:background="@drawable/custom_button"
         android:text="@string/button.text.name2"/>
+
+    <Button
+        android:id="@+id/btnCheckIntent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/custom_button"
+        android:text="Test 3"
+        android:layout_marginTop="10dp"/>
 </LinearLayout>
