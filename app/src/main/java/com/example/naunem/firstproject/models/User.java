@@ -7,7 +7,7 @@ import android.os.Parcelable;
  * Created by naunem on 10/03/2017.
  */
 
-public class User implements Parcelable {
+public class User extends ItemList implements Parcelable {
     private int image;
     private String name;
     private String age;
@@ -146,5 +146,10 @@ public class User implements Parcelable {
         dest.writeString(gender);
         dest.writeInt(favorite);
         dest.writeByte((byte) (isFavorite ? 1 : 0));
+    }
+
+    @Override
+    int getType() {
+        return 1;
     }
 }

@@ -33,7 +33,8 @@
             android:text="1"
             android:textAlignment="center"
             android:textSize="40dp"
-            android:textColor="@color/colorBlue" />
+            android:textColor="@color/colorBlue"
+            android:background="@drawable/textview_click"/>
 
         <TextView
             android:id="@+id/tvTwo"
@@ -43,7 +44,8 @@
             android:text="2"
             android:textAlignment="center"
             android:textSize="40dp"
-            android:textColor="@color/colorBlue" />
+            android:textColor="@color/colorBlue"
+            android:background="@drawable/textview_click"/>
 
         <TextView
             android:id="@+id/tvThree"
@@ -53,7 +55,8 @@
             android:textSize="40dp"
             android:textColor="@color/colorBlue"
             android:text="3"
-            android:textAlignment="center"/>
+            android:textAlignment="center"
+            android:background="@drawable/textview_click"/>
     </TableRow>
 
     <TableRow android:layout_marginTop="30dp">
@@ -66,7 +69,8 @@
             android:text="4"
             android:textAlignment="center"
             android:textSize="40dp"
-            android:textColor="@color/colorBlue" />
+            android:textColor="@color/colorBlue"
+            android:background="@drawable/textview_click"/>
 
         <TextView
             android:id="@+id/tvFive"
@@ -76,7 +80,8 @@
             android:text="5"
             android:textAlignment="center"
             android:textSize="40dp"
-            android:textColor="@color/colorBlue" />
+            android:textColor="@color/colorBlue"
+            android:background="@drawable/textview_click"/>
 
         <TextView
             android:id="@+id/tvSix"
@@ -99,7 +104,8 @@
             android:text="7"
             android:textAlignment="center"
             android:textSize="40dp"
-            android:textColor="@color/colorBlue"/>
+            android:textColor="@color/colorBlue"
+            android:background="@drawable/textview_click"/>
 
         <TextView
             android:id="@+id/tvEight"
@@ -109,7 +115,8 @@
             android:text="8"
             android:textAlignment="center"
             android:textSize="40dp"
-            android:textColor="@color/colorBlue" />
+            android:textColor="@color/colorBlue"
+            android:background="@drawable/textview_click"/>
 
         <TextView
             android:id="@+id/tvNine"
@@ -119,7 +126,8 @@
             android:text="9"
             android:textAlignment="center"
             android:textSize="40dp"
-            android:textColor="@color/colorBlue"/>
+            android:textColor="@color/colorBlue"
+            android:background="@drawable/textview_click"/>
     </TableRow>
 
     <TableRow android:layout_marginTop="30dp">
@@ -132,7 +140,8 @@
             android:text="*"
             android:textAlignment="center"
             android:textSize="40dp"
-            android:textColor="@color/colorBlue" />
+            android:textColor="@color/colorBlue"
+            android:background="@drawable/textview_click"/>
 
         <TextView
             android:id="@+id/tvZero"
@@ -142,7 +151,8 @@
             android:text="0"
             android:textAlignment="center"
             android:textSize="40dp"
-            android:textColor="@color/colorBlue" />
+            android:textColor="@color/colorBlue"
+            android:background="@drawable/textview_click"/>
 
         <TextView
             android:id="@+id/tvFly"
@@ -152,7 +162,8 @@
             android:textSize="40dp"
             android:textColor="@color/colorBlue"
             android:text="#"
-            android:textAlignment="center"/>
+            android:textAlignment="center"
+            android:background="@drawable/textview_click"/>
     </TableRow>
 
     <TableRow android:layout_marginTop="20dp"

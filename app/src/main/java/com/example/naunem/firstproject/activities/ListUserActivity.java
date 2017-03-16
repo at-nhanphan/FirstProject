@@ -32,9 +32,6 @@ public class ListUserActivity extends AppCompatActivity implements View.OnClickL
         mImgBack = (ImageView) findViewById(R.id.imgBack);
         mImgSettings = (ImageView) findViewById(R.id.imgSettings);
         mRecyclerViewListUser = (RecyclerView) findViewById(R.id.recyclerViewListUser);
-        mAdapter = new UserAdapter(this, mDatas, mRecyclerViewListUser, this);
-        mLayoutManager = new LinearLayoutManager(this);
-        mDatas = DataUser.getDataUser(this);
     }
 
     @Override
@@ -43,14 +40,17 @@ public class ListUserActivity extends AppCompatActivity implements View.OnClickL
         setContentView(R.layout.activity_list_user);
 
         init();
-        mImgBack.setOnClickListener(this);
-        mImgSettings.setOnClickListener(this);
         mRecyclerViewListUser.setHasFixedSize(true);
-
+        mLayoutManager = new LinearLayoutManager(this);
         mRecyclerViewListUser.setLayoutManager(mLayoutManager);
+        mDatas = DataUser.getDataUser(this);
+        mAdapter = new UserAdapter(this, mDatas, mRecyclerViewListUser, this);
 
         mRecyclerViewListUser.setAdapter(mAdapter);
         mAdapter.notifyDataSetChanged();
+
+        mImgBack.setOnClickListener(this);
+        mImgSettings.setOnClickListener(this);
 
         mAdapter.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override

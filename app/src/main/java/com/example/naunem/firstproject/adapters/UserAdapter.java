@@ -29,6 +29,7 @@ import java.util.ArrayList;
 public class UserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     ArrayList<User> mLists = new ArrayList<>();
     Context mContext;
+    private final int VIEW_TITLE = 2;
     private final int VIEW_ITEM = 1;
     private final int VIEW_PROG = 0;
     private boolean mLoading;
@@ -148,13 +149,13 @@ public class UserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                     user = mLists.get(getLayoutPosition());
                     user.setFavorite(!user.isFavorite());
                     notifyDataSetChanged();
-                    if (user.isFavorite()) {
-                        Intent intent = new Intent(mContext, FavoriteActivity.class);
-                        Bundle bundle = new Bundle();
-                        bundle.putParcelable("favorite", user);
-                        intent.putExtra("data", bundle);
-                        ((Activity) mContext).startActivityForResult(intent, 2);
-                    }
+//                    if (user.isFavorite()) {
+//                        Intent intent = new Intent(mContext, FavoriteActivity.class);
+//                        Bundle bundle = new Bundle();
+//                        bundle.putParcelable("favorite", user);
+//                        intent.putExtra("data", bundle);
+//                        ((Activity) mContext).startActivityForResult(intent, 2);
+//                    }
                 }
             });
         }
@@ -170,6 +171,11 @@ public class UserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override
     public int getItemViewType(int position) {
+        if (mLists.get(position) == null) {
+            return VIEW_PROG;
+        } else {
+
+        }
         return mLists.get(position) != null ? VIEW_ITEM : VIEW_PROG;
     }
 

@@ -16,11 +16,13 @@ import com.example.naunem.firstproject.R;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     Button mBtnTestRecyclerView;
     Button mBtnTestIntent;
+    Button mBtnCheckIntent;
     Intent intent;
 
     public void init() {
         mBtnTestRecyclerView = (Button) findViewById(R.id.btnTestRecyclerView);
         mBtnTestIntent = (Button) findViewById(R.id.btnTestIntent);
+        mBtnCheckIntent = (Button) findViewById(R.id.btnCheckIntent);
     }
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -30,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         mBtnTestRecyclerView.setOnClickListener(this);
         mBtnTestIntent.setOnClickListener(this);
+        mBtnCheckIntent.setOnClickListener(this);
     }
 
     @Override
@@ -41,6 +44,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btnTestIntent:
                 intent = new Intent(MainActivity.this, PhoneCallActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.btnCheckIntent:
+                intent = new Intent(MainActivity.this, CheckIntentActivity.class);
                 startActivity(intent);
                 break;
         }
