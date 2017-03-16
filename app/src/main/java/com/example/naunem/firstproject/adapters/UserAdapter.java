@@ -18,16 +18,19 @@ import com.example.naunem.firstproject.R;
 import com.example.naunem.firstproject.activities.FavoriteActivity;
 import com.example.naunem.firstproject.interfaces.MyOnClickListener;
 import com.example.naunem.firstproject.interfaces.OnLoadMoreListener;
+import com.example.naunem.firstproject.models.ItemList;
+import com.example.naunem.firstproject.models.Title;
 import com.example.naunem.firstproject.models.User;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * Created by naunem on 10/03/2017.
  */
 
 public class UserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    ArrayList<User> mLists = new ArrayList<>();
+    ArrayList<ItemList> mLists = new ArrayList<>();
     Context mContext;
     private final int VIEW_TITLE = 2;
     private final int VIEW_ITEM = 1;
@@ -40,23 +43,17 @@ public class UserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private MyOnClickListener mMyOnClickListener;
     private ArrayList<User> mFavorites = new ArrayList<>();
 
-    public ArrayList<User> getmLists() {
+    public ArrayList<ItemList> getmLists() {
         return mLists;
     }
 
-    public UserAdapter() {
-
-    }
-
-    public UserAdapter(Context context, ArrayList<User> lists, RecyclerView recyclerView, MyOnClickListener listener) {
+    public UserAdapter(Context context, ArrayList<ItemList> lists, RecyclerView recyclerView, MyOnClickListener listener) {
         this.mContext = context;
         this.mLists = lists;
         this.mMyOnClickListener = listener;
 
         if (recyclerView.getLayoutManager() instanceof LinearLayoutManager) {
-
             final LinearLayoutManager linearLayoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
-
             recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
                 @Override
                 public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
@@ -80,7 +77,10 @@ public class UserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         RecyclerView.ViewHolder vh;
-        if (viewType == VIEW_ITEM) {
+        if (viewType == VIEW_TITLE) {
+            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_title, parent, false);
+            vh = new TitleViewHolder(v);
+        } else if (viewType == VIEW_ITEM) {
             View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_user, parent, false);
             vh = new ViewHolder(v);
         } else {
@@ -92,13 +92,21 @@ public class UserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        if (holder instanceof ViewHolder) {
-            User user = mLists.get(position);
-            ((ViewHolder) holder).mImgAvatar.setImageResource(user.getImage());
-            ((ViewHolder) holder).mTvName.setText(user.getName());
-            ((ViewHolder) holder).mTvAge.setText(user.getAge());
-            ((ViewHolder) holder).mTvGender.setText(user.getGender());
-            ((ViewHolder) holder).mImgFavorite.setSelected(user.isFavorite());
+        ItemList objects = mLists.get(position);
+        if (holder instanceof TitleViewHolder) {
+            if (objects instanceof Title) {
+                Title title = (Title) objects;
+                ((TitleViewHolder) holder).mTvTitle.setText(title.getmTitle());
+            }
+        } else if (holder instanceof ViewHolder) {
+            if (objects instanceof User) {
+                User user = (User) objects;
+                ((ViewHolder) holder).mImgAvatar.setImageResource(user.getImage());
+                ((ViewHolder) holder).mTvName.setText(user.getName());
+                ((ViewHolder) holder).mTvAge.setText(user.getAge());
+                ((ViewHolder) holder).mTvGender.setText(user.getGender());
+                ((ViewHolder) holder).mImgFavorite.setSelected(user.isFavorite());
+            }
         } else {
             ((ProgressViewHolder) holder).progressBar.setIndeterminate(true);
         }
@@ -115,6 +123,15 @@ public class UserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         public ProgressViewHolder(View v) {
             super(v);
             progressBar = (ProgressBar) v.findViewById(R.id.progressBar);
+        }
+    }
+
+    public static class TitleViewHolder extends RecyclerView.ViewHolder {
+        TextView mTvTitle;
+
+        public TitleViewHolder(View itemView) {
+            super(itemView);
+            mTvTitle = (TextView) itemView.findViewById(R.id.tvTitle);
         }
     }
 
@@ -146,7 +163,7 @@ public class UserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             mImgFavorite.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    user = mLists.get(getLayoutPosition());
+                    user = (User) mLists.get(getLayoutPosition());
                     user.setFavorite(!user.isFavorite());
                     notifyDataSetChanged();
 //                    if (user.isFavorite()) {
@@ -174,9 +191,8 @@ public class UserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         if (mLists.get(position) == null) {
             return VIEW_PROG;
         } else {
-
+            return mLists.get(position).getType();
         }
-        return mLists.get(position) != null ? VIEW_ITEM : VIEW_PROG;
     }
 
 }

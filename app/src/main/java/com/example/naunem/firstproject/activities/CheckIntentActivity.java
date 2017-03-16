@@ -134,12 +134,14 @@ public class CheckIntentActivity extends AppCompatActivity implements View.OnCli
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        //gallery
         if (requestCode == 0 && resultCode == RESULT_OK && null != data) {
             Uri selectedImageUri = data.getData();
             if (null != selectedImageUri) {
                 mImgView.setImageURI(selectedImageUri);
             }
         }
+        //Camera
         if (requestCode == 11 && resultCode == Activity.RESULT_OK) {
             Bitmap photo = (Bitmap) data.getExtras().get("data");
             mImgView.setImageBitmap(photo);

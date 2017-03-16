@@ -14,6 +14,7 @@ public class User extends ItemList implements Parcelable {
     private String gender;
     private int favorite;
     private boolean isFavorite;
+    final int VIEW_ITEM = 1;
 
     /**
      * Constructor
@@ -149,7 +150,7 @@ public class User extends ItemList implements Parcelable {
     }
 
     @Override
-    int getType() {
-        return 1;
+    public int getType() {
+        return VIEW_ITEM;
     }
 }

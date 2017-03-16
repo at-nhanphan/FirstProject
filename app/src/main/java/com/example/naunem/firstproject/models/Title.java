@@ -6,6 +6,7 @@ package com.example.naunem.firstproject.models;
 
 public class Title extends ItemList{
     private String mTitle;
+    final int VIEW_TITLE = 2;
 
     public Title(String mTitle) {
         this.mTitle = mTitle;
@@ -20,7 +21,7 @@ public class Title extends ItemList{
     }
 
     @Override
-    int getType() {
-        return 0;
+    public int getType() {
+        return VIEW_TITLE;
     }
 }

@@ -5,5 +5,5 @@ package com.example.naunem.firstproject.models;
  */
 
 public abstract class ItemList {
-    abstract int getType();
+    public abstract int getType();
 }
