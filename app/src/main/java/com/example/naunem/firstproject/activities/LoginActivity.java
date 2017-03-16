@@ -1,4 +1,4 @@
-package com.example.naunem.firstproject;
+package com.example.naunem.firstproject.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +13,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.naunem.firstproject.R;
 
 /**
  * Created by naunem on 08/03/2017.
@@ -46,7 +48,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         switch (v.getId()) {
             case R.id.btnLogin:
                 Toast.makeText(this, "Username: " + mEdtUsername.getText().toString() + "\nPassword: " + mEdtPassword.getText().toString(), Toast.LENGTH_LONG).show();
-                Intent intentMain = new Intent(LoginActivity.this, MainActivity.class);
+                Intent intentMain = new Intent(LoginActivity.this, ListUserActivity.class);
 
                 Bundle bundle = new Bundle();
                 bundle.putString("username", mEdtUsername.getText().toString());

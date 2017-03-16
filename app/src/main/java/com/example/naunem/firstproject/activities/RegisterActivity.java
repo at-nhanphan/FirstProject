@@ -1,4 +1,4 @@
-package com.example.naunem.firstproject;
+package com.example.naunem.firstproject.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +13,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.Toast;
+
+import com.example.naunem.firstproject.R;
+import com.example.naunem.firstproject.activities.LoginActivity;
 
 import java.util.ArrayList;
 

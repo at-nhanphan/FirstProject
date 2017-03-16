@@ -1,21 +1,25 @@
 package com.example.naunem.firstproject;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.util.Log;
 
+import com.example.naunem.firstproject.models.ItemList;
+import com.example.naunem.firstproject.models.Title;
+import com.example.naunem.firstproject.models.User;
+
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Created by naunem on 10/03/2017.
  */
 
-public class DataUser {
-    public static ArrayList<User> getDataUser(Context context) {
-        ArrayList<User> lists = new ArrayList<>();
-
+public class MockData {
+    public static ArrayList<ItemList> getData(Context context) {
+        ArrayList<ItemList> lists = new ArrayList<>();
+        Random random = new Random();
         for (int i = 0; i < 20; i++) {
+            int rand = random.nextInt(20);
             int image = 0;
             String name = "User " + i;
             String age = "Age: " + i;
@@ -30,13 +34,20 @@ public class DataUser {
                 gender = "Gender: Female " + i;
             }
             favorite = R.drawable.ic_star_border;
-            lists.add(new User(image, name, age, gender, favorite, isFavorite));
+            if (i == rand || i == 0) {
+                lists.add(new Title("Group A"));
+            } else if (rand % 4 == 1) {
+                lists.add(new Title("Group B"));
+            } else {
+                lists.add(new User(image, name, age, gender, favorite, isFavorite));
+            }
         }
         return lists;
     }
 
-    public static User getUserById(int position) {
+    public static ItemList getDataById(int position) {
         int image = 0;
+        ItemList item;
         String name = "User " + position;
         String age = "Age: " + position;
         String gender = null;
@@ -50,7 +61,13 @@ public class DataUser {
             gender = "Gender: Female " + position;
         }
         favorite = R.drawable.ic_star_border;
-        User user = new User(image, name, age, gender, favorite, isFavorite);
-        return user;
+        if (position % 5 == 0) {
+            item = new Title("Group A");
+        } else if (position % 7 == 1) {
+            item = new Title("Group B");
+        } else {
+            item = new User(image, name, age, gender, favorite, isFavorite);
+        }
+        return item;
     }
 }

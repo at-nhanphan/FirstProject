@@ -1,4 +1,4 @@
-package com.example.naunem.firstproject;
+package com.example.naunem.firstproject.interfaces;
 
 /**
  * Created by naunem on 13/03/2017.

@@ -1,6 +1,5 @@
-package com.example.naunem.firstproject;
+package com.example.naunem.firstproject.models;
 
-import android.graphics.Bitmap;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -8,13 +7,14 @@ import android.os.Parcelable;
  * Created by naunem on 10/03/2017.
  */
 
-public class User implements Parcelable {
+public class User extends ItemList implements Parcelable {
     private int image;
     private String name;
     private String age;
     private String gender;
     private int favorite;
     private boolean isFavorite;
+    final int VIEW_ITEM = 1;
 
     /**
      * Constructor
@@ -147,5 +147,10 @@ public class User implements Parcelable {
         dest.writeString(gender);
         dest.writeInt(favorite);
         dest.writeByte((byte) (isFavorite ? 1 : 0));
+    }
+
+    @Override
+    public int getType() {
+        return VIEW_ITEM;
     }
 }

@@ -1,7 +1,8 @@
-package com.example.naunem.firstproject;
+package com.example.naunem.firstproject.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -9,37 +10,49 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.example.naunem.firstproject.MockData;
+import com.example.naunem.firstproject.adapters.UserAdapter;
+import com.example.naunem.firstproject.interfaces.MyOnClickListener;
+import com.example.naunem.firstproject.interfaces.OnLoadMoreListener;
+import com.example.naunem.firstproject.R;
+import com.example.naunem.firstproject.models.ItemList;
+import com.example.naunem.firstproject.models.User;
+
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener, MyOnClickListener {
+public class ListUserActivity extends AppCompatActivity implements View.OnClickListener, MyOnClickListener {
 
     ImageView mImgBack;
     ImageView mImgSettings;
     RecyclerView mRecyclerViewListUser;
-    ListUserAdapter mAdapter;
+    UserAdapter mAdapter;
     android.os.Handler mHandler = new android.os.Handler();
     LinearLayoutManager mLayoutManager;
-    ArrayList<User> mDatas;
+    ArrayList<ItemList> mDatas;
+
+    public void init() {
+        mImgBack = (ImageView) findViewById(R.id.imgBack);
+        mImgSettings = (ImageView) findViewById(R.id.imgSettings);
+        mRecyclerViewListUser = (RecyclerView) findViewById(R.id.recyclerViewListUser);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_list_user);
 
-        mImgBack = (ImageView) findViewById(R.id.imgBack);
-        mImgSettings = (ImageView) findViewById(R.id.imgSettings);
-        mImgBack.setOnClickListener(this);
-        mImgSettings.setOnClickListener(this);
-        mRecyclerViewListUser = (RecyclerView) findViewById(R.id.recyclerViewListUser);
-
+        init();
         mRecyclerViewListUser.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerViewListUser.setLayoutManager(mLayoutManager);
-        mDatas = DataUser.getDataUser(this);
-        mAdapter = new ListUserAdapter(this, mDatas, mRecyclerViewListUser, this);
+        mDatas = MockData.getData(this);
+        mAdapter = new UserAdapter(this, mDatas, mRecyclerViewListUser, this);
 
         mRecyclerViewListUser.setAdapter(mAdapter);
         mAdapter.notifyDataSetChanged();
+
+        mImgBack.setOnClickListener(this);
+        mImgSettings.setOnClickListener(this);
 
         mAdapter.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
@@ -57,8 +70,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         int start = mDatas.size();
                         int end = start + 20;
                         for (int i = start; i < end; i++) {
-                            User user = DataUser.getUserById(i);
-                            mDatas.add(user);
+                            ItemList item = MockData.getDataById(i);
+                            mDatas.add(item);
                             mAdapter.notifyItemInserted(mDatas.size());
                         }
                         mAdapter.setLoaded();
@@ -77,6 +90,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.imgSettings:
                 // TODO: 09/03/2017 make settings method
+                Intent intent = new Intent(ListUserActivity.this, FavoriteActivity.class);
+                startActivity(intent);
                 break;
         }
     }
@@ -85,7 +100,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClickListener(int position) {
         Intent intent = new Intent(this, DetailUserActivity.class);
         Bundle bundle = new Bundle();
-        bundle.putParcelable("data", mDatas.get(position));
+        bundle.putParcelable("data", (Parcelable) mDatas.get(position));
         intent.putExtra("object", bundle);
         intent.putExtra("index", position);
         startActivityForResult(intent, 1);
@@ -98,7 +113,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             if (resultCode == RESULT_OK) {
                 boolean isCheck = data.getBooleanExtra("isCheck", false);
                 int index = data.getIntExtra("index", -1);
-                mDatas.get(index).setFavorite(isCheck);
+                User user = (User) mDatas.get(index);
+                user.setFavorite(isCheck);
                 Log.d("xem nao", "onActivityResult: " + index);
                 if (index != -1) {
                     mDatas.set(index, mDatas.get(index));
