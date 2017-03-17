@@ -91,7 +91,8 @@
             android:text="6"
             android:textAlignment="center"
             android:textSize="40dp"
-            android:textColor="@color/colorBlue" />
+            android:textColor="@color/colorBlue"
+            android:background="@drawable/textview_click"/>
     </TableRow>
 
     <TableRow android:layout_marginTop="30dp">
@@ -175,8 +176,9 @@
             android:layout_width="0dp"
             android:layout_height="75dp"
             android:layout_weight="0.5"
-            android:background="@drawable/custom_item_phone"
-            android:src="@drawable/ic_call_white_48dp"/>
+            android:background="@drawable/imageview_press_call"
+            android:src="@drawable/ic_call_white_48dp"
+            />
         <TextView
             android:layout_weight="1"/>
     </TableRow>

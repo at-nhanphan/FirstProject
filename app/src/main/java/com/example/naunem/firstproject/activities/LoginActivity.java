@@ -22,23 +22,26 @@ import com.example.naunem.firstproject.R;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener, View.OnTouchListener {
 
-    EditText mEdtUsername;
-    EditText mEdtPassword;
-    Button mBtnLogin;
-    ImageView mImgShowPass;
-    TextView mTvCreateAccount;
+    private EditText mEdtUsername;
+    private EditText mEdtPassword;
+    private Button mBtnLogin;
+    private ImageView mImgShowPass;
+    private TextView mTvCreateAccount;
+
+    private void init() {
+        mEdtUsername = (EditText) findViewById(R.id.edtUsername);
+        mEdtPassword = (EditText) findViewById(R.id.edtPassword);
+        mBtnLogin = (Button) findViewById(R.id.btnLogin);
+        mImgShowPass = (ImageView) findViewById(R.id.imgShowPass);
+        mTvCreateAccount = (TextView) findViewById(R.id.tvCreateAccount);
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.login);
-
-        mEdtUsername = (EditText) findViewById(R.id.edtUsername);
-        mEdtPassword = (EditText) findViewById(R.id.edtPassword);
-        mBtnLogin = (Button) findViewById(R.id.btnLogin);
+        setContentView(R.layout.activity_login);
+        init();
         mBtnLogin.setOnClickListener(this);
-        mImgShowPass = (ImageView) findViewById(R.id.imgShowPass);
-        mTvCreateAccount = (TextView) findViewById(R.id.tvCreateAccount);
         mTvCreateAccount.setOnClickListener(this);
         mImgShowPass.setOnTouchListener(this);
     }
@@ -47,13 +50,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnLogin:
-                Toast.makeText(this, "Username: " + mEdtUsername.getText().toString() + "\nPassword: " + mEdtPassword.getText().toString(), Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Username: " + mEdtUsername.getText().toString() + "\nPassword: " +
+                        mEdtPassword.getText().toString(), Toast.LENGTH_LONG).show();
                 Intent intentMain = new Intent(LoginActivity.this, ListUserActivity.class);
-
                 Bundle bundle = new Bundle();
                 bundle.putString("username", mEdtUsername.getText().toString());
                 bundle.putString("password", mEdtPassword.getText().toString());
-
                 startActivity(intentMain);
                 break;
             case R.id.tvCreateAccount:

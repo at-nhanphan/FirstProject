@@ -1,9 +1,6 @@
 package com.example.naunem.firstproject.adapters;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -15,7 +12,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.naunem.firstproject.R;
-import com.example.naunem.firstproject.activities.FavoriteActivity;
 import com.example.naunem.firstproject.interfaces.MyOnClickListener;
 import com.example.naunem.firstproject.interfaces.OnLoadMoreListener;
 import com.example.naunem.firstproject.models.ItemList;
@@ -23,27 +19,24 @@ import com.example.naunem.firstproject.models.Title;
 import com.example.naunem.firstproject.models.User;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 /**
  * Created by naunem on 10/03/2017.
  */
 
 public class UserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    ArrayList<ItemList> mLists = new ArrayList<>();
-    Context mContext;
-    private final int VIEW_TITLE = 2;
-    private final int VIEW_ITEM = 1;
-    private final int VIEW_PROG = 0;
+    private ArrayList<ItemList> mLists = new ArrayList<>();
+    private final Context mContext;
+    private final int VIEW_PROGRESS = 0;
     private boolean mLoading;
-    private int mVisibleThreshold = 2;
+    private final int mVisibleThreshold = 2;
     private int mLastVisibleItem;
     private int mTotalItemCount;
     private OnLoadMoreListener mOnLoadMoreListener;
-    private MyOnClickListener mMyOnClickListener;
+    private final MyOnClickListener mMyOnClickListener;
     private ArrayList<User> mFavorites = new ArrayList<>();
 
-    public ArrayList<ItemList> getmLists() {
+    public ArrayList<ItemList> getLists() {
         return mLists;
     }
 
@@ -77,6 +70,8 @@ public class UserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         RecyclerView.ViewHolder vh;
+        final int VIEW_TITLE = 2;
+        final int VIEW_ITEM = 1;
         if (viewType == VIEW_TITLE) {
             View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_title, parent, false);
             vh = new TitleViewHolder(v);
@@ -92,15 +87,15 @@ public class UserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        ItemList objects = mLists.get(position);
+        ItemList object = mLists.get(position);
         if (holder instanceof TitleViewHolder) {
-            if (objects instanceof Title) {
-                Title title = (Title) objects;
-                ((TitleViewHolder) holder).mTvTitle.setText(title.getmTitle());
+            if (object instanceof Title) {
+                Title title = (Title) object;
+                ((TitleViewHolder) holder).mTvTitle.setText(title.getTitle());
             }
         } else if (holder instanceof ViewHolder) {
-            if (objects instanceof User) {
-                User user = (User) objects;
+            if (object instanceof User) {
+                User user = (User) object;
                 ((ViewHolder) holder).mImgAvatar.setImageResource(user.getImage());
                 ((ViewHolder) holder).mTvName.setText(user.getName());
                 ((ViewHolder) holder).mTvAge.setText(user.getAge());
@@ -118,7 +113,7 @@ public class UserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
 
     public static class ProgressViewHolder extends RecyclerView.ViewHolder {
-        public ProgressBar progressBar;
+        private final ProgressBar progressBar;
 
         public ProgressViewHolder(View v) {
             super(v);
@@ -127,7 +122,7 @@ public class UserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
 
     public static class TitleViewHolder extends RecyclerView.ViewHolder {
-        TextView mTvTitle;
+        private final TextView mTvTitle;
 
         public TitleViewHolder(View itemView) {
             super(itemView);
@@ -136,13 +131,12 @@ public class UserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView mImgAvatar;
-        TextView mTvName;
-        TextView mTvAge;
-        TextView mTvGender;
-        ProgressBar mProgressBar;
-        ImageView mImgFavorite;
-        User user;
+        private final ImageView mImgAvatar;
+        private final TextView mTvName;
+        private final TextView mTvAge;
+        private final TextView mTvGender;
+        private final ImageView mImgFavorite;
+        private User user;
 
         public ViewHolder(final View itemView) {
             super(itemView);
@@ -151,7 +145,6 @@ public class UserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             mTvAge = (TextView) itemView.findViewById(R.id.tvAge);
             mTvGender = (TextView) itemView.findViewById(R.id.tvGender);
             mImgFavorite = (ImageView) itemView.findViewById(R.id.imgFavorite);
-            mProgressBar = (ProgressBar) itemView.findViewById(R.id.progressBar);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -189,7 +182,7 @@ public class UserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     @Override
     public int getItemViewType(int position) {
         if (mLists.get(position) == null) {
-            return VIEW_PROG;
+            return VIEW_PROGRESS;
         } else {
             return mLists.get(position).getType();
         }

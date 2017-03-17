@@ -23,12 +23,12 @@ import java.util.ArrayList;
 public class FavoriteAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private int mTotalItem;
-    private int mThreshold = 5;
+    private final int THRESHOLD = 5;
     private int mLastItem;
     private boolean mIsLoading;
     private OnLoadMoreListener mLoadMoreListener;
-    ArrayList<User> mUsers = new ArrayList<>();
-    Context mContext;
+    private ArrayList<User> mUsers = new ArrayList<>();
+    private final Context mContext;
 
     public FavoriteAdapter(Context mContext, ArrayList<User> mUsers, RecyclerView recyclerView) {
         this.mUsers = mUsers;
@@ -41,7 +41,7 @@ public class FavoriteAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 super.onScrolled(recyclerView, dx, dy);
                 mTotalItem = layoutManager.getItemCount();
                 mLastItem = layoutManager.findLastVisibleItemPosition();
-                if (!mIsLoading && mTotalItem <= (mLastItem + mThreshold)) {
+                if (!mIsLoading && mTotalItem <= (mLastItem + THRESHOLD)) {
                     if (mLoadMoreListener != null) {
                         mLoadMoreListener.onLoadMore();
                     }
@@ -84,11 +84,11 @@ public class FavoriteAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        ImageView mImgAvatar;
-        TextView mTvName;
-        TextView mTvAge;
-        TextView mTvGender;
-        ImageView mImgFavorite;
+        private ImageView mImgAvatar;
+        private TextView mTvName;
+        private TextView mTvAge;
+        private TextView mTvGender;
+        private ImageView mImgFavorite;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -101,7 +101,7 @@ public class FavoriteAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
     public class ProgressViewHolder extends RecyclerView.ViewHolder {
 
-        ProgressBar progressBar;
+        private final ProgressBar progressBar;
         public ProgressViewHolder(View itemView) {
             super(itemView);
             progressBar = (ProgressBar) itemView.findViewById(R.id.progressBar);

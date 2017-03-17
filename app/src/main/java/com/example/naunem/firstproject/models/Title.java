@@ -4,19 +4,23 @@ package com.example.naunem.firstproject.models;
  * Created by naunem on 16/03/2017.
  */
 
-public class Title extends ItemList{
+public class Title extends ItemList {
     private String mTitle;
-    final int VIEW_TITLE = 2;
+    private final int VIEW_TITLE = 2;
+
+    public Title() {
+
+    }
 
     public Title(String mTitle) {
         this.mTitle = mTitle;
     }
 
-    public String getmTitle() {
+    public String getTitle() {
         return mTitle;
     }
 
-    public void setmTitle(String mTitle) {
+    public void setTitle(String mTitle) {
         this.mTitle = mTitle;
     }
 

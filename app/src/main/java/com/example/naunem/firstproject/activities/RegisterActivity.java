@@ -15,7 +15,6 @@ import android.widget.RadioButton;
 import android.widget.Toast;
 
 import com.example.naunem.firstproject.R;
-import com.example.naunem.firstproject.activities.LoginActivity;
 
 import java.util.ArrayList;
 
@@ -44,7 +43,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.register);
+        setContentView(R.layout.activity_register);
 
         mEdtUsername = (EditText) findViewById(R.id.edtUsername);
         mEdtPassword = (EditText) findViewById(R.id.edtPassword);

@@ -17,29 +17,33 @@ import com.example.naunem.firstproject.models.User;
  */
 
 public class DetailUserActivity extends AppCompatActivity implements View.OnClickListener {
-    TextView mTvName;
-    TextView mTvAge;
-    TextView mTvGender;
-    ImageView mImgAvatar;
-    ImageView mImgFavorite;
-    User mUser;
-    boolean mIsCheck;
+    private TextView mTvName;
+    private TextView mTvAge;
+    private TextView mTvGender;
+    private ImageView mImgAvatar;
+    private ImageView mImgFavorite;
+    private User mUser;
+    private boolean mIsCheck;
     private int mIndex;
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail_user);
+    private void init() {
         mTvName = (TextView) findViewById(R.id.tvName);
         mTvAge = (TextView) findViewById(R.id.tvAge);
         mTvGender = (TextView) findViewById(R.id.tvGender);
         mImgAvatar = (ImageView) findViewById(R.id.imgLogo);
         mImgFavorite = (ImageView) findViewById(R.id.imgFavorite);
+    }
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_detail_user);
+        init();
         mImgFavorite.setOnClickListener(this);
 
         mUser = getIntent().getBundleExtra("object").getParcelable("data");
         mIndex = getIntent().getIntExtra("index", -1);
-        Log.d("dfdjfajf", "onCreate: " + mIndex);
+        Log.d("index", "onCreate: " + mIndex);
 
         Log.d("toi muon biet", "onCreate: " + mUser.isFavorite());
         mIsCheck = mUser.isFavorite();

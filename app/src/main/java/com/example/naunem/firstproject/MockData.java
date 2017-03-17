@@ -1,8 +1,5 @@
 package com.example.naunem.firstproject;
 
-import android.content.Context;
-import android.util.Log;
-
 import com.example.naunem.firstproject.models.ItemList;
 import com.example.naunem.firstproject.models.Title;
 import com.example.naunem.firstproject.models.User;
@@ -15,16 +12,18 @@ import java.util.Random;
  */
 
 public class MockData {
-    public static ArrayList<ItemList> getData(Context context) {
+    public static ArrayList<ItemList> getData() {
         ArrayList<ItemList> lists = new ArrayList<>();
         Random random = new Random();
+        int image;
+        String gender;
+        int favorite;
+        String name;
+        String age;
         for (int i = 0; i < 20; i++) {
             int rand = random.nextInt(20);
-            int image = 0;
-            String name = "User " + i;
-            String age = "Age: " + i;
-            String gender = null;
-            int favorite = 0;
+            name = "User " + i;
+            age = "Age: " + i;
             boolean isFavorite = false;
             if (i % 2 == 0) {
                 image = R.drawable.ic_boy;
@@ -46,12 +45,12 @@ public class MockData {
     }
 
     public static ItemList getDataById(int position) {
-        int image = 0;
+        int image;
         ItemList item;
         String name = "User " + position;
         String age = "Age: " + position;
-        String gender = null;
-        int favorite = 0;
+        String gender;
+        int favorite;
         boolean isFavorite = false;
         if (position % 2 == 0) {
             image = R.drawable.ic_boy;

@@ -23,24 +23,24 @@ import com.example.naunem.firstproject.R;
  */
 
 public class PhoneCallActivity extends AppCompatActivity implements View.OnClickListener, View.OnLongClickListener {
-    TextView mTv1;
-    TextView mTv2;
-    TextView mTv3;
-    TextView mTv4;
-    TextView mTv5;
-    TextView mTv6;
-    TextView mTv7;
-    TextView mTv8;
-    TextView mTv9;
-    TextView mTv0;
-    TextView mTvStar;
-    TextView mTvFly;
-    ImageView mImgCall;
-    EditText mEdtShow;
-    ImageView mImgBackspace;
+    private TextView mTv0;
+    private TextView mTv1;
+    private TextView mTv2;
+    private TextView mTv3;
+    private TextView mTv4;
+    private TextView mTv5;
+    private TextView mTv6;
+    private TextView mTv7;
+    private TextView mTv8;
+    private TextView mTv9;
+    private TextView mTvStar;
+    private TextView mTvFly;
+    private ImageView mImgCall;
+    private EditText mEdtShow;
+    private ImageView mImgBackspace;
     private String mText = "";
 
-    public void init() {
+    private void init() {
         mTv0 = (TextView) findViewById(R.id.tvZero);
         mTv1 = (TextView) findViewById(R.id.tvOne);
         mTv2 = (TextView) findViewById(R.id.tvTwo);
@@ -78,9 +78,7 @@ public class PhoneCallActivity extends AppCompatActivity implements View.OnClick
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_phone_call);
-
         init();
-
         mEdtShow.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -150,7 +148,12 @@ public class PhoneCallActivity extends AppCompatActivity implements View.OnClick
                 mText += "#";
                 mEdtShow.setText(mText);
                 break;
+            case R.id.imgCall:
+                callPhone();
+                Log.d("call press", "onClick: ");
+                break;
             case R.id.imgBackspace:
+                //noinspection ResultOfMethodCallIgnored
                 mText.trim();
                 if (mText.length() == mEdtShow.getSelectionStart()) {
                     mText = mText.substring(0, mText.length() - 1);
@@ -158,10 +161,6 @@ public class PhoneCallActivity extends AppCompatActivity implements View.OnClick
                     mText = mText.substring(0, mEdtShow.getSelectionStart() - 1) + mText.substring(mEdtShow.getSelectionStart(), mText.length());
                 }
                 mEdtShow.setText(mText);
-                break;
-            case R.id.imgCall:
-                actionCall();
-                Log.d("dsfsdf", "onClick: ");
                 break;
         }
     }
@@ -180,12 +179,12 @@ public class PhoneCallActivity extends AppCompatActivity implements View.OnClick
 //        if (requestCode == 10) {
 //            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 //                Log.d("log", "onRequestPermissionsResult: " + grantResults[0] + "---" + grantResults.length);
-//                actionCall();
+//                callPhone();
 //            }
 //        }
 //    }
 
-    private void actionCall() {
+    private void callPhone() {
         Intent callIntent = new Intent(Intent.ACTION_CALL);
         callIntent.setData(Uri.parse("tel:" + mText));
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {

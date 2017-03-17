@@ -1,12 +1,11 @@
 package com.example.naunem.firstproject.activities;
 
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -15,25 +14,23 @@ import android.widget.ImageView;
 
 import com.example.naunem.firstproject.R;
 
-import static com.example.naunem.firstproject.R.id.imgView;
-
 /**
  * Created by naunem on 16/03/2017.
  */
 
-public class CheckIntentActivity extends AppCompatActivity implements View.OnClickListener {
+public class IntentActivity extends AppCompatActivity implements View.OnClickListener {
 
-    Button mBtnCall;
-    Button mBtnSms;
-    Button mBtnSendMail;
-    Button mBtnLaunchWeb;
-    Button mBtnOpenChPlay;
-    Button mBtnOpenGgMap;
-    Button mBtnOpenGallery;
-    Button mBtnOpenCamera;
-    ImageView mImgView;
+    private Button mBtnCall;
+    private Button mBtnSms;
+    private Button mBtnSendMail;
+    private Button mBtnLaunchWeb;
+    private Button mBtnOpenChPlay;
+    private Button mBtnOpenGgMap;
+    private Button mBtnOpenGallery;
+    private Button mBtnOpenCamera;
+    private ImageView mImgView;
 
-    public void init() {
+    private void init() {
         mBtnCall = (Button) findViewById(R.id.btnCall);
         mBtnSms = (Button) findViewById(R.id.btnSms);
         mBtnSendMail = (Button) findViewById(R.id.btnSendMail);
@@ -42,7 +39,7 @@ public class CheckIntentActivity extends AppCompatActivity implements View.OnCli
         mBtnOpenGgMap = (Button) findViewById(R.id.btnOpenGgMap);
         mBtnOpenGallery = (Button) findViewById(R.id.btnShowImg);
         mBtnOpenCamera = (Button) findViewById(R.id.btnCamera);
-        mImgView = (ImageView) findViewById(imgView);
+        mImgView = (ImageView) findViewById(R.id.imgView);
     }
 
     @Override
@@ -66,9 +63,9 @@ public class CheckIntentActivity extends AppCompatActivity implements View.OnCli
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnCall:
-                Intent intent = new Intent(Intent.ACTION_DIAL);
-                intent.setData(Uri.parse("tel:0941717505"));
-                startActivity(intent);
+                Intent itCall = new Intent(Intent.ACTION_DIAL);
+                itCall.setData(Uri.parse("tel:0941717505"));
+                startActivity(itCall);
                 break;
             case R.id.btnSms:
                 String number = "0941717505";
@@ -95,7 +92,7 @@ public class CheckIntentActivity extends AppCompatActivity implements View.OnCli
                 final String appPackageChPlay = getPackageName(); // getPackageName() from Context or Activity object
                 try {
                     startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageChPlay)));
-                } catch (android.content.ActivityNotFoundException anfe) {
+                } catch (ActivityNotFoundException e) {
                     startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageChPlay)));
                 }
                 break;
@@ -103,7 +100,7 @@ public class CheckIntentActivity extends AppCompatActivity implements View.OnCli
                 final String appPackageGgMap = getPackageName(); // getPackageName() from Context or Activity object
                 try {
                     startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageGgMap)));
-                } catch (android.content.ActivityNotFoundException anfe) {
+                } catch (ActivityNotFoundException e) {
                     startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://google.streetview:cbll=46.414382,10.013988" + appPackageGgMap)));
                 }
                 break;
@@ -113,35 +110,24 @@ public class CheckIntentActivity extends AppCompatActivity implements View.OnCli
                 startActivityForResult(Intent.createChooser(itShowImg, "Select Picture"), 0);
                 break;
             case R.id.btnCamera:
-                Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(cameraIntent, 11);
+                Intent itCamera = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(itCamera, 11);
                 break;
         }
-    }
-
-    public String getPathFromURI(Uri contentUri) {
-        String res = null;
-        String[] proj = {MediaStore.Images.Media.DATA};
-        Cursor cursor = getContentResolver().query(contentUri, proj, null, null, null);
-        if (cursor.moveToFirst()) {
-            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-            res = cursor.getString(column_index);
-        }
-        cursor.close();
-        return res;
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        //gallery
+        // Gallery
         if (requestCode == 0 && resultCode == RESULT_OK && null != data) {
             Uri selectedImageUri = data.getData();
             if (null != selectedImageUri) {
                 mImgView.setImageURI(selectedImageUri);
             }
         }
-        //Camera
+
+        // Camera
         if (requestCode == 11 && resultCode == Activity.RESULT_OK) {
             Bitmap photo = (Bitmap) data.getExtras().get("data");
             mImgView.setImageBitmap(photo);

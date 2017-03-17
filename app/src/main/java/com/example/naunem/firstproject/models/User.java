@@ -14,7 +14,7 @@ public class User extends ItemList implements Parcelable {
     private String gender;
     private int favorite;
     private boolean isFavorite;
-    final int VIEW_ITEM = 1;
+    private final int VIEW_ITEM = 1;
 
     /**
      * Constructor

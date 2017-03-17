@@ -2,29 +2,29 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:layout_margin="10dp">
+    android:layout_margin="10dp"
+    android:orientation="vertical">
 
     <Button
         android:id="@+id/btnTestRecyclerView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/custom_button"
-        android:text="@string/button.text.name1"
-        android:layout_marginBottom="10dp"/>
+        android:text="@string/button.text.name1" />
 
     <Button
         android:id="@+id/btnTestIntent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/custom_button"
-        android:text="@string/button.text.name2"/>
+        android:text="@string/button.text.name2" />
 
     <Button
         android:id="@+id/btnCheckIntent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:background="@drawable/custom_button"
-        android:text="Test 3"
-        android:layout_marginTop="10dp"/>
+        android:text="Test 3" />
 </LinearLayout>

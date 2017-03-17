@@ -19,12 +19,12 @@ import java.util.ArrayList;
 
 public class FavoriteActivity extends AppCompatActivity {
 
-    RecyclerView mRecyclerView;
-    FavoriteAdapter mAdapter;
-    ArrayList<User> mListUsers;
-    User mUser;
+    private RecyclerView mRecyclerView;
+    private FavoriteAdapter mAdapter;
+    private ArrayList<User> mListUsers;
+    private User mUser;
 
-    public void init(){
+    private void init(){
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerViewFavorite);
     }
     @Override
@@ -38,7 +38,7 @@ public class FavoriteActivity extends AppCompatActivity {
 
         mListUsers = new ArrayList<>();
         mUser = getIntent().getBundleExtra("data").getParcelable("favorite");
-        Log.d("favorite", "onCreate: " + mUser.getName());
+        Log.d("favorite", "onCreate: " + mUser.getName().toString());
         mListUsers.add(mUser);
         mAdapter = new FavoriteAdapter(this, mListUsers, mRecyclerView);
         mRecyclerView.setAdapter(mAdapter);
