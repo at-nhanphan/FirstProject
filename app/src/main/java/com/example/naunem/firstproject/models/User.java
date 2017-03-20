@@ -32,6 +32,11 @@ public class User extends ItemList implements Parcelable {
         this.isFavorite = isFavorite;
     }
 
+    public User(String name, String age, String gender) {
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+    }
 
     protected User(Parcel in) {
         image = in.readInt();
