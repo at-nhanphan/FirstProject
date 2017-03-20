@@ -1,6 +1,8 @@
 package com.example.naunem.firstproject.activities;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -40,23 +42,53 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        init();
-        mBtnLogin.setOnClickListener(this);
-        mTvCreateAccount.setOnClickListener(this);
-        mImgShowPass.setOnTouchListener(this);
+
+        boolean check = checkLogin();
+        if (check) {
+            Intent itListUser = new Intent(this, ListUserActivity.class);
+            startActivity(itListUser);
+            finish();
+        } else {
+            init();
+            mBtnLogin.setOnClickListener(this);
+            mTvCreateAccount.setOnClickListener(this);
+            mImgShowPass.setOnTouchListener(this);
+        }
+    }
+
+    private boolean checkLogin() {
+        SharedPreferences sharedPreferences = getSharedPreferences("Share", Context.MODE_PRIVATE);
+        String username = sharedPreferences.getString("username", "");
+        String password = sharedPreferences.getString("password", "");
+        if (username.equalsIgnoreCase("naunem") && password.equalsIgnoreCase("123456")) {
+            return true;
+        }
+        return false;
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnLogin:
-                Toast.makeText(this, "Username: " + mEdtUsername.getText().toString() + "\nPassword: " +
-                        mEdtPassword.getText().toString(), Toast.LENGTH_LONG).show();
-                Intent intentMain = new Intent(LoginActivity.this, ListUserActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putString("username", mEdtUsername.getText().toString());
-                bundle.putString("password", mEdtPassword.getText().toString());
-                startActivity(intentMain);
+                if (mEdtUsername.length() == 0 || mEdtPassword.length() == 0) {
+                    Toast.makeText(this, "enter username and pass", Toast.LENGTH_SHORT).show();
+                } else if (!mEdtUsername.getText().toString().equalsIgnoreCase("naunem") || !mEdtPassword.getText().toString().equalsIgnoreCase("123456")) {
+                    Toast.makeText(this, "username or password invalid", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, "Username: " + mEdtUsername.getText().toString() + "\nPassword: " +
+                            mEdtPassword.getText().toString(), Toast.LENGTH_LONG).show();
+                    Intent intentMain = new Intent(LoginActivity.this, ListUserActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("username", mEdtUsername.getText().toString());
+                    bundle.putString("password", mEdtPassword.getText().toString());
+                    SharedPreferences share = getSharedPreferences("Share", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = share.edit();
+                    editor.putString("username", mEdtUsername.getText().toString());
+                    editor.putString("password", mEdtPassword.getText().toString());
+                    editor.commit();
+                    startActivity(intentMain);
+                    finish();
+                }
                 break;
             case R.id.tvCreateAccount:
                 Intent intentRegister = new Intent(this, RegisterActivity.class);

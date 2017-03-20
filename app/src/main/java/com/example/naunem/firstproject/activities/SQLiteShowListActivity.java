@@ -9,8 +9,9 @@ import android.util.Log;
 
 import com.example.naunem.firstproject.R;
 import com.example.naunem.firstproject.adapters.SqliteUserAdapter;
-import com.example.naunem.firstproject.models.SqliteDBHelper;
+import com.example.naunem.firstproject.models.SqliteDBHandle;
 import com.example.naunem.firstproject.models.SqliteUser;
+import com.example.naunem.firstproject.models.UserDatabase;
 
 import java.util.ArrayList;
 
@@ -21,7 +22,8 @@ import java.util.ArrayList;
 public class SQLiteShowListActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private SqliteUserAdapter mAdapter;
-    SqliteDBHelper dbHelper;
+    private UserDatabase db = new UserDatabase(this);
+    private ArrayList<SqliteUser> users = new ArrayList<>();
 
     private void init() {
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerViewListUser);
@@ -34,9 +36,9 @@ public class SQLiteShowListActivity extends AppCompatActivity {
 
         LinearLayoutManager ln =  new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         mRecyclerView.setLayoutManager(ln);
-        ArrayList<SqliteUser> users = dbHelper.getAllUsers();
-        Log.d("toi muon biet", "onCreate: " + dbHelper.getAllUsers());
+        users.addAll(db.getAllUsers());
         mAdapter = new SqliteUserAdapter(this, users);
         mRecyclerView.setAdapter(mAdapter);
+        mAdapter.notifyDataSetChanged();
     }
 }

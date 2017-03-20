@@ -1,15 +1,19 @@
 package com.example.naunem.firstproject.activities;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.os.Handler;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.naunem.firstproject.MockData;
 import com.example.naunem.firstproject.adapters.UserAdapter;
@@ -89,10 +93,31 @@ public class ListUserActivity extends AppCompatActivity implements View.OnClickL
                 finish();
                 break;
             case R.id.imgSettings:
-                Intent intent = new Intent(ListUserActivity.this, FavoriteActivity.class);
-                startActivity(intent);
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+                alertDialogBuilder.setMessage("Do you want to logout?");
+                alertDialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        SharedPreferences share = getSharedPreferences("Share", MODE_PRIVATE);
+                        SharedPreferences.Editor editor = share.edit();
+                        editor.clear();
+                        editor.commit();
+                        Intent itLogin = new Intent(ListUserActivity.this, LoginActivity.class);
+                        startActivity(itLogin);
+                        finish();
+                    }
+                });
+                alertDialogBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.show();
                 break;
         }
+
     }
 
     @Override

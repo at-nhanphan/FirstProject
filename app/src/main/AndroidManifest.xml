@@ -14,6 +14,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".activities.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".activities.ListUserActivity"></activity>
         <activity android:name=".activities.LoginActivity"/>
@@ -38,13 +43,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.SQLiteActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
         <activity android:name=".activities.SQLiteShowListActivity"/>
+        <activity android:name=".activities.DemoSharedPreferenceActivity">
 
+        </activity>
     </application>
 </manifest>

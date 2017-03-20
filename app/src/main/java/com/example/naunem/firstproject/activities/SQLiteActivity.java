@@ -4,17 +4,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.naunem.firstproject.R;
-import com.example.naunem.firstproject.models.SqliteDBHelper;
+import com.example.naunem.firstproject.models.SqliteDBHandle;
 import com.example.naunem.firstproject.models.SqliteUser;
-import com.example.naunem.firstproject.models.User;
-
-import java.util.ArrayList;
+import com.example.naunem.firstproject.models.UserDatabase;
 
 /**
  * Created by naunem on 17/03/2017.
@@ -26,7 +23,7 @@ public class SQLiteActivity extends AppCompatActivity implements View.OnClickLis
     private EditText mEdtGender;
     private Button mBtnInsert;
     private Button mBtnShowInfo;
-    private SqliteDBHelper dbHelper = new SqliteDBHelper(this);
+    private UserDatabase db = new UserDatabase(this);
 
     private void init() {
         mEdtName = (EditText) findViewById(R.id.edtName);
@@ -50,10 +47,8 @@ public class SQLiteActivity extends AppCompatActivity implements View.OnClickLis
         switch (v.getId()) {
             case R.id.btnInsert:
                 SqliteUser user = new SqliteUser(String.valueOf(mEdtName.getText()));
-                dbHelper.insertUser(user);
-                mEdtName.setText("");
-                mEdtAge.setText("");
-                mEdtGender.setText("size " + dbHelper.getAllUsers().size());
+                db.insertUser(user);
+                mEdtGender.setText("size " + db.getAllUsers().size());
                 break;
             case R.id.btnShowInfo:
                 Intent intent = new Intent(this, SQLiteShowListActivity.class);

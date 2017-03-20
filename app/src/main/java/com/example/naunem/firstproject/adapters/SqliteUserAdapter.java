@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import com.example.naunem.firstproject.R;
 import com.example.naunem.firstproject.models.SqliteUser;
-import com.example.naunem.firstproject.models.User;
 
 import java.util.ArrayList;
 
