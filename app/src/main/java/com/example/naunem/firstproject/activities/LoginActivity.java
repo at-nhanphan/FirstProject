@@ -29,6 +29,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private Button mBtnLogin;
     private ImageView mImgShowPass;
     private TextView mTvCreateAccount;
+    private static final String USER_NAME = "naunem";
+    private static final String PASS_WORD = "123456";
 
     private void init() {
         mEdtUsername = (EditText) findViewById(R.id.edtUsername);
@@ -60,7 +62,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         SharedPreferences sharedPreferences = getSharedPreferences("Share", Context.MODE_PRIVATE);
         String username = sharedPreferences.getString("username", "");
         String password = sharedPreferences.getString("password", "");
-        if (username.equalsIgnoreCase("naunem") && password.equalsIgnoreCase("123456")) {
+        if (username.equalsIgnoreCase(USER_NAME) && password.equalsIgnoreCase(PASS_WORD)) {
             return true;
         }
         return false;
@@ -72,7 +74,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             case R.id.btnLogin:
                 if (mEdtUsername.length() == 0 || mEdtPassword.length() == 0) {
                     Toast.makeText(this, "enter username and pass", Toast.LENGTH_SHORT).show();
-                } else if (!mEdtUsername.getText().toString().equalsIgnoreCase("naunem") || !mEdtPassword.getText().toString().equalsIgnoreCase("123456")) {
+                } else if (!mEdtUsername.getText().toString().equalsIgnoreCase(USER_NAME) || !mEdtPassword.getText().toString().equalsIgnoreCase(PASS_WORD)) {
                     Toast.makeText(this, "username or password invalid", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(this, "Username: " + mEdtUsername.getText().toString() + "\nPassword: " +
