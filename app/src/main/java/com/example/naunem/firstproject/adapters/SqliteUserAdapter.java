@@ -16,28 +16,27 @@ import java.util.ArrayList;
  * Created by naunem on 20/03/2017.
  */
 
-public class SqliteUserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class SqliteUserAdapter extends RecyclerView.Adapter<SqliteUserAdapter.ViewHolder>{
 
     private ArrayList<SqliteUser> users = new ArrayList<>();
-    private final Context mContext;
+    private Context mContext;
+
     public SqliteUserAdapter(Context mContext, ArrayList<SqliteUser> users) {
         this.mContext = mContext;
         this.users = users;
     }
 
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_layout_sqlite, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, int position) {
         SqliteUser user = users.get(position);
-        if (holder instanceof ViewHolder) {
-            ((ViewHolder) holder).mTvId.setText(String.valueOf(user.getId()));
-            ((ViewHolder) holder).mTvName.setText(user.getName());
-        }
+        holder.mTvId.setText(String.valueOf(user.getId()));
+        holder.mTvName.setText(user.getName());
     }
 
     @Override
@@ -45,7 +44,7 @@ public class SqliteUserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         return users.size();
     }
 
-    private class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView mTvId;
         private TextView mTvName;
         public ViewHolder(View itemView) {

@@ -11,6 +11,9 @@ public class SqliteUser implements Parcelable {
     int id;
     String name;
 
+    public SqliteUser(){
+
+    }
     public SqliteUser(String name) {
         this.name = name;
     }

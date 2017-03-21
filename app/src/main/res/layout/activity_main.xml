@@ -27,4 +27,12 @@
         android:layout_marginTop="10dp"
         android:background="@drawable/custom_button"
         android:text="Test 3" />
+
+    <Button
+        android:id="@+id/btnSqlite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Test 4"
+        android:background="@drawable/custom_button"
+        android:layout_marginTop="10dp"/>
 </LinearLayout>
