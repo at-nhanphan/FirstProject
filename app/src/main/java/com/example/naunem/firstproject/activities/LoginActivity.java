@@ -79,15 +79,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 } else {
                     Toast.makeText(this, "Username: " + mEdtUsername.getText().toString() + "\nPassword: " +
                             mEdtPassword.getText().toString(), Toast.LENGTH_LONG).show();
-                    Intent intentMain = new Intent(LoginActivity.this, ListUserActivity.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putString("username", mEdtUsername.getText().toString());
-                    bundle.putString("password", mEdtPassword.getText().toString());
+                    Intent intentMain = new Intent(LoginActivity.this, AddActivity.class);
+//                    Bundle bundle = new Bundle();
+//                    bundle.putString("username", mEdtUsername.getText().toString());
+//                    bundle.putString("password", mEdtPassword.getText().toString());
                     SharedPreferences share = getSharedPreferences("Share", MODE_PRIVATE);
                     SharedPreferences.Editor editor = share.edit();
                     editor.putString("username", mEdtUsername.getText().toString());
                     editor.putString("password", mEdtPassword.getText().toString());
                     editor.commit();
+                    intentMain.putExtra("isFrist", true);
                     startActivity(intentMain);
                     finish();
                 }

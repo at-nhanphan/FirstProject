@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.example.naunem.firstproject.R;
 import com.example.naunem.firstproject.models.SqliteUser;
+import com.example.naunem.firstproject.models.User;
 
 import java.util.ArrayList;
 
@@ -18,10 +19,10 @@ import java.util.ArrayList;
 
 public class SqliteUserAdapter extends RecyclerView.Adapter<SqliteUserAdapter.ViewHolder>{
 
-    private ArrayList<SqliteUser> users = new ArrayList<>();
+    private ArrayList<User> users = new ArrayList<>();
     private Context mContext;
 
-    public SqliteUserAdapter(Context mContext, ArrayList<SqliteUser> users) {
+    public SqliteUserAdapter(Context mContext, ArrayList<User> users) {
         this.mContext = mContext;
         this.users = users;
     }
@@ -34,7 +35,7 @@ public class SqliteUserAdapter extends RecyclerView.Adapter<SqliteUserAdapter.Vi
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        SqliteUser user = users.get(position);
+        User user = users.get(position);
         holder.mTvId.setText(String.valueOf(user.getId()));
         holder.mTvName.setText(user.getName());
     }

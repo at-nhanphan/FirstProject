@@ -49,5 +49,12 @@
         <activity android:name=".activities.DemoSharedPreferenceActivity">
 
         </activity>
+        <activity android:name=".activities.LayoutAddEditActitvity">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:scheme="market"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".activities.AddActivity"/>
     </application>
 </manifest>

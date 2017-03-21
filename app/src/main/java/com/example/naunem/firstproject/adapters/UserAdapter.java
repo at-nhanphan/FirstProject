@@ -1,8 +1,11 @@
 package com.example.naunem.firstproject.adapters;
 
+import android.content.ClipData;
 import android.content.Context;
+import android.net.Uri;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +28,7 @@ import java.util.ArrayList;
  */
 
 public class UserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    private ArrayList<ItemList> mLists = new ArrayList<>();
+    private ArrayList<User> mLists = new ArrayList<>();
     private final Context mContext;
     private final int VIEW_PROGRESS = 0;
     private boolean mLoading;
@@ -36,11 +39,11 @@ public class UserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private final MyOnClickListener mMyOnClickListener;
     private ArrayList<User> mFavorites = new ArrayList<>();
 
-    public ArrayList<ItemList> getLists() {
+    public ArrayList<User> getLists() {
         return mLists;
     }
 
-    public UserAdapter(Context context, ArrayList<ItemList> lists, RecyclerView recyclerView, MyOnClickListener listener) {
+    public UserAdapter(Context context, ArrayList<User> lists, RecyclerView recyclerView, MyOnClickListener listener) {
         this.mContext = context;
         this.mLists = lists;
         this.mMyOnClickListener = listener;
@@ -96,7 +99,8 @@ public class UserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         } else if (holder instanceof ViewHolder) {
             if (object instanceof User) {
                 User user = (User) object;
-                ((ViewHolder) holder).mImgAvatar.setImageResource(user.getImage());
+                ((ViewHolder) holder).mImgAvatar.setImageURI(Uri.parse(user.getImage()));
+                Log.d("jjjjjj", "onBindViewHolder: " + user.getImage());
                 ((ViewHolder) holder).mTvName.setText(user.getName());
                 ((ViewHolder) holder).mTvAge.setText(user.getAge());
                 ((ViewHolder) holder).mTvGender.setText(user.getGender());

@@ -22,6 +22,7 @@ import com.example.naunem.firstproject.interfaces.OnLoadMoreListener;
 import com.example.naunem.firstproject.R;
 import com.example.naunem.firstproject.models.ItemList;
 import com.example.naunem.firstproject.models.User;
+import com.example.naunem.firstproject.models.UserDatabase;
 
 import java.util.ArrayList;
 
@@ -33,8 +34,9 @@ public class ListUserActivity extends AppCompatActivity implements View.OnClickL
     private UserAdapter mAdapter;
     private Handler mHandler = new Handler();
     private LinearLayoutManager mLayoutManager;
-    private ArrayList<ItemList> mItemLists;
+    private ArrayList<User> mItemLists;
     private final int REQUEST_CODE = 1;
+    private UserDatabase mUserDatabase = new UserDatabase(this);
 
     private void init() {
         mImgBack = (ImageView) findViewById(R.id.imgBack);
@@ -53,37 +55,51 @@ public class ListUserActivity extends AppCompatActivity implements View.OnClickL
         mRecyclerViewListUser.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerViewListUser.setLayoutManager(mLayoutManager);
-        mItemLists = MockData.getData();
+//        mItemLists = MockData.getData();
+        if (mUserDatabase.getAllUsers().size() == 0) {
+            User user = new User("nhan", "23", "male");
+            mUserDatabase.insertUser(user);
+        } else {
+            mItemLists = mUserDatabase.getAllUsers();
+        }
+        for (int i = 0; i < mItemLists.size() ; i++) {
+            Log.d("list", "onCreate: " + mItemLists.get(i).getName());
+        }
         mAdapter = new UserAdapter(this, mItemLists, mRecyclerViewListUser, this);
-
         mRecyclerViewListUser.setAdapter(mAdapter);
         mAdapter.notifyDataSetChanged();
 
-        mAdapter.setOnLoadMoreListener(new OnLoadMoreListener() {
-            @Override
-            public void onLoadMore() {
-                // Add null , so the adapter will check view_type and show progress bar at bottom
-                mItemLists.add(null);
-                mAdapter.notifyItemInserted(mItemLists.size() - 1);
-                mHandler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        // Remove progress item
-                        mItemLists.remove(mItemLists.size() - 1);
-                        mAdapter.notifyItemRemoved(mItemLists.size());
-                        // Add items
-                        int start = mItemLists.size();
-                        int end = start + 20;
-                        for (int i = start; i < end; i++) {
-                            ItemList item = MockData.getDataById(i);
-                            mItemLists.add(item);
-                            mAdapter.notifyItemInserted(mItemLists.size());
-                        }
-                        mAdapter.setLoaded();
-                    }
-                }, 1000);
-            }
-        });
+//        mAdapter.setOnLoadMoreListener(new OnLoadMoreListener() {
+//            @Override
+//            public void onLoadMore() {
+//                // Add null , so the adapter will check view_type and show progress bar at bottom
+//                mItemLists.add(null);
+//                mAdapter.notifyItemInserted(mItemLists.size() - 1);
+//                mHandler.postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        // Remove progress item
+//                        mItemLists.remove(mItemLists.size() - 1);
+//                        mAdapter.notifyItemRemoved(mItemLists.size());
+//                        // Add items
+//                        int start = mItemLists.size();
+//                        int end = start + 20;
+//                        for (int i = start; i < end; i++) {
+//                            ItemList item = MockData.getDataById(i);
+//                            mItemLists.add(item);
+//                            mAdapter.notifyItemInserted(mItemLists.size());
+//                        }
+//                        mAdapter.setLoaded();
+//                    }
+//                }, 1000);
+//            }
+//        });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
     }
 
     @Override
@@ -93,28 +109,33 @@ public class ListUserActivity extends AppCompatActivity implements View.OnClickL
                 finish();
                 break;
             case R.id.imgSettings:
-                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-                alertDialogBuilder.setMessage("Do you want to logout?");
-                alertDialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface arg0, int arg1) {
-                        SharedPreferences share = getSharedPreferences("Share", MODE_PRIVATE);
-                        SharedPreferences.Editor editor = share.edit();
-                        editor.clear();
-                        editor.commit();
-                        Intent itLogin = new Intent(ListUserActivity.this, LoginActivity.class);
-                        startActivity(itLogin);
-                        finish();
-                    }
-                });
-                alertDialogBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                    }
-                });
-                AlertDialog alertDialog = alertDialogBuilder.create();
-                alertDialog.show();
+//                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+//                alertDialogBuilder.setMessage("Do you want to logout?");
+//                alertDialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface arg0, int arg1) {
+//                        SharedPreferences share = getSharedPreferences("Share", MODE_PRIVATE);
+//                        SharedPreferences.Editor editor = share.edit();
+//                        editor.clear();
+//                        editor.commit();
+//                        Intent itLogin = new Intent(ListUserActivity.this, LoginActivity.class);
+//                        startActivity(itLogin);
+//                        finish();
+//                    }
+//                });
+//                alertDialogBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//
+//                    }
+//                });
+//                AlertDialog alertDialog = alertDialogBuilder.create();
+//                alertDialog.show();
+                // add user
+                Intent intent = new Intent(this, LayoutAddEditActitvity.class);
+                intent.putExtra("value", "add");
+                startActivity(intent);
+                finish();
                 break;
         }
 
@@ -122,12 +143,20 @@ public class ListUserActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onClickListener(int position) {
-        Intent intent = new Intent(this, DetailUserActivity.class);
+//        Intent intent = new Intent(this, DetailUserActivity.class);
+//        Bundle bundle = new Bundle();
+//        bundle.putParcelable("data", (Parcelable) mItemLists.get(position));
+//        intent.putExtra("object", bundle);
+//        intent.putExtra("index", position);
+//        startActivityForResult(intent, REQUEST_CODE);
+        Intent intent = new Intent(this, LayoutAddEditActitvity.class);
         Bundle bundle = new Bundle();
         bundle.putParcelable("data", (Parcelable) mItemLists.get(position));
         intent.putExtra("object", bundle);
+        intent.putExtra("value", "edit");
         intent.putExtra("index", position);
-        startActivityForResult(intent, REQUEST_CODE);
+        startActivity(intent);
+        finish();
     }
 
     @Override

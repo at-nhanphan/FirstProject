@@ -10,6 +10,7 @@ import android.widget.EditText;
 
 import com.example.naunem.firstproject.R;
 import com.example.naunem.firstproject.models.SqliteUser;
+import com.example.naunem.firstproject.models.User;
 import com.example.naunem.firstproject.models.UserDatabase;
 
 /**
@@ -45,7 +46,7 @@ public class SQLiteActivity extends AppCompatActivity implements View.OnClickLis
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnInsert:
-                SqliteUser user = new SqliteUser(String.valueOf(mEdtName.getText()));
+                User user = new User();
                 db.insertUser(user);
                 mEdtGender.setText("size " + db.getAllUsers().size());
                 break;
