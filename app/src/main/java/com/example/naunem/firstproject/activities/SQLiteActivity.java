@@ -9,7 +9,6 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.naunem.firstproject.R;
-import com.example.naunem.firstproject.models.SqliteDBHandle;
 import com.example.naunem.firstproject.models.SqliteUser;
 import com.example.naunem.firstproject.models.UserDatabase;
 

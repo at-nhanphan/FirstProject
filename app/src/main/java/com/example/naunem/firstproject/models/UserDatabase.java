@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
-import android.provider.BaseColumns;
 
 import java.util.ArrayList;
 
@@ -13,17 +12,17 @@ import java.util.ArrayList;
  * Created by naunem on 20/03/2017.
  */
 
-public class UserDatabase implements BaseColumns {
+public class UserDatabase {
     public static final String TABLE_NAME = "User";
     public static final String USER_NAME = "name";
 //        public static final String USER_AGE = "age";
 //        public static final String USER_GENDER = "gender";
 
-    private SqliteDBHandle dbHandle;
+    private SqliteDBHandler dbHandle;
     private Context mContext;
     public UserDatabase(Context mContext) {
         this.mContext = mContext;
-        dbHandle = new SqliteDBHandle(mContext);
+        dbHandle = new SqliteDBHandler(mContext);
     }
     public boolean insertUser(SqliteUser user) {
         SQLiteDatabase db = dbHandle.getWritableDatabase();
@@ -70,10 +69,14 @@ public class UserDatabase implements BaseColumns {
     public ArrayList<SqliteUser> getAllUsers() {
         SQLiteDatabase db = dbHandle.getWritableDatabase();
         ArrayList<SqliteUser> users = new ArrayList<>();
-        Cursor cursor = db.rawQuery("select * from User", null);
+        String sql = "SELECT * FROM " + TABLE_NAME;
+        Cursor cursor = db.rawQuery(sql, null);
         if (cursor.moveToFirst()) {
             do {
-                users.add(new SqliteUser(Integer.parseInt(cursor.getString(0)), cursor.getString(1)));
+                SqliteUser user = new SqliteUser();
+                user.setId(Integer.parseInt(cursor.getString(0)));
+                user.setName(cursor.getString(1));
+                users.add(user);
             } while (cursor.moveToNext());
         }
         return users;

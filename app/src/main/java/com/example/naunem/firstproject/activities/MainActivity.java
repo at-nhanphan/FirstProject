@@ -17,12 +17,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button mBtnTestRecyclerView;
     Button mBtnTestIntent;
     Button mBtnCheckIntent;
+    Button mBtnSqlite;
     Intent intent;
 
     public void init() {
         mBtnTestRecyclerView = (Button) findViewById(R.id.btnTestRecyclerView);
         mBtnTestIntent = (Button) findViewById(R.id.btnTestIntent);
         mBtnCheckIntent = (Button) findViewById(R.id.btnCheckIntent);
+        mBtnSqlite = (Button) findViewById(R.id.btnSqlite);
     }
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -33,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mBtnTestRecyclerView.setOnClickListener(this);
         mBtnTestIntent.setOnClickListener(this);
         mBtnCheckIntent.setOnClickListener(this);
+        mBtnSqlite.setOnClickListener(this);
     }
 
     @Override
@@ -50,6 +53,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 intent = new Intent(MainActivity.this, IntentActivity.class);
                 startActivity(intent);
                 break;
+            case R.id.btnSqlite:
+                intent = new Intent(this, SQLiteActivity.class);
+                startActivity(intent);
         }
     }
 }
