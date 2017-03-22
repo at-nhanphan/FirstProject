@@ -1,6 +1,7 @@
 package com.example.naunem.firstproject.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.app.Fragment;
@@ -15,9 +16,11 @@ import android.widget.TextView;
 
 import com.example.naunem.firstproject.MockData;
 import com.example.naunem.firstproject.R;
+import com.example.naunem.firstproject.activities.DetailUserActivity;
 import com.example.naunem.firstproject.adapters.UserAdapter;
 import com.example.naunem.firstproject.interfaces.MyOnClickListener;
 import com.example.naunem.firstproject.models.ItemList;
+import com.example.naunem.firstproject.models.User;
 
 import java.util.ArrayList;
 
@@ -40,7 +43,6 @@ public class ListUserFragment extends Fragment implements MyOnClickListener {
         LinearLayoutManager ln = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(ln);
         mItemLists = MockData.getData();
-        Log.d("zzzz", "onCreateView: " + mItemLists.size());
         mUserAdapter = new UserAdapter(view.getContext(), mItemLists, mRecyclerView, this);
         mRecyclerView.setAdapter(mUserAdapter);
         return view;
@@ -48,7 +50,12 @@ public class ListUserFragment extends Fragment implements MyOnClickListener {
 
     @Override
     public void onClickListener(int position) {
-
+        User user = (User) mItemLists.get(position);
+        Intent intent = new Intent(getActivity(), DetailUserActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("user", user);
+        intent.putExtra("object", bundle);
+        startActivity(intent);
     }
 }
 

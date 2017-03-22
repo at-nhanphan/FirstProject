@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button mBtnCheckIntent;
     private Button mBtnSqlite;
     private Button mBtnFragment;
+    private Button mBtnViewPager;
     private Intent intent;
 
     public void init() {
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mBtnCheckIntent = (Button) findViewById(R.id.btnCheckIntent);
         mBtnSqlite = (Button) findViewById(R.id.btnSqlite);
         mBtnFragment = (Button) findViewById(R.id.btnFragment);
+        mBtnViewPager = (Button) findViewById(R.id.btnViewPager);
     }
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -40,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mBtnCheckIntent.setOnClickListener(this);
         mBtnSqlite.setOnClickListener(this);
         mBtnFragment.setOnClickListener(this);
+        mBtnViewPager.setOnClickListener(this);
     }
 
     @Override
@@ -63,6 +66,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btnFragment:
                 intent = new Intent(this, FragmentDemoActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.btnViewPager:
+                intent = new Intent(this, ViewPagerActivity.class);
                 startActivity(intent);
                 break;
         }

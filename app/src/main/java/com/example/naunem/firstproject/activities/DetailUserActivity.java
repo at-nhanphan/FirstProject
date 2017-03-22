@@ -41,11 +41,11 @@ public class DetailUserActivity extends AppCompatActivity implements View.OnClic
         init();
         mImgFavorite.setOnClickListener(this);
 
-        mUser = getIntent().getBundleExtra("object").getParcelable("data");
-        mIndex = getIntent().getIntExtra("index", -1);
-        Log.d("index", "onCreate: " + mIndex);
+        mUser = getIntent().getBundleExtra("object").getParcelable("user");
+//        mIndex = getIntent().getIntExtra("index", -1);
+//        Log.d("index", "onCreate: " + mIndex);
 
-        Log.d("toi muon biet", "onCreate: " + mUser.isFavorite());
+//        Log.d("toi muon biet", "onCreate: " + mUser.isFavorite());
         mIsCheck = mUser.isFavorite();
         mImgAvatar.setImageResource(mUser.getImage());
         mTvName.setText(mUser.getName());
