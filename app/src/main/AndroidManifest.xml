@@ -49,5 +49,6 @@
         <activity android:name=".activities.DemoSharedPreferenceActivity">
 
         </activity>
+        <activity android:name=".activities.FragmentDemoActivity"/>
     </application>
 </manifest>

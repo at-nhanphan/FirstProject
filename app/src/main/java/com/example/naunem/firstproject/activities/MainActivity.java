@@ -8,23 +8,26 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.naunem.firstproject.R;
+import com.example.naunem.firstproject.fragments.ListUserFragment;
 
 /**
  * Created by naunem on 15/03/2017.
  */
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    Button mBtnTestRecyclerView;
-    Button mBtnTestIntent;
-    Button mBtnCheckIntent;
-    Button mBtnSqlite;
-    Intent intent;
+    private Button mBtnTestRecyclerView;
+    private Button mBtnTestIntent;
+    private Button mBtnCheckIntent;
+    private Button mBtnSqlite;
+    private Button mBtnFragment;
+    private Intent intent;
 
     public void init() {
         mBtnTestRecyclerView = (Button) findViewById(R.id.btnTestRecyclerView);
         mBtnTestIntent = (Button) findViewById(R.id.btnTestIntent);
         mBtnCheckIntent = (Button) findViewById(R.id.btnCheckIntent);
         mBtnSqlite = (Button) findViewById(R.id.btnSqlite);
+        mBtnFragment = (Button) findViewById(R.id.btnFragment);
     }
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -36,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mBtnTestIntent.setOnClickListener(this);
         mBtnCheckIntent.setOnClickListener(this);
         mBtnSqlite.setOnClickListener(this);
+        mBtnFragment.setOnClickListener(this);
     }
 
     @Override
@@ -56,6 +60,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btnSqlite:
                 intent = new Intent(this, SQLiteActivity.class);
                 startActivity(intent);
+                break;
+            case R.id.btnFragment:
+                intent = new Intent(this, FragmentDemoActivity.class);
+                startActivity(intent);
+                break;
         }
     }
 }
