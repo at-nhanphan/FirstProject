@@ -12,10 +12,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.naunem.firstproject.R;
 import com.example.naunem.firstproject.models.User;
 import com.example.naunem.firstproject.models.UserDatabase;
+import com.squareup.picasso.Picasso;
 
 /**
  * Created by naunem on 21/03/2017.
@@ -28,12 +30,11 @@ public class LayoutAddEditActitvity extends AppCompatActivity implements View.On
     private EditText mEdtAge;
     private EditText mEdtGender;
     private Button mBtnAddEdit;
-    private Button mBtnEdit;
     private Button mBtnRemove;
     private String mValue;
     private User mUser;
     private UserDatabase mUserDatabase = new UserDatabase(this);
-    private Uri mSelectedImageUri;
+    private String path;
 
     private void init() {
         mTvTitle = (TextView) findViewById(R.id.tvTitle);
@@ -42,11 +43,9 @@ public class LayoutAddEditActitvity extends AppCompatActivity implements View.On
         mEdtAge = (EditText) findViewById(R.id.edtAge);
         mEdtGender = (EditText) findViewById(R.id.edtGender);
         mBtnAddEdit = (Button) findViewById(R.id.btnAdd);
-        mBtnEdit = (Button) findViewById(R.id.btnEdit);
         mBtnRemove = (Button) findViewById(R.id.btnRemove);
         mImgAvatar.setOnClickListener(this);
         mBtnAddEdit.setOnClickListener(this);
-        mBtnEdit.setOnClickListener(this);
         mBtnRemove.setOnClickListener(this);
     }
 
@@ -62,18 +61,18 @@ public class LayoutAddEditActitvity extends AppCompatActivity implements View.On
             mTvTitle.setText("ADD");
             mBtnAddEdit.setText("ADD");
             mBtnRemove.setVisibility(View.GONE);
-            mBtnEdit.setVisibility(View.GONE);
         } else {
             mUser = getIntent().getBundleExtra("object").getParcelable("data");
             mTvTitle.setText("EDIT");
-            mImgAvatar.setImageURI(Uri.parse(mUser.getImage()));
+//            mImgAvatar.setImageURI(Uri.parse(mUser.getImage()));
+            Picasso.with(this).load(mUser.getImage()).into(mImgAvatar);
+            Toast.makeText(this,"cccc" + mUser.getImage(), Toast.LENGTH_SHORT).show();
+            Log.d("bbbbb", "onCreate: " + mUser.getImage());
             mEdtName.setText(mUser.getName());
             mEdtAge.setText(mUser.getAge());
             mEdtGender.setText(mUser.getGender());
             mBtnAddEdit.setText("EDIT");
             mBtnRemove.setVisibility(View.VISIBLE);
-            mBtnAddEdit.setVisibility(View.GONE);
-            mBtnEdit.setVisibility(View.VISIBLE);
         }
     }
 
@@ -87,40 +86,24 @@ public class LayoutAddEditActitvity extends AppCompatActivity implements View.On
                 break;
             case R.id.btnAdd:
                 if (mValue.equals("add")) { // add
-                    if (mEdtName.getText().toString() != null && mEdtAge.getText().toString() != null && mEdtAge.getText().toString() != null) {
+                    if (!path.equals("") && mEdtName.getText().toString() != null && mEdtAge.getText().toString() != null && mEdtAge.getText().toString() != null) {
                         User user = new User();
                         user.setName(mEdtName.getText().toString());
                         user.setAge(mEdtAge.getText().toString());
                         user.setGender(mEdtGender.getText().toString());
-                        user.setImage(mSelectedImageUri.getPath());
+                        user.setImage(path);
+                        Log.d("111111", "onClick: " + path);
                         mUserDatabase.insertUser(user);
-                        mEdtName.setText("");
-                        mEdtAge.setText("");
-                        mEdtGender.setText("");
-                        Intent itList = new Intent(LayoutAddEditActitvity.this, ListUserActivity.class);
-                        startActivity(itList);
-                        finish();
-                        Log.d("path", "onClick: " + user.getImage());
                     }
-//                } else { // edit
-//                    User user = new User(mSelectedImageUri.toString(), mEdtName.getText().toString(), mEdtAge.getText().toString(), mEdtGender.getText().toString());
-//                    mUserDatabase.updateUser(user);
-//                    Log.d("name", "onClick: " + mEdtName.getText().toString());
-//                    itList = new Intent(LayoutAddEditActitvity.this, ListUserActivity.class);
-////                    finish();
+                } else { // edit
+                    User user = new User(mUser.getId(), path, mEdtName.getText().toString(), mEdtAge.getText().toString(), mEdtGender.getText().toString());
+                    mUserDatabase.updateUser(user);
                 }
-
-                break;
-            case R.id.btnEdit:
-                User user = new User(mUser.getId(), mUser.getImage(), mEdtName.getText().toString(), mEdtAge.getText().toString(), mEdtGender.getText().toString());
-                mUserDatabase.updateUser(user);
-                Log.d("name", "onClick: " + mEdtName.getText().toString());
                 Intent it = new Intent(LayoutAddEditActitvity.this, ListUserActivity.class);
                 startActivity(it);
                 finish();
                 break;
             case R.id.btnRemove:
-
                 Intent i = new Intent(LayoutAddEditActitvity.this, ListUserActivity.class);
                 mUserDatabase.deleteUser(mUser.getId());
                 startActivity(i);
@@ -140,9 +123,10 @@ public class LayoutAddEditActitvity extends AppCompatActivity implements View.On
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 5 && resultCode == RESULT_OK && null != data) {
-            mSelectedImageUri = data.getData();
+            Uri mSelectedImageUri = data.getData();
+            path = mSelectedImageUri.toString();
             if (null != mSelectedImageUri) {
-                mImgAvatar.setImageURI(mSelectedImageUri);
+                Picasso.with(this).load(path).into(mImgAvatar);
             }
         }
     }

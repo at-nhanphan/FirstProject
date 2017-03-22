@@ -1,11 +1,8 @@
 package com.example.naunem.firstproject.adapters;
 
-import android.content.ClipData;
 import android.content.Context;
-import android.net.Uri;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +17,7 @@ import com.example.naunem.firstproject.interfaces.OnLoadMoreListener;
 import com.example.naunem.firstproject.models.ItemList;
 import com.example.naunem.firstproject.models.Title;
 import com.example.naunem.firstproject.models.User;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -99,8 +97,8 @@ public class UserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         } else if (holder instanceof ViewHolder) {
             if (object instanceof User) {
                 User user = (User) object;
-                ((ViewHolder) holder).mImgAvatar.setImageURI(Uri.parse(user.getImage()));
-                Log.d("jjjjjj", "onBindViewHolder: " + user.getImage());
+//                ((ViewHolder) holder).mImgAvatar.setImageURI(Uri.parse(user.getImage()));
+                Picasso.with(mContext).load(user.getImage()).into(((ViewHolder) holder).mImgAvatar);
                 ((ViewHolder) holder).mTvName.setText(user.getName());
                 ((ViewHolder) holder).mTvAge.setText(user.getAge());
                 ((ViewHolder) holder).mTvGender.setText(user.getGender());

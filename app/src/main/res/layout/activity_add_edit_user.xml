@@ -1,67 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true">
+
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tvTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Add"
-        android:textColor="@color/colorAccent"
-        android:textSize="30dp"
-        android:layout_gravity="center"/>
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Add"
+            android:textColor="@color/colorAccent"
+            android:textSize="30dp" />
 
-    <ImageView
-        android:id="@+id/imgAvatar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="20dp"
-        android:src="@drawable/ic_camera"/>
+        <ImageView
+            android:id="@+id/imgAvatar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="20dp"
+            android:src="@drawable/ic_camera" />
 
-    <EditText
-        android:id="@+id/edtName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="name"/>
+        <EditText
+            android:id="@+id/edtName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="name" />
 
-    <EditText
-        android:id="@+id/edtAge"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="age"/>
+        <EditText
+            android:id="@+id/edtAge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="age" />
 
-    <EditText
-        android:id="@+id/edtGender"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="gender"/>
+        <EditText
+            android:id="@+id/edtGender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="gender" />
 
-    <Button
-        android:id="@+id/btnAdd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="add"
-        android:background="@drawable/custom_button"
-        android:layout_gravity="center"/>
+        <Button
+            android:id="@+id/btnAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/custom_button"
+            android:text="add" />
 
-    <Button
-        android:id="@+id/btnEdit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="edit"
-        android:background="@drawable/custom_button"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"/>
+        <Button
+            android:id="@+id/btnRemove"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/custom_button"
+            android:text="remove" />
 
-    <Button
-        android:id="@+id/btnRemove"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="remove"
-        android:background="@drawable/custom_button"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"/>
 </LinearLayout>
+</ScrollView>

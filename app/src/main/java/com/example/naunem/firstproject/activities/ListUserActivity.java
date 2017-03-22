@@ -34,7 +34,7 @@ public class ListUserActivity extends AppCompatActivity implements View.OnClickL
     private UserAdapter mAdapter;
     private Handler mHandler = new Handler();
     private LinearLayoutManager mLayoutManager;
-    private ArrayList<User> mItemLists;
+    private ArrayList<User> mUsers;
     private final int REQUEST_CODE = 1;
     private UserDatabase mUserDatabase = new UserDatabase(this);
 
@@ -57,15 +57,12 @@ public class ListUserActivity extends AppCompatActivity implements View.OnClickL
         mRecyclerViewListUser.setLayoutManager(mLayoutManager);
 //        mItemLists = MockData.getData();
         if (mUserDatabase.getAllUsers().size() == 0) {
-            User user = new User("nhan", "23", "male");
+            User user = new User("content://com.android.providers.media.documents/document/image%3A57", "nhan", "23", "male");
             mUserDatabase.insertUser(user);
         } else {
-            mItemLists = mUserDatabase.getAllUsers();
+            mUsers = mUserDatabase.getAllUsers();
         }
-        for (int i = 0; i < mItemLists.size() ; i++) {
-            Log.d("list", "onCreate: " + mItemLists.get(i).getName());
-        }
-        mAdapter = new UserAdapter(this, mItemLists, mRecyclerViewListUser, this);
+        mAdapter = new UserAdapter(this, mUsers, mRecyclerViewListUser, this);
         mRecyclerViewListUser.setAdapter(mAdapter);
         mAdapter.notifyDataSetChanged();
 
@@ -151,7 +148,7 @@ public class ListUserActivity extends AppCompatActivity implements View.OnClickL
 //        startActivityForResult(intent, REQUEST_CODE);
         Intent intent = new Intent(this, LayoutAddEditActitvity.class);
         Bundle bundle = new Bundle();
-        bundle.putParcelable("data", (Parcelable) mItemLists.get(position));
+        bundle.putParcelable("data", mUsers.get(position));
         intent.putExtra("object", bundle);
         intent.putExtra("value", "edit");
         intent.putExtra("index", position);
@@ -166,11 +163,10 @@ public class ListUserActivity extends AppCompatActivity implements View.OnClickL
             if (resultCode == RESULT_OK) {
                 boolean isCheck = data.getBooleanExtra("isCheck", false);
                 int index = data.getIntExtra("index", -1);
-                User user = (User) mItemLists.get(index);
+                User user = mUsers.get(index);
                 user.setFavorite(isCheck);
-                Log.d("xem nao", "onActivityResult: " + index);
                 if (index != -1) {
-                    mItemLists.set(index, mItemLists.get(index));
+                    mUsers.set(index, mUsers.get(index));
                     mAdapter.notifyDataSetChanged();
                 }
             }
