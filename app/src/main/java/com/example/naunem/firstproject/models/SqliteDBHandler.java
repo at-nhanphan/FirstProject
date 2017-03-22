@@ -20,14 +20,17 @@ public class SqliteDBHandler extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "UserDatabase.db";
     public static final String TABLE_NAME = "User";
     private static final String SQL_CREATE_TABLE = "CREATE TABLE " + TABLE_NAME +
-            " (" + UserColumn._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + UserColumn.USER_NAME + " TEXT)";
-//            UserDatabase.USER_AGE + " TEXT," + UserDatabase.USER_GENDER + " TEXT)";
-
+            " (" + UserColumn._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + UserColumn.USER_IMAGE + " TEXT,"
+            + UserColumn.USER_NAME + " TEXT, " + UserColumn.USER_AGE + " TEXT," + UserColumn.USER_GENDER + " TEXT)";
     private static final String SQL_DELETE_TABLE = "DROP TABLE IF EXISTS " + TABLE_NAME;
 
-    private class UserColumn implements BaseColumns {
-        public static final String USER_NAME = "name";
+    public static class UserColumn implements BaseColumns {
+        private static final String USER_IMAGE = "image";
+        private static final String USER_NAME = "name";
+        private static final String USER_AGE = "age";
+        private static final String USER_GENDER = "gender";
     }
+
     public SqliteDBHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }

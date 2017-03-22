@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-feature android:name="android.hardware.camera"></uses-feature>
     <application
         android:allowBackup="true"
@@ -49,5 +50,12 @@
         <activity android:name=".activities.DemoSharedPreferenceActivity">
 
         </activity>
+        <activity android:name=".activities.LayoutAddEditActitvity">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:scheme="market"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".activities.AddActivity"/>
     </application>
 </manifest>

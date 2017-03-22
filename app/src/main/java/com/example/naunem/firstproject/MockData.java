@@ -15,7 +15,7 @@ public class MockData {
     public static ArrayList<ItemList> getData() {
         ArrayList<ItemList> lists = new ArrayList<>();
         Random random = new Random();
-        int image;
+        String image = "";
         String gender;
         int favorite;
         String name;
@@ -26,10 +26,10 @@ public class MockData {
             age = "Age: " + i;
             boolean isFavorite = false;
             if (i % 2 == 0) {
-                image = R.drawable.ic_boy;
+//                image = R.drawable.ic_boy;
                 gender = "Gender: Male " + i;
             } else {
-                image = R.drawable.ic_girl;
+//                image = R.drawable.ic_girl;
                 gender = "Gender: Female " + i;
             }
             favorite = R.drawable.ic_star_border;
@@ -45,7 +45,7 @@ public class MockData {
     }
 
     public static ItemList getDataById(int position) {
-        int image;
+        String image = "";
         ItemList item;
         String name = "User " + position;
         String age = "Age: " + position;
@@ -53,10 +53,10 @@ public class MockData {
         int favorite;
         boolean isFavorite = false;
         if (position % 2 == 0) {
-            image = R.drawable.ic_boy;
+//            image = R.drawable.ic_boy;
             gender = "Gender: Male " + position;
         } else {
-            image = R.drawable.ic_girl;
+//            image = R.drawable.ic_girl;
             gender = "Gender: Female " + position;
         }
         favorite = R.drawable.ic_star_border;

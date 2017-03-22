@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -47,7 +48,7 @@ public class DetailUserActivity extends AppCompatActivity implements View.OnClic
 
         Log.d("toi muon biet", "onCreate: " + mUser.isFavorite());
         mIsCheck = mUser.isFavorite();
-        mImgAvatar.setImageResource(mUser.getImage());
+//        mImgAvatar.setImageResource(mUser.getImage());
         mTvName.setText(mUser.getName());
         mTvAge.setText(mUser.getAge());
         mTvGender.setText(mUser.getGender());
