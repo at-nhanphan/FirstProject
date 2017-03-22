@@ -65,9 +65,12 @@ public class LayoutAddEditActitvity extends AppCompatActivity implements View.On
             mUser = getIntent().getBundleExtra("object").getParcelable("data");
             mTvTitle.setText("EDIT");
 //            mImgAvatar.setImageURI(Uri.parse(mUser.getImage()));
-            Picasso.with(this).load(mUser.getImage()).into(mImgAvatar);
-            Toast.makeText(this,"cccc" + mUser.getImage(), Toast.LENGTH_SHORT).show();
-            Log.d("bbbbb", "onCreate: " + mUser.getImage());
+            Picasso.with(this)
+                    .load(mUser.getImage())
+                    .fit()
+                    .centerCrop()
+                    .error(R.drawable.ic_boy)
+                    .into(mImgAvatar);
             mEdtName.setText(mUser.getName());
             mEdtAge.setText(mUser.getAge());
             mEdtGender.setText(mUser.getGender());
