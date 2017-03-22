@@ -8,7 +8,8 @@ import android.os.Parcelable;
  */
 
 public class User extends ItemList implements Parcelable {
-    private int image;
+    private int id;
+    private String image;
     private String name;
     private String age;
     private String gender;
@@ -18,12 +19,13 @@ public class User extends ItemList implements Parcelable {
 
     /**
      * Constructor
+     *
      * @param image
      * @param name
      * @param age
      * @param gender
      */
-    public User(int image, String name, String age, String gender, int favorite, boolean isFavorite) {
+    public User(String image, String name, String age, String gender, int favorite, boolean isFavorite) {
         this.image = image;
         this.name = name;
         this.age = age;
@@ -32,14 +34,34 @@ public class User extends ItemList implements Parcelable {
         this.isFavorite = isFavorite;
     }
 
+    public User() {
+
+    }
+
     public User(String name, String age, String gender) {
         this.name = name;
         this.age = age;
         this.gender = gender;
     }
 
+    public User(String image, String name, String age, String gender) {
+        this.image = image;
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+    }
+
+    public User(int id, String image, String name, String age, String gender) {
+        this.id = id;
+        this.image = image;
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+    }
+
     protected User(Parcel in) {
-        image = in.readInt();
+        id = in.readInt();
+        image = in.readString();
         name = in.readString();
         age = in.readString();
         gender = in.readString();
@@ -59,24 +81,29 @@ public class User extends ItemList implements Parcelable {
         }
     };
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     /**
-     *
      * @return Bitmap
      */
-    public int getImage() {
+    public String getImage() {
         return image;
     }
 
     /**
-     *
      * @param image
      */
-    public void setImage(int image) {
+    public void setImage(String image) {
         this.image = image;
     }
 
     /**
-     *
      * @return String name
      */
     public String getName() {
@@ -84,7 +111,6 @@ public class User extends ItemList implements Parcelable {
     }
 
     /**
-     *
      * @param name
      */
     public void setName(String name) {
@@ -92,7 +118,6 @@ public class User extends ItemList implements Parcelable {
     }
 
     /**
-     *
      * @return String age
      */
     public String getAge() {
@@ -100,7 +125,6 @@ public class User extends ItemList implements Parcelable {
     }
 
     /**
-     *
      * @param age
      */
     public void setAge(String age) {
@@ -108,7 +132,6 @@ public class User extends ItemList implements Parcelable {
     }
 
     /**
-     *
      * @return String gender
      */
     public String getGender() {
@@ -116,7 +139,6 @@ public class User extends ItemList implements Parcelable {
     }
 
     /**
-     *
      * @param gender
      */
     public void setGender(String gender) {
@@ -146,7 +168,8 @@ public class User extends ItemList implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(image);
+        dest.writeInt(id);
+        dest.writeString(image);
         dest.writeString(name);
         dest.writeString(age);
         dest.writeString(gender);

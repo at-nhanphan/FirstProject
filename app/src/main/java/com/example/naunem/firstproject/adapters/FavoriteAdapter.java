@@ -67,7 +67,7 @@ public class FavoriteAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         if (holder instanceof RecyclerView.ViewHolder) {
             if (mUsers != null) {
                 User user = mUsers.get(position);
-                ((MyViewHolder) holder).mImgAvatar.setImageResource(user.getImage());
+//                ((MyViewHolder) holder).mImgAvatar.setImageResource(user.getImage());
                 ((MyViewHolder) holder).mTvName.setText(user.getName());
                 ((MyViewHolder) holder).mTvAge.setText(user.getAge());
                 ((MyViewHolder) holder).mTvGender.setText(user.getGender());

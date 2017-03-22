@@ -21,6 +21,7 @@ import com.example.naunem.firstproject.adapters.UserAdapter;
 import com.example.naunem.firstproject.interfaces.MyOnClickListener;
 import com.example.naunem.firstproject.models.ItemList;
 import com.example.naunem.firstproject.models.User;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -30,7 +31,7 @@ import java.util.ArrayList;
 public class ListUserFragment extends Fragment implements MyOnClickListener {
     private RecyclerView mRecyclerView;
     private UserAdapter mUserAdapter;
-    private ArrayList<ItemList> mItemLists;
+    private ArrayList<User> mItemLists;
     private TextView mTvTitle;
 
     @Nullable
@@ -42,7 +43,8 @@ public class ListUserFragment extends Fragment implements MyOnClickListener {
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerViewListUser);
         LinearLayoutManager ln = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(ln);
-        mItemLists = MockData.getData();
+//        mItemLists = MockData.getData();
+        mItemLists.add(new User("image", "nhan", "22", "male"));
         mUserAdapter = new UserAdapter(view.getContext(), mItemLists, mRecyclerView, this);
         mRecyclerView.setAdapter(mUserAdapter);
         return view;
