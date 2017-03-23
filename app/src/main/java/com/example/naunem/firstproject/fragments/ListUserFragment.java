@@ -21,6 +21,7 @@ import com.example.naunem.firstproject.adapters.UserAdapter;
 import com.example.naunem.firstproject.interfaces.MyOnClickListener;
 import com.example.naunem.firstproject.models.ItemList;
 import com.example.naunem.firstproject.models.User;
+import com.example.naunem.firstproject.models.UserDatabase;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -31,8 +32,21 @@ import java.util.ArrayList;
 public class ListUserFragment extends Fragment implements MyOnClickListener {
     private RecyclerView mRecyclerView;
     private UserAdapter mUserAdapter;
-    private ArrayList<User> mItemLists;
+    private ArrayList<User> mUsers;
     private TextView mTvTitle;
+
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        UserDatabase mUserDatabase = new UserDatabase(getActivity());
+        if (mUserDatabase.getAllUsers().size() == 0) {
+            User user = new User("content://com.android.providers.media.documents/document/image%3A57", "nhan", "23", "male");
+            mUserDatabase.insertUser(user);
+        } else {
+            mUsers = mUserDatabase.getAllUsers();
+        }
+    }
 
     @Nullable
     @Override
@@ -43,16 +57,15 @@ public class ListUserFragment extends Fragment implements MyOnClickListener {
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerViewListUser);
         LinearLayoutManager ln = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(ln);
-//        mItemLists = MockData.getData();
-        mItemLists.add(new User("image", "nhan", "22", "male"));
-        mUserAdapter = new UserAdapter(view.getContext(), mItemLists, mRecyclerView, this);
+        mUserAdapter = new UserAdapter(view.getContext(), mUsers, mRecyclerView, this);
         mRecyclerView.setAdapter(mUserAdapter);
+        mUserAdapter.notifyDataSetChanged();
         return view;
     }
 
     @Override
     public void onClickListener(int position) {
-        User user = (User) mItemLists.get(position);
+        User user = mUsers.get(position);
         Intent intent = new Intent(getActivity(), DetailUserActivity.class);
         Bundle bundle = new Bundle();
         bundle.putParcelable("user", user);

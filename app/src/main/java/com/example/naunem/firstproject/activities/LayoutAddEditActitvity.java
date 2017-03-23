@@ -129,7 +129,11 @@ public class LayoutAddEditActitvity extends AppCompatActivity implements View.On
             Uri mSelectedImageUri = data.getData();
             path = mSelectedImageUri.toString();
             if (null != mSelectedImageUri) {
-                Picasso.with(this).load(path).into(mImgAvatar);
+                Picasso.with(this)
+                        .load(path)
+                        .fit()
+                        .centerCrop()
+                        .into(mImgAvatar);
             }
         }
     }

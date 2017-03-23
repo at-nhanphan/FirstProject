@@ -44,6 +44,32 @@ public class MockData {
         return lists;
     }
 
+    public static ArrayList<User> getAllUsers() {
+        ArrayList<User> lists = new ArrayList<>();
+        Random random = new Random();
+        String image = "";
+        String gender;
+        int favorite;
+        String name;
+        String age;
+        for (int i = 0; i < 20; i++) {
+            int rand = random.nextInt(20);
+            name = "User " + i;
+            age = "Age: " + i;
+            boolean isFavorite = false;
+            if (i % 2 == 0) {
+//                image = R.drawable.ic_boy;
+                gender = "Gender: Male " + i;
+            } else {
+//                image = R.drawable.ic_girl;
+                gender = "Gender: Female " + i;
+            }
+            favorite = R.drawable.ic_star_border;
+            lists.add(new User(image, name, age, gender, favorite, isFavorite));
+        }
+        return lists;
+    }
+
     public static ItemList getDataById(int position) {
         String image = "";
         ItemList item;

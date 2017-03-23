@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.example.naunem.firstproject.R;
 import com.example.naunem.firstproject.models.User;
+import com.squareup.picasso.Picasso;
 
 /**
  * Created by naunem on 10/03/2017.
@@ -49,6 +50,11 @@ public class DetailUserActivity extends AppCompatActivity implements View.OnClic
 //        Log.d("toi muon biet", "onCreate: " + mUser.isFavorite());
         mIsCheck = mUser.isFavorite();
 //        mImgAvatar.setImageResource(mUser.getImage());
+        Picasso.with(this)
+                .load(mUser.getImage())
+                .fit()
+                .centerCrop()
+                .into(mImgAvatar);
         mTvName.setText(mUser.getName());
         mTvAge.setText(mUser.getAge());
         mTvGender.setText(mUser.getGender());
