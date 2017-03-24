@@ -22,10 +22,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.ListUserActivity"></activity>
-        <activity android:name=".activities.LoginActivity"/>
+        <activity android:name=".activities.LoginActivity" />
         <activity android:name=".activities.RegisterActivity" />
-        <activity android:name=".activities.DetailUserActivity"/>
-        <activity android:name=".activities.FavoriteActivity"/>
+        <activity android:name=".activities.DetailUserActivity" />
+        <activity android:name=".activities.FavoriteActivity" />
         <activity android:name=".activities.PhoneCallActivity">
             <intent-filter>
                 <action android:name="android.intent.action.CALL_BUTTON" />
@@ -35,18 +35,19 @@
         </activity>
         <activity android:name=".activities.IntentActivity">
             <intent-filter>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <data android:scheme="sms"/>
-                <data android:scheme="mailto"/>
-                <data android:scheme="http"/>
-                <data android:scheme="https"/>
-                <data android:scheme="market"/>
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:scheme="sms" />
+                <data android:scheme="mailto" />
+                <data android:scheme="http" />
+                <data android:scheme="https" />
+                <data android:scheme="market" />
             </intent-filter>
         </activity>
         <activity android:name=".activities.SQLiteActivity">
 
         </activity>
-        <activity android:name=".activities.SQLiteShowListActivity"/>
+        <activity android:name=".activities.SQLiteShowListActivity" />
         <activity android:name=".activities.DemoSharedPreferenceActivity">
 
         </activity>
@@ -57,5 +58,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.AddActivity"/>
+        <activity
+            android:name=".activities.FragmentDemoActivity"
+            android:configChanges="orientation|screenSize" />
+        <activity android:name=".activities.ViewPagerActivity"/>
     </application>
 </manifest>

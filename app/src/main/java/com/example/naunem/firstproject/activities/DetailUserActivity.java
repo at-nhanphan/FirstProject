@@ -4,14 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.naunem.firstproject.R;
 import com.example.naunem.firstproject.models.User;
+import com.squareup.picasso.Picasso;
 
 /**
  * Created by naunem on 10/03/2017.
@@ -23,7 +22,6 @@ public class DetailUserActivity extends AppCompatActivity implements View.OnClic
     private TextView mTvGender;
     private ImageView mImgAvatar;
     private ImageView mImgFavorite;
-    private User mUser;
     private boolean mIsCheck;
     private int mIndex;
 
@@ -42,13 +40,14 @@ public class DetailUserActivity extends AppCompatActivity implements View.OnClic
         init();
         mImgFavorite.setOnClickListener(this);
 
-        mUser = getIntent().getBundleExtra("object").getParcelable("data");
+        User mUser = getIntent().getBundleExtra("object").getParcelable("user");
         mIndex = getIntent().getIntExtra("index", -1);
-        Log.d("index", "onCreate: " + mIndex);
-
-        Log.d("toi muon biet", "onCreate: " + mUser.isFavorite());
         mIsCheck = mUser.isFavorite();
-//        mImgAvatar.setImageResource(mUser.getImage());
+        Picasso.with(this)
+                .load(mUser.getImage())
+                .fit()
+                .centerCrop()
+                .into(mImgAvatar);
         mTvName.setText(mUser.getName());
         mTvAge.setText(mUser.getAge());
         mTvGender.setText(mUser.getGender());

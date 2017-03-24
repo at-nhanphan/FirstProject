@@ -167,7 +167,7 @@ public class UserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             mImgFavorite.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    user = (User) mLists.get(getLayoutPosition());
+                    user = mLists.get(getLayoutPosition());
                     user.setFavorite(!user.isFavorite());
                     notifyDataSetChanged();
 //                    if (user.isFavorite()) {
