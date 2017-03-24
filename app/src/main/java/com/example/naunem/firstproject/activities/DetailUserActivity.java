@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -24,7 +22,6 @@ public class DetailUserActivity extends AppCompatActivity implements View.OnClic
     private TextView mTvGender;
     private ImageView mImgAvatar;
     private ImageView mImgFavorite;
-    private User mUser;
     private boolean mIsCheck;
     private int mIndex;
 
@@ -43,13 +40,9 @@ public class DetailUserActivity extends AppCompatActivity implements View.OnClic
         init();
         mImgFavorite.setOnClickListener(this);
 
-        mUser = getIntent().getBundleExtra("object").getParcelable("user");
-//        mIndex = getIntent().getIntExtra("index", -1);
-//        Log.d("index", "onCreate: " + mIndex);
-
-//        Log.d("toi muon biet", "onCreate: " + mUser.isFavorite());
+        User mUser = getIntent().getBundleExtra("object").getParcelable("user");
+        mIndex = getIntent().getIntExtra("index", -1);
         mIsCheck = mUser.isFavorite();
-//        mImgAvatar.setImageResource(mUser.getImage());
         Picasso.with(this)
                 .load(mUser.getImage())
                 .fit()

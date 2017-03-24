@@ -1,10 +1,13 @@
 package com.example.naunem.firstproject.adapters;
 
+import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+
 import com.example.naunem.firstproject.fragments.UserFragment;
 import com.example.naunem.firstproject.models.User;
+import com.example.naunem.firstproject.models.UserDatabase;
 
 import java.util.ArrayList;
 
@@ -14,19 +17,24 @@ import java.util.ArrayList;
 
 public class UserViewPagerAdapter extends FragmentStatePagerAdapter {
 
-    ArrayList<User> mUsers = new ArrayList<>();
-    public UserViewPagerAdapter(FragmentManager fm, ArrayList<User> users) {
+    private final Context mContext;
+    private final UserDatabase mDatabase;
+    private ArrayList<User> mUsers;
+
+    public UserViewPagerAdapter(FragmentManager fm, Context context) {
         super(fm);
-        this.mUsers = users;
+        this.mContext = context;
+        mDatabase = new UserDatabase(context);
     }
 
     @Override
     public Fragment getItem(int position) {
-        return new UserFragment();
+        return new UserFragment().newInstance(position);
     }
 
     @Override
     public int getCount() {
+        mUsers = mDatabase.getAllUsers();
         return mUsers.size();
     }
 }

@@ -1,39 +1,35 @@
 package com.example.naunem.firstproject.fragments;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import com.example.naunem.firstproject.MockData;
 import com.example.naunem.firstproject.R;
 import com.example.naunem.firstproject.activities.DetailUserActivity;
 import com.example.naunem.firstproject.adapters.UserAdapter;
 import com.example.naunem.firstproject.interfaces.MyOnClickListener;
-import com.example.naunem.firstproject.models.ItemList;
 import com.example.naunem.firstproject.models.User;
 import com.example.naunem.firstproject.models.UserDatabase;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+
+import static android.app.Activity.RESULT_OK;
 
 /**
  * Created by naunem on 22/03/2017.
  */
 public class ListUserFragment extends Fragment implements MyOnClickListener {
-    private RecyclerView mRecyclerView;
     private UserAdapter mUserAdapter;
     private ArrayList<User> mUsers;
-    private TextView mTvTitle;
+    private final int REQUEST_CODE = 7;
 
 
     @Override
@@ -52,9 +48,9 @@ public class ListUserFragment extends Fragment implements MyOnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_list_user, container, false);
-        mTvTitle = (TextView) view.findViewById(R.id.tvTitle);
-        mTvTitle.setText("Fragment");
-        mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerViewListUser);
+        TextView mTvTitle = (TextView) view.findViewById(R.id.tvTitle);
+        mTvTitle.setText(R.string.app_name);
+        RecyclerView mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerViewListUser);
         LinearLayoutManager ln = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(ln);
         mUserAdapter = new UserAdapter(view.getContext(), mUsers, mRecyclerView, this);
@@ -70,7 +66,24 @@ public class ListUserFragment extends Fragment implements MyOnClickListener {
         Bundle bundle = new Bundle();
         bundle.putParcelable("user", user);
         intent.putExtra("object", bundle);
-        startActivity(intent);
+        intent.putExtra("index", position);
+        startActivityForResult(intent, REQUEST_CODE);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE && resultCode == RESULT_OK && null != data) {
+            boolean isCheck = data.getBooleanExtra("isCheck", false);
+            int index = data.getIntExtra("index", -1);
+            Log.d("33333", "onActivityResult: " + index);
+            User user = mUsers.get(index);
+            user.setFavorite(isCheck);
+            if (index != -1) {
+                mUsers.set(index, mUsers.get(index));
+                mUserAdapter.notifyDataSetChanged();
+            }
+        }
     }
 }
 

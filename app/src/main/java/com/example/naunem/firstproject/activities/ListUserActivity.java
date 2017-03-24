@@ -1,26 +1,16 @@
 package com.example.naunem.firstproject.activities;
 
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Parcelable;
-import android.os.Handler;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
 
-import com.example.naunem.firstproject.MockData;
 import com.example.naunem.firstproject.adapters.UserAdapter;
 import com.example.naunem.firstproject.interfaces.MyOnClickListener;
-import com.example.naunem.firstproject.interfaces.OnLoadMoreListener;
 import com.example.naunem.firstproject.R;
-import com.example.naunem.firstproject.models.ItemList;
 import com.example.naunem.firstproject.models.User;
 import com.example.naunem.firstproject.models.UserDatabase;
 
@@ -32,11 +22,10 @@ public class ListUserActivity extends AppCompatActivity implements View.OnClickL
     private ImageView mImgSettings;
     private RecyclerView mRecyclerViewListUser;
     private UserAdapter mAdapter;
-    private Handler mHandler = new Handler();
     private LinearLayoutManager mLayoutManager;
     private ArrayList<User> mUsers;
     private final int REQUEST_CODE = 1;
-    private UserDatabase mUserDatabase = new UserDatabase(this);
+    private final UserDatabase mUserDatabase = new UserDatabase(this);
 
     private void init() {
         mImgBack = (ImageView) findViewById(R.id.imgBack);
@@ -55,7 +44,6 @@ public class ListUserActivity extends AppCompatActivity implements View.OnClickL
         mRecyclerViewListUser.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerViewListUser.setLayoutManager(mLayoutManager);
-//        mItemLists = MockData.getData();
         if (mUserDatabase.getAllUsers().size() == 0) {
             User user = new User("content://com.android.providers.media.documents/document/image%3A57", "nhan", "23", "male");
             mUserDatabase.insertUser(user);
@@ -91,12 +79,6 @@ public class ListUserActivity extends AppCompatActivity implements View.OnClickL
 //                }, 1000);
 //            }
 //        });
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
     }
 
     @Override
@@ -140,12 +122,6 @@ public class ListUserActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onClickListener(int position) {
-//        Intent intent = new Intent(this, DetailUserActivity.class);
-//        Bundle bundle = new Bundle();
-//        bundle.putParcelable("data", (Parcelable) mItemLists.get(position));
-//        intent.putExtra("object", bundle);
-//        intent.putExtra("index", position);
-//        startActivityForResult(intent, REQUEST_CODE);
         Intent intent = new Intent(this, LayoutAddEditActitvity.class);
         Bundle bundle = new Bundle();
         bundle.putParcelable("data", mUsers.get(position));
@@ -159,7 +135,7 @@ public class ListUserActivity extends AppCompatActivity implements View.OnClickL
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1) {
+        if (requestCode == REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
                 boolean isCheck = data.getBooleanExtra("isCheck", false);
                 int index = data.getIntExtra("index", -1);
