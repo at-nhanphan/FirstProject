@@ -10,6 +10,10 @@ import android.view.ViewGroup;
 
 import com.example.naunem.firstproject.R;
 import com.example.naunem.firstproject.adapters.UserViewPagerAdapter;
+import com.example.naunem.firstproject.models.User;
+import com.example.naunem.firstproject.models.UserDatabase;
+
+import java.util.ArrayList;
 
 /**
  * Created by naunem on 23/03/2017.
@@ -17,13 +21,20 @@ import com.example.naunem.firstproject.adapters.UserViewPagerAdapter;
 
 public class PageAFragment extends Fragment {
 
+    private ArrayList<User> mUsers;
+    private UserDatabase mDatabase;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.viewpager_page1, container, false);
         ViewPager mViewPager = (ViewPager) view.findViewById(R.id.viewPager);
-        UserViewPagerAdapter mAdapter = new UserViewPagerAdapter(getChildFragmentManager(), view.getContext());
+        mDatabase = new UserDatabase(view.getContext());
+        mUsers = mDatabase.getAllUsers();
+        mViewPager.setPageMargin(20);
+        UserViewPagerAdapter mAdapter = new UserViewPagerAdapter(getChildFragmentManager(), view.getContext(), mUsers);
         mViewPager.setAdapter(mAdapter);
+        mViewPager.setOffscreenPageLimit(mUsers.size());
 
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
@@ -42,6 +53,7 @@ public class PageAFragment extends Fragment {
 
             }
         });
+        mAdapter.notifyDataSetChanged();
         return view;
     }
 }

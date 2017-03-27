@@ -76,10 +76,9 @@ public class ListUserFragment extends Fragment implements MyOnClickListener {
         if (requestCode == REQUEST_CODE && resultCode == RESULT_OK && null != data) {
             boolean isCheck = data.getBooleanExtra("isCheck", false);
             int index = data.getIntExtra("index", -1);
-            Log.d("33333", "onActivityResult: " + index);
-            User user = mUsers.get(index);
-            user.setFavorite(isCheck);
             if (index != -1) {
+                User user = mUsers.get(index);
+                user.setFavorite(isCheck);
                 mUsers.set(index, mUsers.get(index));
                 mUserAdapter.notifyDataSetChanged();
             }

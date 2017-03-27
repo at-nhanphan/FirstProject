@@ -18,13 +18,12 @@ import java.util.ArrayList;
 public class UserViewPagerAdapter extends FragmentStatePagerAdapter {
 
     private final Context mContext;
-    private final UserDatabase mDatabase;
-    private ArrayList<User> mUsers;
+    private ArrayList<User> mUsers = new ArrayList<>();
 
-    public UserViewPagerAdapter(FragmentManager fm, Context context) {
+    public UserViewPagerAdapter(FragmentManager fm, Context context, ArrayList<User> users) {
         super(fm);
         this.mContext = context;
-        mDatabase = new UserDatabase(context);
+        this.mUsers = users;
     }
 
     @Override
@@ -34,7 +33,16 @@ public class UserViewPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        mUsers = mDatabase.getAllUsers();
         return mUsers.size();
+    }
+
+    @Override
+    public int getItemPosition(Object object) {
+        return POSITION_NONE;
+    }
+
+    @Override
+    public float getPageWidth(int position) {
+        return 0.9f;
     }
 }

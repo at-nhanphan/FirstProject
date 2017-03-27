@@ -20,6 +20,8 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+import static android.app.Activity.RESULT_OK;
+
 /**
  * Created by naunem on 23/03/2017.
  */
@@ -48,7 +50,7 @@ public class UserFragment extends Fragment {
         mImgFavorite = (ImageView) view.findViewById(R.id.imgFavorite);
         mUserDatabase = new UserDatabase(getContext());
 
-        int position = getArguments().getInt("position");
+        final int position = getArguments().getInt("position");
         mUsers = mUserDatabase.getAllUsers();
         user = mUsers.get(position);
 
@@ -68,7 +70,6 @@ public class UserFragment extends Fragment {
         mImgFavorite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("ooooo", "onClick: " + user.isFavorite());
                 mImgFavorite.setSelected(!user.isFavorite());
                 user.setFavorite(!user.isFavorite());
             }
@@ -80,6 +81,7 @@ public class UserFragment extends Fragment {
                 Intent intent = new Intent(getContext(), DetailUserActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putParcelable("user", user);
+                intent.putExtra("index", position);
                 intent.putExtra("object", bundle);
                 startActivityForResult(intent, REQUEST_CODE);
             }
@@ -93,5 +95,19 @@ public class UserFragment extends Fragment {
         bundle.putInt("position", position);
         fragment.setArguments(bundle);
         return fragment;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
+            boolean isCheck = data.getBooleanExtra("isCheck", false);
+            int index = data.getIntExtra("index", -1);
+            if (index != -1) {
+                user = mUsers.get(index);
+                user.setFavorite(isCheck);
+                mImgFavorite.setSelected(user.isFavorite());
+            }
+        }
     }
 }
