@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button mBtnSqlite;
     private Button mBtnFragment;
     private Button mBtnViewPager;
+    private Button mBtnService;
     private Intent intent;
 
     public void init() {
@@ -30,19 +31,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mBtnSqlite = (Button) findViewById(R.id.btnSqlite);
         mBtnFragment = (Button) findViewById(R.id.btnFragment);
         mBtnViewPager = (Button) findViewById(R.id.btnViewPager);
-    }
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        init();
-
+        mBtnService = (Button) findViewById(R.id.btnService);
         mBtnTestRecyclerView.setOnClickListener(this);
         mBtnTestIntent.setOnClickListener(this);
         mBtnCheckIntent.setOnClickListener(this);
         mBtnSqlite.setOnClickListener(this);
         mBtnFragment.setOnClickListener(this);
         mBtnViewPager.setOnClickListener(this);
+        mBtnService.setOnClickListener(this);
+    }
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        init();
     }
 
     @Override
@@ -70,6 +72,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btnViewPager:
                 intent = new Intent(this, ViewPagerActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.btnService:
+                intent = new Intent(this, MyServiceBinding.class);
                 startActivity(intent);
                 break;
         }

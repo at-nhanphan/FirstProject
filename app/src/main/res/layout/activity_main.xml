@@ -32,23 +32,31 @@
         android:id="@+id/btnSqlite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Test 4"
+        android:layout_marginTop="10dp"
         android:background="@drawable/custom_button"
-        android:layout_marginTop="10dp"/>
+        android:text="Test 4" />
 
     <Button
         android:id="@+id/btnFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="fragment"
+        android:layout_marginTop="10dp"
         android:background="@drawable/custom_button"
-        android:layout_marginTop="10dp"/>
+        android:text="fragment" />
 
     <Button
         android:id="@+id/btnViewPager"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="view pager"
+        android:layout_marginTop="10dp"
         android:background="@drawable/custom_button"
-        android:layout_marginTop="10dp"/>
+        android:text="view pager" />
+
+    <Button
+        android:id="@+id/btnService"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/custom_button"
+        android:text="service" />
 </LinearLayout>
