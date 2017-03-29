@@ -8,48 +8,43 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.naunem.firstproject.R;
-import com.example.naunem.firstproject.fragments.ListUserFragment;
 
 /**
  * Created by naunem on 15/03/2017.
  */
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    private Button mBtnTestRecyclerView;
-    private Button mBtnTestIntent;
-    private Button mBtnCheckIntent;
-    private Button mBtnSqlite;
-    private Button mBtnFragment;
-    private Button mBtnViewPager;
-    private Intent intent;
 
     public void init() {
-        mBtnTestRecyclerView = (Button) findViewById(R.id.btnTestRecyclerView);
-        mBtnTestIntent = (Button) findViewById(R.id.btnTestIntent);
-        mBtnCheckIntent = (Button) findViewById(R.id.btnCheckIntent);
-        mBtnSqlite = (Button) findViewById(R.id.btnSqlite);
-        mBtnFragment = (Button) findViewById(R.id.btnFragment);
-        mBtnViewPager = (Button) findViewById(R.id.btnViewPager);
-    }
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        init();
-
+        Button mBtnTestRecyclerView = (Button) findViewById(R.id.btnTestRecyclerView);
+        Button mBtnTestIntent = (Button) findViewById(R.id.btnTestIntent);
+        Button mBtnCheckIntent = (Button) findViewById(R.id.btnCheckIntent);
+        Button mBtnSqlite = (Button) findViewById(R.id.btnSqlite);
+        Button mBtnFragment = (Button) findViewById(R.id.btnFragment);
+        Button mBtnViewPager = (Button) findViewById(R.id.btnViewPager);
+        Button mBtnService = (Button) findViewById(R.id.btnService);
+        Button mBtnBroadcast = (Button) findViewById(R.id.btnBroadcast);
         mBtnTestRecyclerView.setOnClickListener(this);
         mBtnTestIntent.setOnClickListener(this);
         mBtnCheckIntent.setOnClickListener(this);
         mBtnSqlite.setOnClickListener(this);
         mBtnFragment.setOnClickListener(this);
         mBtnViewPager.setOnClickListener(this);
+        mBtnService.setOnClickListener(this);
+        mBtnBroadcast.setOnClickListener(this);
+    }
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        init();
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnTestRecyclerView:
-                intent = new Intent(MainActivity.this, LoginActivity.class);
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                 startActivity(intent);
                 break;
             case R.id.btnTestIntent:
@@ -70,6 +65,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btnViewPager:
                 intent = new Intent(this, ViewPagerActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.btnService:
+                intent = new Intent(this, MyServiceBindingActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.btnBroadcast:
+                intent = new Intent(this, MyReceiverActivity.class);
                 startActivity(intent);
                 break;
         }

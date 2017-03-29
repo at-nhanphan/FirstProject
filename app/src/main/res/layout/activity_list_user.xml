@@ -27,7 +27,7 @@
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:maxLines="1"
-            android:text="@string/textview.text.title"
+            android:text="@string/textView.text.title"
             android:textSize="30sp" />
 
         <ImageView

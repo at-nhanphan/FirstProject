@@ -23,7 +23,7 @@ public class AddActivity extends AppCompatActivity {
         mBtnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AddActivity.this, LayoutAddEditActitvity.class);
+                Intent intent = new Intent(AddActivity.this, LayoutAddEditActivity.class);
                 intent.putExtra("value", "add");
                 startActivity(intent);
             }

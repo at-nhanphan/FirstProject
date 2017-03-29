@@ -22,6 +22,7 @@ import com.example.naunem.firstproject.R;
  * Created by naunem on 08/03/2017.
  */
 
+@SuppressWarnings("DefaultFileTemplate")
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener, View.OnTouchListener {
 
     private EditText mEdtUsername;
@@ -62,10 +63,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         SharedPreferences sharedPreferences = getSharedPreferences("Share", Context.MODE_PRIVATE);
         String username = sharedPreferences.getString("username", "");
         String password = sharedPreferences.getString("password", "");
-        if (username.equalsIgnoreCase(USER_NAME) && password.equalsIgnoreCase(PASS_WORD)) {
-            return true;
-        }
-        return false;
+        return username.equalsIgnoreCase(USER_NAME) && password.equalsIgnoreCase(PASS_WORD);
     }
 
     @Override
@@ -87,7 +85,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     SharedPreferences.Editor editor = share.edit();
                     editor.putString("username", mEdtUsername.getText().toString());
                     editor.putString("password", mEdtPassword.getText().toString());
-                    editor.commit();
+                    editor.apply();
                     intentMain.putExtra("isFrist", true);
                     startActivity(intentMain);
                     finish();

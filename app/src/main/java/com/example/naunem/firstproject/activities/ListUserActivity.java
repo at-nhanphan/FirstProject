@@ -45,7 +45,7 @@ public class ListUserActivity extends AppCompatActivity implements View.OnClickL
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerViewListUser.setLayoutManager(mLayoutManager);
         if (mUserDatabase.getAllUsers().size() == 0) {
-            User user = new User("content://com.android.providers.media.documents/document/image%3A57", "nhan", "23", "male");
+            User user = new User("content://com.android.providers.media.documents/document/image%3A57", "jerry", "23", "male");
             mUserDatabase.insertUser(user);
         } else {
             mUsers = mUserDatabase.getAllUsers();
@@ -111,7 +111,7 @@ public class ListUserActivity extends AppCompatActivity implements View.OnClickL
 //                AlertDialog alertDialog = alertDialogBuilder.create();
 //                alertDialog.show();
                 // add user
-                Intent intent = new Intent(this, LayoutAddEditActitvity.class);
+                Intent intent = new Intent(this, LayoutAddEditActivity.class);
                 intent.putExtra("value", "add");
                 startActivity(intent);
                 finish();
@@ -122,7 +122,7 @@ public class ListUserActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onClickListener(int position) {
-        Intent intent = new Intent(this, LayoutAddEditActitvity.class);
+        Intent intent = new Intent(this, LayoutAddEditActivity.class);
         Bundle bundle = new Bundle();
         bundle.putParcelable("data", mUsers.get(position));
         intent.putExtra("object", bundle);
