@@ -3,16 +3,20 @@
     package="com.example.naunem.firstproject">
 
     <uses-permission android:name="android.permission.CALL_PHONE" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-feature android:name="android.hardware.camera"></uses-feature>
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
-    <uses-permission android:name="android.permission.READ_SMS"/>
-    <uses-permission android:name="android.permission.SEND_SMS"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <uses-feature android:name="android.hardware.camera" />
+
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+
     <application
         android:allowBackup="true"
+        android:fullBackupContent="true"
         android:icon="@drawable/ic_icon_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -21,11 +25,12 @@
         <activity android:name=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.ListUserActivity"></activity>
+        <activity android:name=".activities.ListUserActivity" />
         <activity android:name=".activities.LoginActivity" />
         <activity android:name=".activities.RegisterActivity" />
         <activity android:name=".activities.DetailUserActivity" />
@@ -48,38 +53,37 @@
                 <data android:scheme="market" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.SQLiteActivity">
-
-        </activity>
+        <activity android:name=".activities.SQLiteActivity" />
         <activity android:name=".activities.SQLiteShowListActivity" />
-        <activity android:name=".activities.DemoSharedPreferenceActivity">
-
-        </activity>
-        <activity android:name=".activities.LayoutAddEditActitvity">
+        <activity android:name=".activities.DemoSharedPreferenceActivity" />
+        <activity android:name=".activities.LayoutAddEditActivity">
             <intent-filter>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <data android:scheme="market"/>
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:scheme="market" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.AddActivity"/>
+        <activity android:name=".activities.AddActivity" />
         <activity
             android:name=".activities.FragmentDemoActivity"
             android:configChanges="orientation|screenSize" />
-        <activity android:name=".activities.ViewPagerActivity"/>
-        <activity android:name=".activities.MyServiceBinding">
+        <activity android:name=".activities.ViewPagerActivity" />
+        <activity android:name=".activities.MyServiceBindingActivity" />
 
-        </activity>
-        <service android:name=".services.MyService"
-            android:enabled="true"/>
-
-        <activity android:name=".activities.MyReceiverActivity">
-        </activity>
-        <receiver android:name=".services.MyReceiver"
+        <service
+            android:name=".services.MyService"
+            android:enabled="true" />
+        <activity android:name=".activities.MyReceiverActivity" />
+        <receiver
+            android:name=".services.MyReceiver"
             android:enabled="true">
             <intent-filter>
-                <action android:name="android.intent.action.PHONE_STATE"/>
-                <action android:name="android.provider.Telephony.SMS_RECEIVED"/>
+                <action android:name="android.intent.action.PHONE_STATE" />
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+                <action android:name="com.pro.naunem.ahihi.NAUNEM" />
+                <action android:name="com.pro.naunem.senddata.action.SEND_DATA" />
+                <action android:name="com.pro.naunem.action.RECEIVE_INTENT" />
             </intent-filter>
         </receiver>
+        <activity android:name=".activities.ReceiveActivity" />
     </application>
 </manifest>

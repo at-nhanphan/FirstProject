@@ -6,14 +6,20 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.NotificationCompat;
 import android.telephony.SmsMessage;
 import android.telephony.TelephonyManager;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.example.naunem.firstproject.R;
 import com.example.naunem.firstproject.activities.MyReceiverActivity;
+import com.example.naunem.firstproject.activities.ReceiveActivity;
+
+import java.util.Calendar;
 
 /**
  * Created by naunem on 28/03/2017.
@@ -21,13 +27,31 @@ import com.example.naunem.firstproject.activities.MyReceiverActivity;
 
 public class MyReceiver extends BroadcastReceiver {
 
-    private final String ACTION_PHONE_STATE = "android.intent.action.PHONE_STATE";
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onReceive(Context context, Intent intent) {
-        if (intent.getAction().equals(ACTION_PHONE_STATE)) {
+        final String ACTION_PHONE_STATE = "android.intent.action.PHONE_STATE";
+        final String CUSTOM_INTENT = "com.pro.naunem.ahihi.NAUNEM";
+        final String RECEIVE_INTENT = "com.pro.naunem.action.RECEIVE_INTENT";
+        if (intent.getAction().equals(CUSTOM_INTENT)) {
+            String message = intent.getStringExtra("message");
+            Intent newIntent = new Intent(context, MyReceiverActivity.class);
+            newIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            newIntent.putExtra("flag", message);
+            newIntent.putExtra("time", getCurrentTimes());
+            context.startActivity(newIntent);
+            Toast.makeText(context, CUSTOM_INTENT, Toast.LENGTH_SHORT).show();
+        } else if (intent.getAction().equals(ACTION_PHONE_STATE)) {
             String phoneState = intent.getStringExtra(TelephonyManager.EXTRA_STATE);
             Toast.makeText(context, "Phone State: " + phoneState, Toast.LENGTH_SHORT).show();
             showNotification(context, phoneState);
+        } else if (intent.getAction().equals(RECEIVE_INTENT)) {
+            Intent itReceive = new Intent(context, ReceiveActivity.class);
+            String data = intent.getStringExtra("message");
+            itReceive.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            itReceive.putExtra("content", data);
+            Log.d("fff", "onReceive: " + data);
+            context.startActivity(itReceive);
         } else {
             showNotification(context, showMessage(context, intent));
         }
@@ -56,13 +80,22 @@ public class MyReceiver extends BroadcastReceiver {
         Object[] objArr = (Object[]) bundle.get(sms_extra);
         String sms = "";
         if (objArr != null) {
-            for (int i = 0; i < objArr.length; i++) {
-                SmsMessage smsMsg = SmsMessage.createFromPdu((byte[]) objArr[i]);
+            for (Object anObjArr : objArr) {
+                SmsMessage smsMsg = SmsMessage.createFromPdu((byte[]) anObjArr);
                 String body = smsMsg.getMessageBody();
                 String address = smsMsg.getDisplayOriginatingAddress();
                 sms += address + ":\n" + body + "\n";
             }
         }
         return sms;
+    }
+
+    public String getCurrentTimes() {
+        Calendar c = Calendar.getInstance();
+        int date = c.get(Calendar.DATE);
+        int hour = c.get(Calendar.HOUR);
+        int minute = c.get(Calendar.MINUTE);
+        int second = c.get(Calendar.SECOND);
+        return date + " : " + hour + " : " + minute + " : " + second;
     }
 }

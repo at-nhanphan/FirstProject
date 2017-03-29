@@ -16,7 +16,8 @@
         android:layout_centerVertical="true"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:src="@drawable/ic_logo" />
+        android:src="@drawable/ic_logo"
+        android:contentDescription="@string/app_name" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -32,7 +33,7 @@
             android:layout_marginTop="10dp"
             android:ellipsize="end"
             android:maxLines="1"
-            android:text="@string/textview.text.name" />
+            android:text="@string/textView.text.name" />
 
         <TextView
             android:id="@+id/tvAge"
@@ -44,7 +45,7 @@
             android:layout_marginTop="10dp"
             android:ellipsize="end"
             android:maxLines="1"
-            android:text="@string/textview.text.age" />
+            android:text="@string/textView.text.age" />
 
         <TextView
             android:id="@+id/tvGender"
@@ -55,7 +56,7 @@
             android:layout_marginRight="10dp"
             android:ellipsize="end"
             android:maxLines="1"
-            android:text="@string/textview.text.gender" />
+            android:text="@string/textView.text.gender" />
 
         <ImageView
             android:id="@+id/imgFavorite"
@@ -63,6 +64,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_margin="20dp"
-            android:src="@drawable/select_favorite" />
+            android:src="@drawable/select_favorite"
+            android:contentDescription="@string/app_name" />
     </RelativeLayout>
 </RelativeLayout>

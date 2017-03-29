@@ -1,13 +1,15 @@
 <resources>
     <string name="app_name">FirstProject</string>
     <string name="spinner.text.choose_a_position">Choose a position</string>
-    <string name="textview.text.name">Name :</string>
-    <string name="textview.text.age">Age :</string>
-    <string name="textview.text.gender">Gender :</string>
-    <string name="textview.text.title">List Users</string>
+    <string name="textView.text.age">Age :</string>
+    <string name="textView.text.gender">Gender :</string>
+    <string name="textView.text.title">List Users</string>
     <string name="button.text.name1">Test 1</string>
     <string name="button.text.name2">Test 2</string>
-    <string name="content">anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em</string>
+    <string name="textView.text.content">anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em anh yeu em</string>
+    <string name="textView.text.add">ADD</string>
+    <string name="textView.text.edit">EDIT</string>
+    <string name="textView.text.name">nhan phan</string>
 
     <string-array name="spinner_arrays">
         <item>First</item>

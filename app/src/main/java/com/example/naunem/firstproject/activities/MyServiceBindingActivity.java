@@ -14,7 +14,7 @@ import com.example.naunem.firstproject.services.MyService;
  * Created by naunem on 27/03/2017.
  */
 
-public class MyServiceBinding extends AppCompatActivity implements View.OnClickListener {
+public class MyServiceBindingActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button mBtnStart;
     private Button mBtnStop;
@@ -31,7 +31,7 @@ public class MyServiceBinding extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onClick(View v) {
-        Intent intent = new Intent(MyServiceBinding.this, MyService.class);
+        Intent intent = new Intent(MyServiceBindingActivity.this, MyService.class);
         switch (v.getId()) {
             case R.id.btnStart:
                 startService(intent);

@@ -30,7 +30,7 @@ public class MyService extends Service {
         Log.d(TAG, "onStartCommand: ");
         mMediaPlayer.start();
         Log.d("dddd", "Media Player started!");
-        if (mMediaPlayer.isLooping() != true) {
+        if (!mMediaPlayer.isLooping()) {
             Log.d("aaaa", "Problem in Playing Audio");
         }
         return START_STICKY;

@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -12,7 +11,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.naunem.firstproject.R;
 import com.example.naunem.firstproject.models.User;
@@ -20,10 +18,11 @@ import com.example.naunem.firstproject.models.UserDatabase;
 import com.squareup.picasso.Picasso;
 
 /**
- * Created by naunem on 21/03/2017.
+ * Created by nhan on 21/03/2017.
  */
 
-public class LayoutAddEditActitvity extends AppCompatActivity implements View.OnClickListener {
+@SuppressWarnings("DefaultFileTemplate")
+public class LayoutAddEditActivity extends AppCompatActivity implements View.OnClickListener {
     private TextView mTvTitle;
     private ImageView mImgAvatar;
     private EditText mEdtName;
@@ -58,12 +57,12 @@ public class LayoutAddEditActitvity extends AppCompatActivity implements View.On
         mValue = getIntent().getStringExtra("value");
 
         if (mValue.equals("add")) {
-            mTvTitle.setText("ADD");
-            mBtnAddEdit.setText("ADD");
+            mTvTitle.setText(R.string.textView_text_add);
+            mBtnAddEdit.setText(R.string.textView_text_add);
             mBtnRemove.setVisibility(View.GONE);
         } else {
             mUser = getIntent().getBundleExtra("object").getParcelable("data");
-            mTvTitle.setText("EDIT");
+            mTvTitle.setText(R.string.textView_text_edit);
 //            mImgAvatar.setImageURI(Uri.parse(mUser.getImage()));
             Picasso.with(this)
                     .load(mUser.getImage())
@@ -74,7 +73,7 @@ public class LayoutAddEditActitvity extends AppCompatActivity implements View.On
             mEdtName.setText(mUser.getName());
             mEdtAge.setText(mUser.getAge());
             mEdtGender.setText(mUser.getGender());
-            mBtnAddEdit.setText("EDIT");
+            mBtnAddEdit.setText(R.string.textView_text_edit);
             mBtnRemove.setVisibility(View.VISIBLE);
         }
     }
@@ -89,7 +88,7 @@ public class LayoutAddEditActitvity extends AppCompatActivity implements View.On
                 break;
             case R.id.btnAdd:
                 if (mValue.equals("add")) { // add
-                    if (!path.equals("") && mEdtName.getText().toString() != null && mEdtAge.getText().toString() != null && mEdtAge.getText().toString() != null) {
+                    if (!path.equals("")) {
                         User user = new User();
                         user.setName(mEdtName.getText().toString());
                         user.setAge(mEdtAge.getText().toString());
@@ -102,12 +101,12 @@ public class LayoutAddEditActitvity extends AppCompatActivity implements View.On
                     User user = new User(mUser.getId(), path, mEdtName.getText().toString(), mEdtAge.getText().toString(), mEdtGender.getText().toString());
                     mUserDatabase.updateUser(user);
                 }
-                Intent it = new Intent(LayoutAddEditActitvity.this, ListUserActivity.class);
+                Intent it = new Intent(LayoutAddEditActivity.this, ListUserActivity.class);
                 startActivity(it);
                 finish();
                 break;
             case R.id.btnRemove:
-                Intent i = new Intent(LayoutAddEditActitvity.this, ListUserActivity.class);
+                Intent i = new Intent(LayoutAddEditActivity.this, ListUserActivity.class);
                 mUserDatabase.deleteUser(mUser.getId());
                 startActivity(i);
                 finish();
@@ -128,13 +127,11 @@ public class LayoutAddEditActitvity extends AppCompatActivity implements View.On
         if (requestCode == 5 && resultCode == RESULT_OK && null != data) {
             Uri mSelectedImageUri = data.getData();
             path = mSelectedImageUri.toString();
-            if (null != mSelectedImageUri) {
-                Picasso.with(this)
-                        .load(path)
-                        .fit()
-                        .centerCrop()
-                        .into(mImgAvatar);
-            }
+            Picasso.with(this)
+                    .load(path)
+                    .fit()
+                    .centerCrop()
+                    .into(mImgAvatar);
         }
     }
 }
