@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">FirstProject</string>
+    <string name="app_name">Frist Project</string>
     <string name="spinner.text.choose_a_position">Choose a position</string>
     <string name="textView.text.age">Age :</string>
     <string name="textView.text.gender">Gender :</string>
@@ -10,6 +10,9 @@
     <string name="textView.text.add">ADD</string>
     <string name="textView.text.edit">EDIT</string>
     <string name="textView.text.name">nhan phan</string>
+    <string name="toolBar.text.name">My ToolBar</string>
+    <string name="menu.text.fragmentDialog">Fragment Dialog</string>
+    <string name="menu.text.mutiChoice">MutiChoice Dialog</string>
 
     <string-array name="spinner_arrays">
         <item>First</item>

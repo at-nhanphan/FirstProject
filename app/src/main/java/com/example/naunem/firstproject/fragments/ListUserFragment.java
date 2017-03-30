@@ -49,7 +49,7 @@ public class ListUserFragment extends Fragment implements MyOnClickListener {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_list_user, container, false);
         TextView mTvTitle = (TextView) view.findViewById(R.id.tvTitle);
-        mTvTitle.setText(R.string.app_name);
+        mTvTitle.setText(R.string.button_text_name1);
         RecyclerView mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerViewListUser);
         LinearLayoutManager ln = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(ln);
