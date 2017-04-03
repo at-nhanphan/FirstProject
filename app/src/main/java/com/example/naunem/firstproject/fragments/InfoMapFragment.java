@@ -3,6 +3,7 @@ package com.example.naunem.firstproject.fragments;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,14 +22,12 @@ import java.util.ArrayList;
 
 public class InfoMapFragment extends Fragment {
 
-    private TextView mTvName;
-    private TextView mTvAddress;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.item_layout_map_info, container, false);
-        mTvName = (TextView) view.findViewById(R.id.tvName);
-        mTvAddress = (TextView) view.findViewById(R.id.tvAddress);
+        TextView mTvName = (TextView) view.findViewById(R.id.tvName);
+        TextView mTvAddress = (TextView) view.findViewById(R.id.tvAddress);
 
         int position = getArguments().getInt("position");
         ArrayList<MarkerData> markers = MockData.getAllMarkers();
