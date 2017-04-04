@@ -1,70 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="10dp"
-    android:orientation="vertical">
+    android:layout_margin="10dp">
 
-    <Button
-        android:id="@+id/btnTestRecyclerView"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/custom_button"
-        android:text="@string/button.text.name1" />
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/btnTestIntent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/custom_button"
-        android:text="@string/button.text.name2" />
+        <Button
+            android:id="@+id/btnTestRecyclerView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/custom_button"
+            android:text="@string/button.text.name1" />
 
-    <Button
-        android:id="@+id/btnCheckIntent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/custom_button"
-        android:text="Test 3" />
+        <Button
+            android:id="@+id/btnTestIntent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custom_button"
+            android:text="@string/button.text.name2" />
 
-    <Button
-        android:id="@+id/btnSqlite"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/custom_button"
-        android:text="Test 4" />
+        <Button
+            android:id="@+id/btnCheckIntent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/custom_button"
+            android:text="@string/button.text.checkintent" />
 
-    <Button
-        android:id="@+id/btnFragment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/custom_button"
-        android:text="fragment" />
+        <Button
+            android:id="@+id/btnSqlite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/custom_button"
+            android:text="@string/button.text.sqlite" />
 
-    <Button
-        android:id="@+id/btnViewPager"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/custom_button"
-        android:text="view pager" />
+        <Button
+            android:id="@+id/btnFragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/custom_button"
+            android:text="@string/button.text.fragment" />
 
-    <Button
-        android:id="@+id/btnService"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/custom_button"
-        android:text="service" />
+        <Button
+            android:id="@+id/btnViewPager"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/custom_button"
+            android:text="@string/button.text.view_pager" />
 
-    <Button
-        android:id="@+id/btnBroadcast"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/custom_button"
-        android:text="broadcastReceiver" />
-</LinearLayout>
+        <Button
+            android:id="@+id/btnService"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/custom_button"
+            android:text="@string/button.text.service" />
+
+        <Button
+            android:id="@+id/btnBroadcast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/custom_button"
+            android:text="@string/button.text.broadcastreceiver" />
+
+        <Button
+            android:id="@+id/btnMap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/custom_button"
+            android:text="@string/button.text.map" />
+
+        <Button
+            android:id="@+id/btnAsyncTask"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/custom_button"
+            android:text="@string/button.text.asynctask" />
+    </LinearLayout>
+</ScrollView>

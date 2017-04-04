@@ -26,4 +26,13 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_maps_activityfdf">Map</string>
+    <string name="button.text.download">download</string>
+    <string name="button.text.checkintent">Check intent</string>
+    <string name="button.text.sqlite">sqlite</string>
+    <string name="button.text.view_pager">viewpager</string>
+    <string name="button.text.fragment">fragment</string>
+    <string name="button.text.service">service</string>
+    <string name="button.text.broadcastreceiver">broadcastReceiver</string>
+    <string name="button.text.map">map</string>
+    <string name="button.text.asynctask">asynctask</string>
 </resources>

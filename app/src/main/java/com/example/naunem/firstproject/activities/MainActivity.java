@@ -10,28 +10,33 @@ import android.widget.Button;
 import com.example.naunem.firstproject.R;
 
 /**
+ * This is MainActivity
  * Created by naunem on 15/03/2017.
  */
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     public void init() {
-        Button mBtnTestRecyclerView = (Button) findViewById(R.id.btnTestRecyclerView);
-        Button mBtnTestIntent = (Button) findViewById(R.id.btnTestIntent);
-        Button mBtnCheckIntent = (Button) findViewById(R.id.btnCheckIntent);
-        Button mBtnSqlite = (Button) findViewById(R.id.btnSqlite);
-        Button mBtnFragment = (Button) findViewById(R.id.btnFragment);
-        Button mBtnViewPager = (Button) findViewById(R.id.btnViewPager);
-        Button mBtnService = (Button) findViewById(R.id.btnService);
-        Button mBtnBroadcast = (Button) findViewById(R.id.btnBroadcast);
-        mBtnTestRecyclerView.setOnClickListener(this);
-        mBtnTestIntent.setOnClickListener(this);
-        mBtnCheckIntent.setOnClickListener(this);
-        mBtnSqlite.setOnClickListener(this);
-        mBtnFragment.setOnClickListener(this);
-        mBtnViewPager.setOnClickListener(this);
-        mBtnService.setOnClickListener(this);
-        mBtnBroadcast.setOnClickListener(this);
+        Button btnTestRecyclerView = (Button) findViewById(R.id.btnTestRecyclerView);
+        Button btnTestIntent = (Button) findViewById(R.id.btnTestIntent);
+        Button btnCheckIntent = (Button) findViewById(R.id.btnCheckIntent);
+        Button btnSqlite = (Button) findViewById(R.id.btnSqlite);
+        Button btnFragment = (Button) findViewById(R.id.btnFragment);
+        Button btnViewPager = (Button) findViewById(R.id.btnViewPager);
+        Button btnService = (Button) findViewById(R.id.btnService);
+        Button btnBroadcast = (Button) findViewById(R.id.btnBroadcast);
+        Button btnMap = (Button) findViewById(R.id.btnMap);
+        Button btnAsyncTask = (Button) findViewById(R.id.btnAsyncTask);
+        btnTestRecyclerView.setOnClickListener(this);
+        btnTestIntent.setOnClickListener(this);
+        btnCheckIntent.setOnClickListener(this);
+        btnSqlite.setOnClickListener(this);
+        btnFragment.setOnClickListener(this);
+        btnViewPager.setOnClickListener(this);
+        btnService.setOnClickListener(this);
+        btnBroadcast.setOnClickListener(this);
+        btnMap.setOnClickListener(this);
+        btnAsyncTask.setOnClickListener(this);
     }
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -73,6 +78,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btnBroadcast:
                 intent = new Intent(this, MyReceiverActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.btnMap:
+                intent = new Intent(this, MapsActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.btnAsyncTask:
+                intent = new Intent(this, AsyncTaskActivity.class);
                 startActivity(intent);
                 break;
         }
