@@ -13,6 +13,12 @@
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.READ_SMS" />
     <uses-permission android:name="android.permission.SEND_SMS" />
+    // Use for google map
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
 
     <application
         android:allowBackup="true"
@@ -22,6 +28,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
         <activity android:name=".activities.MainActivity">
 
         </activity>
@@ -33,7 +43,9 @@
         <activity android:name=".activities.PhoneCallActivity">
             <intent-filter>
                 <action android:name="android.intent.action.CALL_BUTTON" />
+
                 <category android:name="android.intent.category.DEFAULT" />
+
                 <data android:scheme="tel" />
             </intent-filter>
         </activity>
@@ -54,6 +66,7 @@
         <activity android:name=".activities.LayoutAddEditActivity">
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
+
                 <data android:scheme="market" />
             </intent-filter>
         </activity>
@@ -67,7 +80,9 @@
         <service
             android:name=".services.MyService"
             android:enabled="true" />
+
         <activity android:name=".activities.MyReceiverActivity" />
+
         <receiver
             android:name=".services.MyReceiver"
             android:enabled="true">
@@ -79,8 +94,10 @@
                 <action android:name="com.pro.naunem.action.RECEIVE_INTENT" />
             </intent-filter>
         </receiver>
+
         <activity android:name=".activities.ReceiveActivity" />
-        <activity android:name=".activities.ToolBarActivity">
+        <activity android:name=".activities.ToolBarActivity" />
+        <activity android:name=".activities.MapsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -89,4 +106,5 @@
             </intent-filter>
         </activity>
     </application>
+
 </manifest>

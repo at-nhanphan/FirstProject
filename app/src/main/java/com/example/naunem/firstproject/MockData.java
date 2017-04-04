@@ -1,6 +1,9 @@
 package com.example.naunem.firstproject;
 
+import android.util.Log;
+
 import com.example.naunem.firstproject.models.ItemList;
+import com.example.naunem.firstproject.models.MarkerData;
 import com.example.naunem.firstproject.models.Title;
 import com.example.naunem.firstproject.models.User;
 
@@ -8,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**
+ *
  * Created by naunem on 10/03/2017.
  */
 
@@ -94,5 +98,19 @@ public class MockData {
             item = new User(image, name, age, gender, favorite, isFavorite);
         }
         return item;
+    }
+
+    public static ArrayList<MarkerData> getAllMarkers() {
+        ArrayList<MarkerData> markers = new ArrayList<>();
+        for (float i = 1; i <= 10; i++) {
+            if (i % 2 == 0) {
+                markers.add(new MarkerData(16 + i / 2000, 108 + i / 8000, "Location " + i, "address" + i));
+            } else if (i % 3 == 0) {
+                markers.add(new MarkerData(16 - i / 3000, 108 + i / 6000, "Location " + i, "address" + i));
+            } else {
+                markers.add(new MarkerData(16 + i / 2000, 108 - i / 5000, "Location " + i, "address" + i));
+            }
+        }
+        return markers;
     }
 }
