@@ -3,6 +3,7 @@ package com.example.naunem.firstproject.fragments;
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
@@ -28,11 +29,13 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolylineOptions;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
+ *
  * Created by naunem on 31/03/2017.
  */
 
@@ -97,6 +100,17 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback,
             }
             mInitMarkers.add(marker);
         }
+
+        PolylineOptions lineOptions = new PolylineOptions();
+        ArrayList<LatLng> points = new ArrayList<>();
+        points.add(new LatLng(mListMarkers.get(0).getLatitude(), mListMarkers.get(0).getLongitude()));
+        points.add(new LatLng(mListMarkers.get(3).getLatitude(), mListMarkers.get(3).getLongitude()));
+        lineOptions.addAll(points);
+        lineOptions.color(Color.RED);
+        lineOptions.width(10);
+
+        mMap.addPolyline(lineOptions);
+
         mMap.setOnMyLocationButtonClickListener(this);
         mMap.setOnMapClickListener(this);
         mMap.setOnCameraIdleListener(new GoogleMap.OnCameraIdleListener() {
