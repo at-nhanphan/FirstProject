@@ -70,7 +70,7 @@ public class ListUserActivity extends AppCompatActivity implements View.OnClickL
 //                        int start = mItemLists.size();
 //                        int end = start + 20;
 //                        for (int i = start; i < end; i++) {
-//                            ItemList item = MockData.getDataById(i);
+//                            ListItem item = MockData.getDataById(i);
 //                            mItemLists.add(item);
 //                            mAdapter.notifyItemInserted(mItemLists.size());
 //                        }

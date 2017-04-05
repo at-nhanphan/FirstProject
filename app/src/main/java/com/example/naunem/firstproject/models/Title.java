@@ -4,7 +4,7 @@ package com.example.naunem.firstproject.models;
  * Created by naunem on 16/03/2017.
  */
 
-public class Title extends ItemList {
+public class Title extends ListItem {
     private String mTitle;
     private final int VIEW_TITLE = 2;
 

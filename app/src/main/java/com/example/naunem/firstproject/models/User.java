@@ -7,7 +7,7 @@ import android.os.Parcelable;
  * Created by naunem on 10/03/2017.
  */
 
-public class User extends ItemList implements Parcelable {
+public class User extends ListItem implements Parcelable {
     private int id;
     private String image;
     private String name;

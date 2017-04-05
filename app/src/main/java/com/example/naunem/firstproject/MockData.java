@@ -1,8 +1,6 @@
 package com.example.naunem.firstproject;
 
-import android.util.Log;
-
-import com.example.naunem.firstproject.models.ItemList;
+import com.example.naunem.firstproject.models.ListItem;
 import com.example.naunem.firstproject.models.MarkerData;
 import com.example.naunem.firstproject.models.Title;
 import com.example.naunem.firstproject.models.User;
@@ -16,8 +14,8 @@ import java.util.Random;
  */
 
 public class MockData {
-    public static ArrayList<ItemList> getData() {
-        ArrayList<ItemList> lists = new ArrayList<>();
+    public static ArrayList<ListItem> getData() {
+        ArrayList<ListItem> lists = new ArrayList<>();
         Random random = new Random();
         String image = "";
         String gender;
@@ -74,9 +72,9 @@ public class MockData {
         return lists;
     }
 
-    public static ItemList getDataById(int position) {
+    public static ListItem getDataById(int position) {
         String image = "";
-        ItemList item;
+        ListItem item;
         String name = "User " + position;
         String age = "Age: " + position;
         String gender;
