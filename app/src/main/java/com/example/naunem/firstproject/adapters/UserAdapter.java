@@ -15,7 +15,7 @@ import android.widget.Toast;
 import com.example.naunem.firstproject.R;
 import com.example.naunem.firstproject.interfaces.MyOnClickListener;
 import com.example.naunem.firstproject.interfaces.OnLoadMoreListener;
-import com.example.naunem.firstproject.models.ItemList;
+import com.example.naunem.firstproject.models.ListItem;
 import com.example.naunem.firstproject.models.Title;
 import com.example.naunem.firstproject.models.User;
 import com.squareup.picasso.Picasso;
@@ -89,7 +89,7 @@ public class UserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        ItemList object = mLists.get(position);
+        ListItem object = mLists.get(position);
         if (holder instanceof TitleViewHolder) {
             if (object instanceof Title) {
                 Title title = (Title) object;

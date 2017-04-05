@@ -33,12 +33,7 @@
             android:value="@string/google_maps_key" />
 
         <activity android:name=".activities.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".activities.ListUserActivity" />
         <activity android:name=".activities.LoginActivity" />
@@ -104,6 +99,14 @@
         <activity android:name=".activities.ToolBarActivity" />
         <activity android:name=".activities.MapsActivity" />
         <activity android:name=".activities.AsyncTaskActivity" />
+        <activity android:name=".activities.DemoApiActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
