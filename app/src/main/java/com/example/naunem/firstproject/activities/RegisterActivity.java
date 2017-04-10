@@ -16,58 +16,45 @@ import android.widget.Toast;
 
 import com.example.naunem.firstproject.R;
 
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.ViewById;
+
 import java.util.ArrayList;
 
 /**
+ * RegisterActivity class
  * Created by naunem on 08/03/2017.
  */
-
+@EActivity(R.layout.activity_register)
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener, View.OnTouchListener {
 
+    @ViewById(R.id.edtUsername)
     EditText mEdtUsername;
+    @ViewById(R.id.edtPassword)
     EditText mEdtPassword;
     RadioButton mRbMale;
     RadioButton mRbFemale;
+    @ViewById(R.id.chkFootball)
     CheckBox mChkFootball;
+    @ViewById(R.id.chkListenMusic)
     CheckBox mChkListenMusic;
+    @ViewById(R.id.chkSuftWeb)
     CheckBox mChkSuftWeb;
+    @ViewById(R.id.chkCommic)
     CheckBox mChkCommic;
     Button mBtnRegister;
     ImageView mImgShowPass;
     ArrayList<CheckBox> mLists = new ArrayList<>();
 
-    /**
-     *
-     * @param savedInstanceState
-     */
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
-
-        mEdtUsername = (EditText) findViewById(R.id.edtUsername);
-        mEdtPassword = (EditText) findViewById(R.id.edtPassword);
-        mRbMale = (RadioButton) findViewById(R.id.rbMale);
-        mRbFemale = (RadioButton) findViewById(R.id.rbFemale);
-        mChkFootball = (CheckBox) findViewById(R.id.chkFootball);
-        mChkListenMusic = (CheckBox) findViewById(R.id.chkListenMusic);
-        mChkSuftWeb = (CheckBox) findViewById(R.id.chkSuftWeb);
-        mChkCommic = (CheckBox) findViewById(R.id.chkCommic);
-        mBtnRegister = (Button) findViewById(R.id.btnRegister);
-        mBtnRegister.setOnClickListener(this);
-        mImgShowPass = (ImageView) findViewById(R.id.imgShowPass);
-        mImgShowPass.setOnTouchListener(this);
-
+    @AfterViews
+    void init() {
         mLists.add(mChkFootball);
         mLists.add(mChkListenMusic);
         mLists.add(mChkSuftWeb);
         mLists.add(mChkCommic);
     }
 
-    /** get Gender of mUser
-     *
-     * @return String mGender
-     */
     public String getGender(){
         String mGender = "";
         if (mRbMale.isChecked()) {
@@ -78,10 +65,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         return "\nGender: " + mGender;
     }
 
-    /** get Hobby of mUser
-     *
-     * @return String mHobby
-     */
     public String getHobby(){
         String mHobby = "";
         for (CheckBox item : mLists) {

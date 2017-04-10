@@ -32,11 +32,16 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity android:name=".activities.MainActivity">
+        <activity android:name=".activities.MainActivity_">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
-        <activity android:name=".activities.ListUserActivity" />
-        <activity android:name=".activities.LoginActivity" />
+        <activity android:name=".activities.ListUserActivity_" />
+        <activity android:name=".activities.LoginActivity_" />
         <activity android:name=".activities.RegisterActivity" />
         <activity android:name=".activities.DetailUserActivity" />
         <activity android:name=".activities.FavoriteActivity" />
@@ -63,14 +68,14 @@
         <activity android:name=".activities.SQLiteActivity" />
         <activity android:name=".activities.SQLiteShowListActivity" />
         <activity android:name=".activities.DemoSharedPreferenceActivity" />
-        <activity android:name=".activities.LayoutAddEditActivity">
+        <activity android:name=".activities.LayoutAddEditActivity_">
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
 
                 <data android:scheme="market" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.AddActivity" />
+        <activity android:name=".activities.AddActivity_" />
         <activity
             android:name=".activities.FragmentDemoActivity"
             android:configChanges="orientation|screenSize" />
@@ -100,12 +105,7 @@
         <activity android:name=".activities.MapsActivity" />
         <activity android:name=".activities.AsyncTaskActivity" />
         <activity android:name=".activities.DemoApiActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

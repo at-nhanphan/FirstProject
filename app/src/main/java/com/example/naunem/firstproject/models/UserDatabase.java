@@ -9,15 +9,16 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 
 /**
+ * UserDatabase class
  * Created by naunem on 20/03/2017.
  */
 
 public class UserDatabase {
-    public static final String TABLE_NAME = "User";
-    public static final String USER_IMAGE = "image";
-    public static final String USER_NAME = "name";
-    public static final String USER_AGE = "age";
-    public static final String USER_GENDER = "gender";
+    private static final String TABLE_NAME = "User";
+    private static final String USER_IMAGE = "image";
+    private static final String USER_NAME = "name";
+    private static final String USER_AGE = "age";
+    private static final String USER_GENDER = "gender";
     private SqliteDBHandler dbHandle;
     private Context mContext;
 

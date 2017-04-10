@@ -23,6 +23,7 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 /**
+ * UserAdapter class
  * Created by naunem on 10/03/2017.
  */
 

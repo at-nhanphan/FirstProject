@@ -4,6 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 /**
+ * SqliteUser class
  * Created by naunem on 20/03/2017.
  */
 
@@ -23,7 +24,7 @@ public class SqliteUser implements Parcelable {
         this.name = name;
     }
 
-    protected SqliteUser(Parcel in) {
+    private SqliteUser(Parcel in) {
         id = in.readInt();
         name = in.readString();
     }
