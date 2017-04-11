@@ -13,6 +13,7 @@ import com.example.naunem.firstproject.fragments.LandscapeFragment;
 import com.example.naunem.firstproject.fragments.ListUserFragment;
 
 /**
+ * FragmentDemoActivity class
  * Created by naunem on 22/03/2017.
  */
 

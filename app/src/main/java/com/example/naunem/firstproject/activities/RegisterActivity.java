@@ -1,23 +1,19 @@
 package com.example.naunem.firstproject.activities;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
 import android.view.MotionEvent;
-import android.view.View;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
 import com.example.naunem.firstproject.R;
 
 import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.Touch;
 import org.androidannotations.annotations.ViewById;
 
 import java.util.ArrayList;
@@ -27,13 +23,15 @@ import java.util.ArrayList;
  * Created by naunem on 08/03/2017.
  */
 @EActivity(R.layout.activity_register)
-public class RegisterActivity extends AppCompatActivity implements View.OnClickListener, View.OnTouchListener {
+public class RegisterActivity extends AppCompatActivity {
 
     @ViewById(R.id.edtUsername)
     EditText mEdtUsername;
     @ViewById(R.id.edtPassword)
     EditText mEdtPassword;
+    @ViewById(R.id.rbMale)
     RadioButton mRbMale;
+    @ViewById(R.id.rbFemale)
     RadioButton mRbFemale;
     @ViewById(R.id.chkFootball)
     CheckBox mChkFootball;
@@ -43,8 +41,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     CheckBox mChkSuftWeb;
     @ViewById(R.id.chkCommic)
     CheckBox mChkCommic;
-    Button mBtnRegister;
-    ImageView mImgShowPass;
     ArrayList<CheckBox> mLists = new ArrayList<>();
 
     @AfterViews
@@ -55,8 +51,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         mLists.add(mChkCommic);
     }
 
-    public String getGender(){
-        String mGender = "";
+    public String getGender() {
+        String mGender;
         if (mRbMale.isChecked()) {
             mGender = mRbMale.getText().toString();
         } else {
@@ -65,7 +61,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         return "\nGender: " + mGender;
     }
 
-    public String getHobby(){
+    public String getHobby() {
         String mHobby = "";
         for (CheckBox item : mLists) {
             if (item.isChecked()) {
@@ -75,28 +71,22 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         return "\nHobby: " + mHobby;
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.btnRegister:
-                String result = "";
-                result += "Username: " + mEdtUsername.getText() + "\nPassword: " + mEdtPassword.getText() + getGender()  + getHobby();
-                Toast.makeText(this, result, Toast.LENGTH_SHORT).show();
+    @Click(R.id.btnRegister)
+    void onClickRegister() {
+        String result = "";
+        result += "Username: " + mEdtUsername.getText() + "\nPassword: " + mEdtPassword.getText() + getGender() + getHobby();
+        Toast.makeText(this, result, Toast.LENGTH_SHORT).show();
 
-                Intent intentLogin = new Intent(this, LoginActivity.class);
-                startActivity(intentLogin);
-                break;
-        }
+        LoginActivity_.intent(this).start();
     }
 
-    @Override
-    public boolean onTouch(View v, MotionEvent event) {
+    @Touch(R.id.imgShowPass)
+    void showPass(MotionEvent event) {
         if (MotionEvent.ACTION_DOWN == event.getAction()) {
             mEdtPassword.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
         }
         if (MotionEvent.ACTION_UP == event.getAction()) {
             mEdtPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
         }
-        return true;
     }
 }

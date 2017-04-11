@@ -1,7 +1,5 @@
 package com.example.naunem.firstproject.activities;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -9,22 +7,26 @@ import android.support.v7.app.AppCompatActivity;
 import com.example.naunem.firstproject.R;
 import com.example.naunem.firstproject.adapters.ViewPagerAdapter;
 
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.ViewById;
+
 /**
- *
+ * ViewPagerActivity class
  * Created by naunem on 22/03/2017.
  */
 
+@EActivity(R.layout.activity_viewpager)
 public class ViewPagerActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
 
-    private ViewPager mViewPager;
+    @ViewById(R.id.viewPager)
+    protected ViewPager mViewPager;
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_viewpager);
-        TabLayout mTabLayout = (TabLayout) findViewById(R.id.tabLayout);
-        mViewPager = (ViewPager) findViewById(R.id.viewPager);
+    @ViewById(R.id.tabLayout)
+    TabLayout mTabLayout;
 
+    @AfterViews
+    void init() {
         final TabLayout.Tab home = mTabLayout.newTab();
         final TabLayout.Tab favorite = mTabLayout.newTab();
         final TabLayout.Tab setting = mTabLayout.newTab();
