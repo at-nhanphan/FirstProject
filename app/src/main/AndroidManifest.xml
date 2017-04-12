@@ -43,7 +43,7 @@
         <activity android:name=".activities.ListUserActivity_" />
         <activity android:name=".activities.LoginActivity_" />
         <activity android:name=".activities.RegisterActivity_" />
-        <activity android:name=".activities.DetailUserActivity" />
+        <activity android:name=".activities.DetailUserActivity_" />
         <activity android:name=".activities.FavoriteActivity" />
         <activity android:name=".activities.PhoneCallActivity_">
             <intent-filter>
@@ -77,7 +77,7 @@
         </activity>
         <activity android:name=".activities.AddActivity_" />
         <activity
-            android:name=".activities.FragmentDemoActivity_"
+            android:name=".activities.FragmentDemoActivity"
             android:configChanges="orientation|screenSize" />
         <activity android:name=".activities.ViewPagerActivity_" />
         <activity android:name=".activities.MyServiceBindingActivity" />
@@ -102,10 +102,10 @@
         </receiver>
 
         <activity android:name=".activities.ReceiveActivity" />
-        <activity android:name=".activities.ToolBarActivity" />
+        <activity android:name=".activities.ToolBarActivity_" />
         <activity android:name=".activities.MapsActivity_" />
         <activity android:name=".activities.AsyncTaskActivity" />
-        <activity android:name=".activities.DemoApiActivity" />
+        <activity android:name=".activities.DemoApiActivity_" />
     </application>
 
 </manifest>

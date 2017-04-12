@@ -2,21 +2,20 @@ package com.example.naunem.firstproject.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.naunem.firstproject.R;
-import com.example.naunem.firstproject.activities.DetailUserActivity;
 import com.example.naunem.firstproject.models.User;
 import com.example.naunem.firstproject.models.UserDatabase;
 import com.squareup.picasso.Picasso;
+
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.EFragment;
+import org.androidannotations.annotations.ViewById;
 
 import java.util.ArrayList;
 
@@ -27,36 +26,33 @@ import static android.app.Activity.RESULT_OK;
  * Created by naunem on 23/03/2017.
  */
 
+@EFragment(R.layout.item_list_user)
 public class UserFragment extends Fragment {
 
-    private ImageView mImgAvatar;
-    private TextView mTvName;
-    private TextView mTvAge;
-    private TextView mTvGender;
-    private ImageView mImgFavorite;
+    @ViewById(R.id.imgLogo)
+    ImageView mImgAvatar;
+    @ViewById(R.id.tvName)
+    TextView mTvName;
+    @ViewById(R.id.tvAge)
+    TextView mTvAge;
+    @ViewById(R.id.tvGender)
+    TextView mTvGender;
+    @ViewById(R.id.imgFavorite)
+    ImageView mImgFavorite;
     private ArrayList<User> mUsers;
     private UserDatabase mUserDatabase;
     private User user;
     private final int REQUEST_CODE = 4;
 
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.item_list_user, container, false);
-
-        mImgAvatar = (ImageView) view.findViewById(R.id.imgLogo);
-        mTvName = (TextView) view.findViewById(R.id.tvName);
-        mTvAge = (TextView) view.findViewById(R.id.tvAge);
-        mTvGender = (TextView) view.findViewById(R.id.tvGender);
-        mImgFavorite = (ImageView) view.findViewById(R.id.imgFavorite);
+    @AfterViews
+    void init() {
         mUserDatabase = new UserDatabase(getContext());
-
         final int position = getArguments().getInt("position");
         mUsers = mUserDatabase.getAllUsers();
         user = mUsers.get(position);
 
         if (!TextUtils.isEmpty(user.getImage())) {
-            Picasso.with(view.getContext())
+            Picasso.with(getContext())
                     .load(user.getImage())
                     .fit()
                     .centerCrop()
@@ -75,23 +71,10 @@ public class UserFragment extends Fragment {
                 user.setFavorite(!user.isFavorite());
             }
         });
-
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getContext(), DetailUserActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putParcelable("user", user);
-                intent.putExtra("index", position);
-                intent.putExtra("object", bundle);
-                startActivityForResult(intent, REQUEST_CODE);
-            }
-        });
-        return view;
     }
 
-    public UserFragment newInstance(int position) {
-        UserFragment fragment = new UserFragment();
+    public UserFragment_ newInstance(int position) {
+        UserFragment_ fragment = new UserFragment_();
         Bundle bundle = new Bundle();
         bundle.putInt("position", position);
         fragment.setArguments(bundle);

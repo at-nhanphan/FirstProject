@@ -13,12 +13,12 @@ import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 
 /**
- * DemoSharedPreferenceActivity class
+ * SharedPreferenceActivity class
  * Created by naunem on 20/03/2017.
  */
 
 @EActivity(R.layout.activity_shared_preference)
-public class DemoSharedPreferenceActivity extends AppCompatActivity {
+public class SharedPreferenceActivity extends AppCompatActivity {
 
     private SharedPreferences preferences;
 

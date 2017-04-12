@@ -59,4 +59,14 @@ public class MainActivity extends AppCompatActivity {
     void clickBtnAsyncTask() {
 
     }
+
+    @Click(R.id.btnToolbar)
+    void clickBtnToolbar() {
+        ToolBarActivity_.intent(this).start();
+    }
+
+    @Click(R.id.btnApiResponse)
+    void clickBtnApiResponse() {
+        DemoApiActivity_.intent(this).start();
+    }
 }

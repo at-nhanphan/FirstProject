@@ -8,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by naunem on 05/04/2017.
  */
 
-class RetrofitClient {
+public class RetrofitClient {
     private static Retrofit mRetrofit = null;
     static Retrofit getClient(String baseUrl) {
         if (mRetrofit == null) {
