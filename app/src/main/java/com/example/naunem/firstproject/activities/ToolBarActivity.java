@@ -3,17 +3,23 @@ package com.example.naunem.firstproject.activities;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.graphics.Color;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
 
 import com.example.naunem.firstproject.R;
 import com.example.naunem.firstproject.fragments.MyDialogFragment;
+
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Click;
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.OptionsItem;
+import org.androidannotations.annotations.OptionsMenu;
+import org.androidannotations.annotations.ViewById;
 
 import java.util.ArrayList;
 
@@ -22,27 +28,27 @@ import java.util.ArrayList;
  * Created by naunem on 30/03/2017.
  */
 
+@EActivity(R.layout.activity_toolbar)
+@OptionsMenu(R.menu.menu)
 public class ToolBarActivity extends AppCompatActivity {
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_toolbar);
-        Toolbar mToolBar = (Toolbar) findViewById(R.id.toolBar);
-        setSupportActionBar(mToolBar);
-        mToolBar.setNavigationIcon(R.drawable.ic_dehaze_white_36dp);
+    @ViewById(R.id.toolBar)
+    Toolbar mToolbar;
+    @Click(R.id.fab)
+    void onClickFloatingButton(View view) {
+        Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show();
+    }
+
+    @AfterViews
+    void init() {
+        setSupportActionBar(mToolbar);
+        mToolbar.setNavigationIcon(R.drawable.ic_dehaze_white_36dp);
         getSupportActionBar().setTitle(R.string.toolBar_text_name);
-        mToolBar.setTitleTextColor(Color.WHITE);
+        mToolbar.setTitleTextColor(Color.WHITE);
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    @OptionsItem({R.id.setting, R.id.dialog, R.id.fragmentDialog, R.id.dialogMultiChoice})
+    void onItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.setting:
                 createSingleChoiceDialog("Dialog Single Choice Item").show();
@@ -58,7 +64,6 @@ public class ToolBarActivity extends AppCompatActivity {
                 createMultiChoiceDialog("MutiChoice").show();
                 break;
         }
-        return true;
     }
 
     public Dialog createDialog(String title, String message) {

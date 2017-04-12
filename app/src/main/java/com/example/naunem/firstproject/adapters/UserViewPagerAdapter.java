@@ -5,13 +5,13 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.example.naunem.firstproject.fragments.UserFragment;
+import com.example.naunem.firstproject.fragments.UserFragment_;
 import com.example.naunem.firstproject.models.User;
-import com.example.naunem.firstproject.models.UserDatabase;
 
 import java.util.ArrayList;
 
 /**
+ * UserViewPagerAdapter class
  * Created by naunem on 23/03/2017.
  */
 
@@ -28,7 +28,7 @@ public class UserViewPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return new UserFragment().newInstance(position);
+        return new UserFragment_().newInstance(position);
     }
 
     @Override

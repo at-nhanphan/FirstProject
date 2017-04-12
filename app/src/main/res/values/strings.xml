@@ -35,4 +35,8 @@
     <string name="button.text.broadcastreceiver">broadcastReceiver</string>
     <string name="button.text.map">map</string>
     <string name="button.text.asynctask">asynctask</string>
+    <string name="button.text.toolbar">toolbar</string>
+    <string name="button.text.apiResponse">Api response</string>
+    <string name="username">naunem</string>
+    <string name="password">123456</string>
 </resources>

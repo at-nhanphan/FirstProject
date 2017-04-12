@@ -1,10 +1,6 @@
 package com.example.naunem.firstproject.activities;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
 import android.util.Log;
@@ -14,87 +10,58 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.naunem.firstproject.R;
+import com.example.naunem.firstproject.interfaces.SharePref_;
+
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Click;
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.ViewById;
+import org.androidannotations.annotations.sharedpreferences.Pref;
 
 /**
+ * LoginActivity
  * Created by naunem on 08/03/2017.
  */
 
-@SuppressWarnings("DefaultFileTemplate")
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener, View.OnTouchListener {
+@EActivity(R.layout.activity_login)
+public class LoginActivity extends AppCompatActivity implements View.OnTouchListener {
 
-    private EditText mEdtUsername;
-    private EditText mEdtPassword;
-    private Button mBtnLogin;
-    private ImageView mImgShowPass;
-    private TextView mTvCreateAccount;
-    private static final String USER_NAME = "naunem";
-    private static final String PASS_WORD = "123456";
+    @ViewById(R.id.edtUsername)
+    EditText mEdtUsername;
+    @ViewById(R.id.edtPassword)
+    EditText mEdtPassword;
+    @ViewById(R.id.btnLogin)
+    Button mBtnLogin;
+    @ViewById(R.id.imgShowPass)
+    ImageView mImgShowPass;
+    @ViewById(R.id.tvCreateAccount)
+    TextView mTvCreateAccount;
 
-    private void init() {
-        mEdtUsername = (EditText) findViewById(R.id.edtUsername);
-        mEdtPassword = (EditText) findViewById(R.id.edtPassword);
-        mBtnLogin = (Button) findViewById(R.id.btnLogin);
-        mImgShowPass = (ImageView) findViewById(R.id.imgShowPass);
-        mTvCreateAccount = (TextView) findViewById(R.id.tvCreateAccount);
-    }
+    @Pref
+    SharePref_ sharePref;
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-
-        boolean check = checkLogin();
-        if (check) {
-            Intent itListUser = new Intent(this, ListUserActivity.class);
-            startActivity(itListUser);
+    @AfterViews
+    void init() {
+        if (sharePref.username().exists()) {
+            ListUserActivity_.intent(this).start();
             finish();
-        } else {
-            init();
-            mBtnLogin.setOnClickListener(this);
-            mTvCreateAccount.setOnClickListener(this);
-            mImgShowPass.setOnTouchListener(this);
         }
     }
 
-    private boolean checkLogin() {
-        SharedPreferences sharedPreferences = getSharedPreferences("Share", Context.MODE_PRIVATE);
-        String username = sharedPreferences.getString("username", "");
-        String password = sharedPreferences.getString("password", "");
-        return username.equalsIgnoreCase(USER_NAME) && password.equalsIgnoreCase(PASS_WORD);
+    @Click(R.id.btnLogin)
+    void login() {
+        sharePref.username().put(mEdtUsername.getText().toString());
+        sharePref.password().put(mEdtPassword.getText().toString());
+        AddActivity_.intent(this).start();
+        finish();
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.btnLogin:
-                if (mEdtUsername.length() == 0 || mEdtPassword.length() == 0) {
-                    Toast.makeText(this, "enter username and pass", Toast.LENGTH_SHORT).show();
-                } else if (!mEdtUsername.getText().toString().equalsIgnoreCase(USER_NAME) || !mEdtPassword.getText().toString().equalsIgnoreCase(PASS_WORD)) {
-                    Toast.makeText(this, "username or password invalid", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(this, "Username: " + mEdtUsername.getText().toString() + "\nPassword: " +
-                            mEdtPassword.getText().toString(), Toast.LENGTH_LONG).show();
-                    Intent intentMain = new Intent(LoginActivity.this, AddActivity.class);
-//                    Bundle bundle = new Bundle();
-//                    bundle.putString("username", mEdtUsername.getText().toString());
-//                    bundle.putString("password", mEdtPassword.getText().toString());
-                    SharedPreferences share = getSharedPreferences("Share", MODE_PRIVATE);
-                    SharedPreferences.Editor editor = share.edit();
-                    editor.putString("username", mEdtUsername.getText().toString());
-                    editor.putString("password", mEdtPassword.getText().toString());
-                    editor.apply();
-                    intentMain.putExtra("isFrist", true);
-                    startActivity(intentMain);
-                    finish();
-                }
-                break;
-            case R.id.tvCreateAccount:
-                Intent intentRegister = new Intent(this, RegisterActivity.class);
-                startActivity(intentRegister);
-        }
+    @Click(R.id.tvCreateAccount)
+    void createAccount() {
+        Intent intentRegister = new Intent(this, RegisterActivity.class);
+        startActivity(intentRegister);
     }
 
     @Override

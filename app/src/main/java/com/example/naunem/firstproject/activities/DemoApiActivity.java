@@ -1,7 +1,5 @@
 package com.example.naunem.firstproject.activities;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,6 +12,10 @@ import com.example.naunem.firstproject.interfaces.SOService;
 import com.example.naunem.firstproject.models.Item;
 import com.example.naunem.firstproject.models.SOAnswersResponse;
 
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.ViewById;
+
 import java.util.ArrayList;
 
 import retrofit2.Call;
@@ -25,21 +27,23 @@ import retrofit2.Response;
  * Created by naunem on 05/04/2017.
  */
 
+@EActivity(R.layout.activity_list_api_answer)
 public class DemoApiActivity extends AppCompatActivity {
 
     private SOService mSoService;
     private AnswerAdapter mAdapter;
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list_api_answer);
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+
+    @ViewById(R.id.recyclerView)
+    RecyclerView mRecyclerView;
+
+    @AfterViews
+    void init() {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-        recyclerView.setLayoutManager(layoutManager);
+        mRecyclerView.setLayoutManager(layoutManager);
         mSoService = ApiUtils.getSOService();
         ArrayList<Item> items = new ArrayList<>();
         mAdapter = new AnswerAdapter(this, items);
-        recyclerView.setAdapter(mAdapter);
+        mRecyclerView.setAdapter(mAdapter);
 
         loadAnswers();
     }

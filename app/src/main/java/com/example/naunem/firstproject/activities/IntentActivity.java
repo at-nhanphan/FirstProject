@@ -5,130 +5,110 @@ import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 
 import com.example.naunem.firstproject.R;
 
+import org.androidannotations.annotations.Click;
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.OnActivityResult;
+import org.androidannotations.annotations.ViewById;
+
 /**
+ * IntentActivity
  * Created by naunem on 16/03/2017.
  */
 
-public class IntentActivity extends AppCompatActivity implements View.OnClickListener {
+@EActivity(R.layout.activity_check_intent)
+public class IntentActivity extends AppCompatActivity {
 
-    private Button mBtnCall;
-    private Button mBtnSms;
-    private Button mBtnSendMail;
-    private Button mBtnLaunchWeb;
-    private Button mBtnOpenChPlay;
-    private Button mBtnOpenGgMap;
-    private Button mBtnOpenGallery;
-    private Button mBtnOpenCamera;
-    private ImageView mImgView;
+    private static final int REQUEST_CODE = 0;
+    public static final int REQUEST_CODE_CAMERA = 11;
 
-    private void init() {
-        mBtnCall = (Button) findViewById(R.id.btnCall);
-        mBtnSms = (Button) findViewById(R.id.btnSms);
-        mBtnSendMail = (Button) findViewById(R.id.btnSendMail);
-        mBtnLaunchWeb = (Button) findViewById(R.id.btnLaunchWeb);
-        mBtnOpenChPlay = (Button) findViewById(R.id.btnOpenCHPlay);
-        mBtnOpenGgMap = (Button) findViewById(R.id.btnOpenGgMap);
-        mBtnOpenGallery = (Button) findViewById(R.id.btnShowImg);
-        mBtnOpenCamera = (Button) findViewById(R.id.btnCamera);
-        mImgView = (ImageView) findViewById(R.id.imgView);
+    @Click(R.id.btnCall)
+    void clickCall() {
+        Intent itCall = new Intent(Intent.ACTION_DIAL);
+        itCall.setData(Uri.parse("tel:0941717505"));
+        startActivity(itCall);
     }
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_check_intent);
-
-        init();
-
-        mBtnCall.setOnClickListener(this);
-        mBtnSms.setOnClickListener(this);
-        mBtnSendMail.setOnClickListener(this);
-        mBtnLaunchWeb.setOnClickListener(this);
-        mBtnOpenChPlay.setOnClickListener(this);
-        mBtnOpenGgMap.setOnClickListener(this);
-        mBtnOpenGallery.setOnClickListener(this);
-        mBtnOpenCamera.setOnClickListener(this);
+    @Click(R.id.btnSms)
+    void clickSms() {
+        String number = "0941717505";
+        String content = "ahihi do ngoc";
+        Uri uri = Uri.parse("smsto:" + number);
+        Intent it = new Intent(Intent.ACTION_SENDTO, uri);
+        it.putExtra("sms_body", content);
+        startActivity(it);
+    }
+    @Click(R.id.btnSendMail)
+    void clickSendMail() {
+        String mailTo = "nhan.phan@asiantech.vn";
+        Intent itSendMail = new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:" + mailTo));
+        itSendMail.putExtra(Intent.EXTRA_SUBJECT, "Test send mail");
+        itSendMail.putExtra(Intent.EXTRA_TEXT, "My name is Nhan");
+        startActivity(Intent.createChooser(itSendMail, "Send Email"));
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.btnCall:
-                Intent itCall = new Intent(Intent.ACTION_DIAL);
-                itCall.setData(Uri.parse("tel:0941717505"));
-                startActivity(itCall);
-                break;
-            case R.id.btnSms:
-                String number = "0941717505";
-                String content = "ahihi do ngoc";
-                Uri uri = Uri.parse("smsto:" + number);
-                Intent it = new Intent(Intent.ACTION_SENDTO, uri);
-                it.putExtra("sms_body", content);
-                startActivity(it);
-                break;
-            case R.id.btnSendMail:
-                String mailTo = "nhan.phan@asiantech.vn";
-                Intent itSendMail = new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:" + mailTo));
-                itSendMail.putExtra(Intent.EXTRA_SUBJECT, "Test send mail");
-                itSendMail.putExtra(Intent.EXTRA_TEXT, "My name is Nhan");
-                startActivity(Intent.createChooser(itSendMail, "Send Email"));
-                break;
-            case R.id.btnLaunchWeb:
-                Intent itLaunchWeb = new Intent(Intent.ACTION_VIEW);
-                String url = "http://www.vnexpress.net";
-                itLaunchWeb.setData(Uri.parse(url));
-                startActivity(itLaunchWeb);
-                break;
-            case R.id.btnOpenCHPlay:
-                final String appPackageChPlay = getPackageName(); // getPackageName() from Context or Activity object
-                try {
-                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageChPlay)));
-                } catch (ActivityNotFoundException e) {
-                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageChPlay)));
-                }
-                break;
-            case R.id.btnOpenGgMap:
-                final String appPackageGgMap = getPackageName(); // getPackageName() from Context or Activity object
-                try {
-                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageGgMap)));
-                } catch (ActivityNotFoundException e) {
-                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://google.streetview:cbll=46.414382,10.013988" + appPackageGgMap)));
-                }
-                break;
-            case R.id.btnShowImg:
-                Intent itShowImg = new Intent(Intent.ACTION_GET_CONTENT);
-                itShowImg.setType("image/*");
-                startActivityForResult(Intent.createChooser(itShowImg, "Select Picture"), 0);
-                break;
-            case R.id.btnCamera:
-                Intent itCamera = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(itCamera, 11);
-                break;
+    @Click(R.id.btnLaunchWeb)
+    void clickLaunchWeb() {
+        Intent itLaunchWeb = new Intent(Intent.ACTION_VIEW);
+        String url = "http://www.vnexpress.net";
+        itLaunchWeb.setData(Uri.parse(url));
+        startActivity(itLaunchWeb);
+    }
+
+    @Click(R.id.btnOpenCHPlay)
+    void clickOpenCHPlay() {
+        final String appPackageChPlay = getPackageName(); // getPackageName() from Context or Activity object
+        try {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageChPlay)));
+        } catch (ActivityNotFoundException e) {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageChPlay)));
         }
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+    @Click(R.id.btnOpenGgMap)
+    void clickOpenGgMap() {
+        final String appPackageGgMap = getPackageName(); // getPackageName() from Context or Activity object
+        try {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageGgMap)));
+        } catch (ActivityNotFoundException e) {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://google.streetview:cbll=46.414382,10.013988" + appPackageGgMap)));
+        }
+    }
+
+    @Click(R.id.btnShowImg)
+    void clickShowImg() {
+        Intent itShowImg = new Intent(Intent.ACTION_GET_CONTENT);
+        itShowImg.setType("image/*");
+        startActivityForResult(Intent.createChooser(itShowImg, "Select Picture"), 0);
+    }
+
+    @Click(R.id.btnCamera)
+    void clickCamera() {
+        Intent itCamera = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(itCamera, 11);
+    }
+
+    @ViewById(R.id.imgView)
+    ImageView mImgView;
+
+    @OnActivityResult(REQUEST_CODE)
+    void onResult(int resultCode, Intent data) {
         // Gallery
-        if (requestCode == 0 && resultCode == RESULT_OK && null != data) {
+        if (resultCode == RESULT_OK && null != data) {
             Uri selectedImageUri = data.getData();
             if (null != selectedImageUri) {
                 mImgView.setImageURI(selectedImageUri);
             }
         }
-
+    }
+    @OnActivityResult(REQUEST_CODE_CAMERA)
+    void onResultCamera(int resultCode, Intent data) {
         // Camera
-        if (requestCode == 11 && resultCode == Activity.RESULT_OK) {
+        if (resultCode == Activity.RESULT_OK) {
             Bitmap photo = (Bitmap) data.getExtras().get("data");
             mImgView.setImageBitmap(photo);
         }

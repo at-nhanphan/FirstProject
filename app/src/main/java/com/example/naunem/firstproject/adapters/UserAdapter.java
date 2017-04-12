@@ -23,6 +23,7 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 /**
+ * UserAdapter class
  * Created by naunem on 10/03/2017.
  */
 
@@ -102,7 +103,6 @@ public class UserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                     Picasso.with(mContext)
                             .load(user.getImage())
                             .fit()
-                            .centerCrop()
                             .error(R.drawable.ic_boy)
                             .into(((ViewHolder) holder).mImgAvatar);
                 } else {
@@ -123,25 +123,25 @@ public class UserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         return mLists.size();
     }
 
-    public static class ProgressViewHolder extends RecyclerView.ViewHolder {
+    private static class ProgressViewHolder extends RecyclerView.ViewHolder {
         private final ProgressBar progressBar;
 
-        public ProgressViewHolder(View v) {
+        ProgressViewHolder(View v) {
             super(v);
             progressBar = (ProgressBar) v.findViewById(R.id.progressBar);
         }
     }
 
-    public static class TitleViewHolder extends RecyclerView.ViewHolder {
+    private static class TitleViewHolder extends RecyclerView.ViewHolder {
         private final TextView mTvTitle;
 
-        public TitleViewHolder(View itemView) {
+        TitleViewHolder(View itemView) {
             super(itemView);
             mTvTitle = (TextView) itemView.findViewById(R.id.tvTitle);
         }
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    private class ViewHolder extends RecyclerView.ViewHolder {
         private final ImageView mImgAvatar;
         private final TextView mTvName;
         private final TextView mTvAge;
@@ -149,7 +149,7 @@ public class UserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         private final ImageView mImgFavorite;
         private User user;
 
-        public ViewHolder(final View itemView) {
+        ViewHolder(final View itemView) {
             super(itemView);
             mImgAvatar = (ImageView) itemView.findViewById(R.id.imgLogo);
             mTvName = (TextView) itemView.findViewById(R.id.tvName);
