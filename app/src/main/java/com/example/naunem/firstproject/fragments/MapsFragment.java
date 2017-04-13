@@ -36,6 +36,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * MapsFragment class
  * Created by naunem on 31/03/2017.
  */
 
