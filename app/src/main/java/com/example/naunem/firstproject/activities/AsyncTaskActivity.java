@@ -55,8 +55,8 @@ public class AsyncTaskActivity extends AppCompatActivity implements View.OnClick
 
     @Override
     public void onClick(View v) {
-        String IMAGE_URL = "https://cdn.theatlantic.com/assets/media/img/photo/2015/11/images-from-the-2016-sony-world-pho/s01_130921474920553591/main_900.jpg?1448476701";
-        new MyAsyncTask().execute(IMAGE_URL);
+        String imageUrl = "https://cdn.theatlantic.com/assets/media/img/photo/2015/11/images-from-the-2016-sony-world-pho/s01_130921474920553591/main_900.jpg?1448476701";
+        new MyAsyncTask().execute(imageUrl);
     }
 
     private class MyAsyncTask extends AsyncTask<String, String, String> {

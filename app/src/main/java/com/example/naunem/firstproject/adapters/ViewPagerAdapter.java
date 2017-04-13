@@ -16,9 +16,9 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
     private int mTabCount;
 
-    public ViewPagerAdapter(FragmentManager fm, int mTabCount) {
+    public ViewPagerAdapter(FragmentManager fm, int tabCount) {
         super(fm);
-        this.mTabCount = mTabCount;
+        this.mTabCount = tabCount;
     }
 
     @Override

@@ -41,7 +41,7 @@ public class RegisterActivity extends AppCompatActivity {
     CheckBox mChkSuftWeb;
     @ViewById(R.id.chkCommic)
     CheckBox mChkCommic;
-    ArrayList<CheckBox> mLists = new ArrayList<>();
+    final ArrayList<CheckBox> mLists = new ArrayList<>();
 
     @AfterViews
     void init() {

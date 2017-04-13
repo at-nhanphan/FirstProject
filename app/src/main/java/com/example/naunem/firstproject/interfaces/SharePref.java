@@ -13,6 +13,7 @@ import org.androidannotations.annotations.sharedpreferences.SharedPref;
 public interface SharePref {
     @DefaultRes(R.string.username)
     String username();
+
     @DefaultRes(R.string.password)
     String password();
 }

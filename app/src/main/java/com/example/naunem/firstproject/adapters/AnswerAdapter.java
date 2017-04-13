@@ -20,14 +20,15 @@ import java.util.ArrayList;
  * Created by naunem on 05/04/2017.
  */
 
-public class AnswerAdapter extends RecyclerView.Adapter<AnswerAdapter.ViewHolder>{
-    private Context mContext;
+public class AnswerAdapter extends RecyclerView.Adapter<AnswerAdapter.ViewHolder> {
+    private final Context mContext;
     private ArrayList<Item> mItems;
 
     public AnswerAdapter(Context context, ArrayList<Item> items) {
         this.mContext = context;
         this.mItems = items;
     }
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_user, parent, false));
@@ -52,10 +53,11 @@ public class AnswerAdapter extends RecyclerView.Adapter<AnswerAdapter.ViewHolder
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        private ImageView imgLogo;
-        private TextView tvName;
-        private TextView tvId;
-        private TextView tvUserType;
+        private final ImageView imgLogo;
+        private final TextView tvName;
+        private final TextView tvId;
+        private final TextView tvUserType;
+
         ViewHolder(View itemView) {
             super(itemView);
             imgLogo = (ImageView) itemView.findViewById(R.id.imgLogo);

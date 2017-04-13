@@ -47,7 +47,7 @@ public class LayoutAddEditActivity extends AppCompatActivity {
     String mValue;
     @Extra
     User mUser;
-    private UserDatabase mUserDatabase = new UserDatabase(this);
+    private final UserDatabase mUserDatabase = new UserDatabase(this);
     private String mPath;
 
     @AfterViews

@@ -16,7 +16,7 @@ import org.androidannotations.annotations.OnActivityResult;
 import org.androidannotations.annotations.ViewById;
 
 /**
- * IntentActivity
+ * IntentActivity class
  * Created by naunem on 16/03/2017.
  */
 
@@ -42,6 +42,7 @@ public class IntentActivity extends AppCompatActivity {
         it.putExtra("sms_body", content);
         startActivity(it);
     }
+
     @Click(R.id.btnSendMail)
     void clickSendMail() {
         String mailTo = "nhan.phan@asiantech.vn";
@@ -105,6 +106,7 @@ public class IntentActivity extends AppCompatActivity {
             }
         }
     }
+
     @OnActivityResult(REQUEST_CODE_CAMERA)
     void onResultCamera(int resultCode, Intent data) {
         // Camera

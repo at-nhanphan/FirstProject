@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import static android.app.Activity.RESULT_OK;
 
 /**
- *
+ * UserFragment class
  * Created by naunem on 23/03/2017.
  */
 

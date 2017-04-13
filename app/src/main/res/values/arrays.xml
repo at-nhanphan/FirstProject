@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="popping" >
+    <string-array name="popping">
         <item>one</item>
         <item>two</item>
         <item>three</item>

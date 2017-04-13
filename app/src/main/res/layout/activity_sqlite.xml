@@ -8,30 +8,30 @@
         android:id="@+id/edtName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="name" />
+        android:hint="@string/textView.text.name" />
 
     <EditText
         android:id="@+id/edtAge"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="age" />
+        android:hint="@string/textView.text.age" />
 
     <EditText
         android:id="@+id/edtGender"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="gender" />
+        android:hint="@string/textView.text.gender" />
 
     <Button
         android:id="@+id/btnInsert"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="insert" />
+        android:text="@string/button.text.insert" />
 
     <Button
         android:id="@+id/btnShowInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="show info"/>
+        android:text="@string/button.text.show_info" />
 
 </LinearLayout>

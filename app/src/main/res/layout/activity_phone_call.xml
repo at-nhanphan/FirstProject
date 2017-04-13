@@ -4,23 +4,24 @@
     android:layout_height="match_parent"
     android:layout_alignParentBottom="true">
 
-    <TableRow >
+    <TableRow>
 
         <EditText
             android:id="@+id/edtShow"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:inputType="phone"
             android:layout_weight="1"
             android:gravity="center"
-            android:textSize="40dp" />
+            android:inputType="phone"
+            android:textSize="40sp" />
+
         <ImageView
             android:id="@+id/imgBackspace"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_backspace"
+            android:layout_gravity="center"
             android:layout_weight="0.1"
-            android:layout_gravity="center"/>
+            android:src="@drawable/ic_backspace" />
     </TableRow>
 
     <TableRow android:layout_marginTop="30dp">
@@ -30,33 +31,33 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="1"
+            android:background="@drawable/textview_click"
+            android:text="@string/textView.text.one"
             android:textAlignment="center"
-            android:textSize="40dp"
             android:textColor="@color/colorBlue"
-            android:background="@drawable/textview_click"/>
+            android:textSize="40sp" />
 
         <TextView
             android:id="@+id/tvTwo"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="2"
+            android:background="@drawable/textview_click"
+            android:text="@string/textView.text.two"
             android:textAlignment="center"
-            android:textSize="40dp"
             android:textColor="@color/colorBlue"
-            android:background="@drawable/textview_click"/>
+            android:textSize="40sp" />
 
         <TextView
             android:id="@+id/tvThree"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="40dp"
-            android:textColor="@color/colorBlue"
-            android:text="3"
+            android:background="@drawable/textview_click"
+            android:text="@string/textView.text.three"
             android:textAlignment="center"
-            android:background="@drawable/textview_click"/>
+            android:textColor="@color/colorBlue"
+            android:textSize="40sp" />
     </TableRow>
 
     <TableRow android:layout_marginTop="30dp">
@@ -66,33 +67,33 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="4"
+            android:background="@drawable/textview_click"
+            android:text="@string/textView.text.four"
             android:textAlignment="center"
-            android:textSize="40dp"
             android:textColor="@color/colorBlue"
-            android:background="@drawable/textview_click"/>
+            android:textSize="40sp" />
 
         <TextView
             android:id="@+id/tvFive"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="5"
+            android:background="@drawable/textview_click"
+            android:text="@string/textView.text.five"
             android:textAlignment="center"
-            android:textSize="40dp"
             android:textColor="@color/colorBlue"
-            android:background="@drawable/textview_click"/>
+            android:textSize="40sp" />
 
         <TextView
             android:id="@+id/tvSix"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="6"
+            android:background="@drawable/textview_click"
+            android:text="@string/textView.text.six"
             android:textAlignment="center"
-            android:textSize="40dp"
             android:textColor="@color/colorBlue"
-            android:background="@drawable/textview_click"/>
+            android:textSize="40sp" />
     </TableRow>
 
     <TableRow android:layout_marginTop="30dp">
@@ -102,33 +103,33 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="7"
+            android:background="@drawable/textview_click"
+            android:text="@string/textView.text.seven"
             android:textAlignment="center"
-            android:textSize="40dp"
             android:textColor="@color/colorBlue"
-            android:background="@drawable/textview_click"/>
+            android:textSize="40sp" />
 
         <TextView
             android:id="@+id/tvEight"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="8"
+            android:background="@drawable/textview_click"
+            android:text="@string/textView.text.eight"
             android:textAlignment="center"
-            android:textSize="40dp"
             android:textColor="@color/colorBlue"
-            android:background="@drawable/textview_click"/>
+            android:textSize="40sp" />
 
         <TextView
             android:id="@+id/tvNine"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="9"
+            android:background="@drawable/textview_click"
+            android:text="@string/textView.text.nine"
             android:textAlignment="center"
-            android:textSize="40dp"
             android:textColor="@color/colorBlue"
-            android:background="@drawable/textview_click"/>
+            android:textSize="40sp" />
     </TableRow>
 
     <TableRow android:layout_marginTop="30dp">
@@ -138,49 +139,50 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="*"
+            android:background="@drawable/textview_click"
+            android:text="@string/textView.text.star"
             android:textAlignment="center"
-            android:textSize="40dp"
             android:textColor="@color/colorBlue"
-            android:background="@drawable/textview_click"/>
+            android:textSize="40sp" />
 
         <TextView
             android:id="@+id/tvZero"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="0"
+            android:background="@drawable/textview_click"
+            android:text="@string/textView.text.zero"
             android:textAlignment="center"
-            android:textSize="40dp"
             android:textColor="@color/colorBlue"
-            android:background="@drawable/textview_click"/>
+            android:textSize="40sp" />
 
         <TextView
             android:id="@+id/tvFly"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="40dp"
-            android:textColor="@color/colorBlue"
-            android:text="#"
+            android:background="@drawable/textview_click"
+            android:text="@string/textView.text.fly"
             android:textAlignment="center"
-            android:background="@drawable/textview_click"/>
+            android:textColor="@color/colorBlue"
+            android:textSize="40sp" />
     </TableRow>
 
-    <TableRow android:layout_marginTop="20dp"
+    <TableRow
+        android:layout_marginTop="20dp"
         android:gravity="center">
-        <TextView
-            android:layout_weight="1"/>
+
+        <TextView android:layout_weight="1" />
+
         <ImageView
             android:id="@+id/imgCall"
             android:layout_width="0dp"
             android:layout_height="75dp"
             android:layout_weight="0.5"
-            android:background="@drawable/imageview_press_call"
-            android:src="@drawable/ic_call_white_48dp"
-            />
-        <TextView
-            android:layout_weight="1"/>
+            android:background="@drawable/custom_imageview_press_call"
+            android:src="@drawable/ic_call_white_48dp" />
+
+        <TextView android:layout_weight="1" />
     </TableRow>
 
 </TableLayout>

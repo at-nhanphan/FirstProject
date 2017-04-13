@@ -10,7 +10,7 @@ import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
 
 /**
- *
+ * MapsActivity class
  * Created by naunem on 31/03/2017.
  */
 

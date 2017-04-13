@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:background="@drawable/custom_button"
-            android:text="@string/button.text.checkintent" />
+            android:text="@string/button.text.checkIntent" />
 
         <Button
             android:id="@+id/btnSqlite"
@@ -70,7 +70,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:background="@drawable/custom_button"
-            android:text="@string/button.text.broadcastreceiver" />
+            android:text="@string/button.text.broadcastReceiver" />
 
         <Button
             android:id="@+id/btnMap"
@@ -86,7 +86,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:background="@drawable/custom_button"
-            android:text="@string/button.text.asynctask" />
+            android:text="@string/button.text.asyncTask" />
 
         <Button
             android:id="@+id/btnToolbar"

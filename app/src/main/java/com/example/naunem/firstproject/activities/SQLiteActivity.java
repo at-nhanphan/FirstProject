@@ -20,7 +20,7 @@ import org.androidannotations.annotations.ViewById;
 @EActivity(R.layout.activity_sqlite)
 public class SQLiteActivity extends AppCompatActivity {
 
-    private UserDatabase db = new UserDatabase(this);
+    private final UserDatabase db = new UserDatabase(this);
 
     @ViewById(R.id.edtName)
     EditText mEdtName;
@@ -28,12 +28,14 @@ public class SQLiteActivity extends AppCompatActivity {
     EditText mEdtAge;
     @ViewById(R.id.edtGender)
     EditText mEdtGender;
+
     @Click(R.id.btnInsert)
     void clickInsert() {
         User user = new User();
         db.insertUser(user);
         mEdtGender.setText("size " + db.getAllUsers().size());
     }
+
     @Click(R.id.btnShowInfo)
     void clickShowInfo() {
         Intent intent = new Intent(this, SQLiteShowListActivity.class);

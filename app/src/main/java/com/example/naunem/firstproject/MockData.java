@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**
- *
+ * MockData class
  * Created by naunem on 10/03/2017.
  */
 

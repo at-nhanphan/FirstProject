@@ -4,6 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 /**
+ * User class
  * Created by naunem on 10/03/2017.
  */
 
