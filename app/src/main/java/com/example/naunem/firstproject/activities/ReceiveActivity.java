@@ -8,6 +8,7 @@ import android.widget.TextView;
 import com.example.naunem.firstproject.R;
 
 /**
+ * ReceiveActivity class
  * Created by naunem on 29/03/2017.
  */
 

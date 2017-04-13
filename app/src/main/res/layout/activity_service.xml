@@ -8,12 +8,12 @@
         android:id="@+id/btnStart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Start Service" />
+        android:text="@string/button.text.start_service" />
 
     <Button
         android:id="@+id/btnStop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Stop service" />
+        android:text="@string/button.text.stop_service" />
 
 </LinearLayout>

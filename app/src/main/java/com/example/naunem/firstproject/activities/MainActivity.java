@@ -1,5 +1,6 @@
 package com.example.naunem.firstproject.activities;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 
@@ -57,7 +58,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Click(R.id.btnAsyncTask)
     void clickBtnAsyncTask() {
-
+        Intent intent = new Intent(this, AsyncTaskActivity.class);
+        startActivity(intent);
     }
 
     @Click(R.id.btnToolbar)

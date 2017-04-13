@@ -6,16 +6,15 @@
         android:id="@+id/setting"
         android:icon="@drawable/ic_settings_white_24dp"
         android:orderInCategory="1"
-        android:title="back"
-        app:showAsAction="always" />
+        android:title="@string/item.text.setting"
+        app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/dialog"
         android:icon="@drawable/ic_home_pink_400_24dp"
         android:orderInCategory="0"
-        android:title="Dialog"
-        app:showAsAction="never" >
-    </item>
+        android:title="@string/item.text.dialog"
+        app:showAsAction="never" />
 
     <item
         android:id="@+id/fragmentDialog"
@@ -28,7 +27,7 @@
         android:id="@+id/dialogMultiChoice"
         android:icon="@drawable/ic_favorite_pink_400_24dp"
         android:orderInCategory="0"
-        android:title="@string/menu.text.mutiChoice"
+        android:title="@string/menu.text.multiChoice"
         app:showAsAction="never" />
 
 </menu>

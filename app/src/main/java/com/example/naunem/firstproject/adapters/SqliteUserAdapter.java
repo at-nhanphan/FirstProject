@@ -8,12 +8,12 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.naunem.firstproject.R;
-import com.example.naunem.firstproject.models.SqliteUser;
 import com.example.naunem.firstproject.models.User;
 
 import java.util.ArrayList;
 
 /**
+ * SqliteUserAdapter class
  * Created by naunem on 20/03/2017.
  */
 
@@ -22,14 +22,14 @@ public class SqliteUserAdapter extends RecyclerView.Adapter<SqliteUserAdapter.Vi
     private ArrayList<User> users = new ArrayList<>();
     private Context mContext;
 
-    public SqliteUserAdapter(Context mContext, ArrayList<User> users) {
-        this.mContext = mContext;
+    public SqliteUserAdapter(Context context, ArrayList<User> users) {
+        this.mContext = context;
         this.users = users;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_layout_sqlite, parent, false);
+        View view = LayoutInflater.from(mContext.getApplicationContext()).inflate(R.layout.item_layout_sqlite, parent, false);
         return new ViewHolder(view);
     }
 

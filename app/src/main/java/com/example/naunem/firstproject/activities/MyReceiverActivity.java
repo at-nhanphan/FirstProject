@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.example.naunem.firstproject.R;
 
 /**
+ * MyReceiverActivity class
  * Created by naunem on 28/03/2017.
  */
 

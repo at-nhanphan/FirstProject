@@ -1,99 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <include layout="@layout/temp_layout"
-        android:id="@+id/temp"/>
+    <include
+        android:id="@+id/temp"
+        layout="@layout/temp_layout" />
 
     <LinearLayout
+        android:id="@+id/llGender"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_below="@+id/temp"
-        android:id="@+id/llGender">
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Gender"
-            android:layout_marginTop="10dp"/>
+            android:layout_marginTop="10dp"
+            android:text="@string/textView.text.gender" />
+
         <RadioGroup
+            android:id="@+id/rgGender"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/rgGender"
-            android:orientation="horizontal"
-            android:layout_marginLeft="25dp">
+            android:layout_marginLeft="25dp"
+            android:orientation="horizontal">
 
             <RadioButton
+                android:id="@+id/rbMale"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Male"
-                android:id="@+id/rbMale"/>
+                android:text="@string/radioButton.text.male" />
 
             <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Female"
                 android:id="@+id/rbFemale"
-                android:layout_marginLeft="50dp"/>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:text="@string/radioButton.text.female" />
         </RadioGroup>
     </LinearLayout>
 
     <RelativeLayout
+        android:id="@+id/rlHobby"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/llGender"
-        android:layout_marginTop="10dp"
-        android:id="@+id/rlHobby">
+        android:layout_marginTop="10dp">
+
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:id="@+id/tvHobby"
-            android:text="Hobby"
-            android:paddingTop="8dp"/>
-
-        <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingTop="8dp"
+            android:text="@string/textView.text.hobby" />
+
+        <CheckBox
             android:id="@+id/chkFootball"
-            android:text="Football"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
             android:layout_toRightOf="@+id/tvHobby"
-            android:layout_marginLeft="30dp"/>
+            android:text="@string/textView.text.football" />
 
         <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:id="@+id/chkListenMusic"
-            android:text="Listen Music"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
             android:layout_toRightOf="@+id/chkFootball"
-            android:layout_marginLeft="30dp"/>
+            android:text="@string/textView.text.listen_music" />
 
         <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:id="@+id/chkSuftWeb"
-            android:text="Suft website"
-            android:layout_below="@id/chkFootball"
-            android:layout_alignLeft="@+id/chkFootball"/>
-
-        <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/chkFootball"
+            android:layout_below="@id/chkFootball"
+            android:text="@string/textView.text.suft_website" />
+
+        <CheckBox
             android:id="@+id/chkCommic"
-            android:text="Commic"
-            android:layout_toRightOf="@+id/chkSuftWeb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/chkListenMusic"
             android:layout_below="@+id/chkListenMusic"
-            android:layout_alignLeft="@+id/chkListenMusic"/>
+            android:layout_toRightOf="@+id/chkSuftWeb"
+            android:text="@string/textView.text.commic" />
     </RelativeLayout>
 
     <Button
+        android:id="@+id/btnRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/btnRegister"
-        android:text="Register"
         android:layout_below="@+id/rlHobby"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:background="@drawable/custom_button"/>
+        android:background="@drawable/custom_button"
+        android:text="@string/Button.text.register" />
 </RelativeLayout>

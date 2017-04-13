@@ -9,12 +9,13 @@ import android.os.Parcelable;
  */
 
 public class SqliteUser implements Parcelable {
-    int id;
-    String name;
+    private int id;
+    private String name;
 
-    public SqliteUser(){
+    public SqliteUser() {
 
     }
+
     public SqliteUser(String name) {
         this.name = name;
     }

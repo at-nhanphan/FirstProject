@@ -25,7 +25,7 @@ public class SQLiteShowListActivity extends AppCompatActivity {
     @ViewById(R.id.recyclerViewListUser)
     protected RecyclerView mRecyclerView;
     private SqliteUserAdapter mAdapter;
-    private UserDatabase mDb = new UserDatabase(this);
+    private final UserDatabase mDb = new UserDatabase(this);
     private ArrayList<User> mUsers;
 
     @AfterViews

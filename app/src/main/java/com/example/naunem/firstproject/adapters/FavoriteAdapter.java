@@ -1,6 +1,5 @@
 package com.example.naunem.firstproject.adapters;
 
-import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -17,6 +16,7 @@ import com.example.naunem.firstproject.models.User;
 import java.util.ArrayList;
 
 /**
+ * FavoriteAdapter class
  * Created by naunem on 14/03/2017.
  */
 
@@ -28,11 +28,10 @@ public class FavoriteAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private boolean mIsLoading;
     private OnLoadMoreListener mLoadMoreListener;
     private ArrayList<User> mUsers = new ArrayList<>();
-    private final Context mContext;
 
-    public FavoriteAdapter(Context mContext, ArrayList<User> mUsers, RecyclerView recyclerView) {
-        this.mUsers = mUsers;
-        this.mContext = mContext;
+    public FavoriteAdapter(ArrayList<User> users, RecyclerView recyclerView, OnLoadMoreListener loadMoreListener) {
+        this.mUsers = users;
+        this.mLoadMoreListener = loadMoreListener;
 
         final LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -42,8 +41,8 @@ public class FavoriteAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 mTotalItem = layoutManager.getItemCount();
                 mLastItem = layoutManager.findLastVisibleItemPosition();
                 if (!mIsLoading && mTotalItem <= (mLastItem + THRESHOLD)) {
-                    if (mLoadMoreListener != null) {
-                        mLoadMoreListener.onLoadMore();
+                    if (FavoriteAdapter.this.mLoadMoreListener != null) {
+                        FavoriteAdapter.this.mLoadMoreListener.onLoadMore();
                     }
                     mIsLoading = true;
                 }
@@ -67,7 +66,7 @@ public class FavoriteAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         if (holder instanceof RecyclerView.ViewHolder) {
             if (mUsers != null) {
                 User user = mUsers.get(position);
-//                ((MyViewHolder) holder).mImgAvatar.setImageResource(user.getImage());
+                ((MyViewHolder) holder).mImgAvatar.setImageResource(R.drawable.ic_boy);
                 ((MyViewHolder) holder).mTvName.setText(user.getName());
                 ((MyViewHolder) holder).mTvAge.setText(user.getAge());
                 ((MyViewHolder) holder).mTvGender.setText(user.getGender());
@@ -84,11 +83,11 @@ public class FavoriteAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        private ImageView mImgAvatar;
-        private TextView mTvName;
-        private TextView mTvAge;
-        private TextView mTvGender;
-        private ImageView mImgFavorite;
+        private final ImageView mImgAvatar;
+        private final TextView mTvName;
+        private final TextView mTvAge;
+        private final TextView mTvGender;
+        private final ImageView mImgFavorite;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -99,9 +98,11 @@ public class FavoriteAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             mImgFavorite = (ImageView) itemView.findViewById(R.id.imgFavorite);
         }
     }
+
     public class ProgressViewHolder extends RecyclerView.ViewHolder {
 
         private final ProgressBar progressBar;
+
         public ProgressViewHolder(View itemView) {
             super(itemView);
             progressBar = (ProgressBar) itemView.findViewById(R.id.progressBar);

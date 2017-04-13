@@ -5,6 +5,7 @@ import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
 
 /**
+ * SOAnswersResponse class
  * Created by naunem on 05/04/2017.
  */
 

@@ -4,67 +4,67 @@
     android:layout_height="wrap_content">
 
     <ImageView
+        android:id="@+id/imgLogo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/imgLogo"
-        android:background="@drawable/ic_logo"
         android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"
         android:layout_marginTop="30dp"
-        android:layout_marginBottom="30dp"/>
+        android:background="@drawable/ic_logo" />
 
     <TextView
+        android:id="@+id/tvUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tvUsername"
-        android:text="Username"
+        android:layout_alignBottom="@+id/edtUsername"
         android:layout_below="@+id/imgLogo"
         android:paddingTop="20dp"
-        android:layout_alignBottom="@+id/edtUsername"/>
+        android:text="@string/textView.text.username" />
 
     <EditText
+        android:id="@+id/edtUsername"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/edtUsername"
+        android:layout_alignLeft="@+id/edtPassword"
         android:layout_below="@+id/imgLogo"
         android:layout_toRightOf="@+id/tvUsername"
-        android:layout_alignLeft="@+id/edtPassword"
         android:drawableLeft="@drawable/ic_user"
-        android:maxLines="1"
-        android:ellipsize="end"
-        android:inputType="text"
-        android:ems="20"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tvPassword"
-        android:text="Password"
-        android:layout_below="@+id/tvUsername"
-        android:layout_marginTop="10dp"
-        android:layout_alignBottom="@+id/edtPassword"
-        android:paddingTop="10dp" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/edtPassword"
-        android:layout_below="@+id/edtUsername"
-        android:layout_toRightOf="@+id/tvPassword"
-        android:layout_marginLeft="10dp"
-        android:drawableLeft="@drawable/ic_locked"
-        android:inputType="textPassword"
-        android:maxLines="1"
         android:ellipsize="end"
         android:ems="20"
-        android:drawableRight="@drawable/ic_view"/>
+        android:inputType="text"
+        android:maxLines="1" />
 
-    <ImageView
+    <TextView
+        android:id="@+id/tvPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/imgShowPass"
-        android:background="@drawable/ic_view"
-        android:layout_alignRight="@+id/edtPassword"
         android:layout_alignBottom="@+id/edtPassword"
+        android:layout_below="@+id/tvUsername"
+        android:layout_marginTop="10dp"
+        android:paddingTop="10dp"
+        android:text="@string/textView.password" />
+
+    <EditText
+        android:id="@+id/edtPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edtUsername"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/tvPassword"
+        android:drawableLeft="@drawable/ic_locked"
+        android:drawableRight="@drawable/ic_view"
+        android:ellipsize="end"
+        android:ems="20"
+        android:inputType="textPassword"
+        android:maxLines="1" />
+
+    <ImageView
+        android:id="@+id/imgShowPass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/edtPassword"
+        android:layout_alignRight="@+id/edtPassword"
         android:layout_marginBottom="11dp"
-        android:layout_marginRight="4dp"/>
+        android:layout_marginRight="4dp"
+        android:background="@drawable/ic_view" />
 </RelativeLayout>

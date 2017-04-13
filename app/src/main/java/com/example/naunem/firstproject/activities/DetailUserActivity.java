@@ -1,7 +1,6 @@
 package com.example.naunem.firstproject.activities;
 
 import android.content.Intent;
-import android.support.annotation.DrawableRes;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.widget.ImageView;
@@ -40,7 +39,7 @@ public class DetailUserActivity extends AppCompatActivity {
     User mUser;
     @Extra
     int mIndex;
-    
+
     @AfterViews
     void init() {
         mIsCheck = mUser.isFavorite();

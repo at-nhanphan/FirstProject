@@ -6,7 +6,7 @@ import android.os.Parcelable;
 import java.util.ArrayList;
 
 /**
- *
+ * MarkerData class
  * Created by naunem on 31/03/2017.
  */
 

@@ -4,24 +4,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/btnCall"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/btnCall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/custom_button"
-            android:text="call" />
-
-        <ImageView
-            android:id="@+id/imgView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
+        android:layout_marginTop="10dp"
+        android:background="@drawable/custom_button"
+        android:text="@string/button.text.call" />
 
     <Button
         android:id="@+id/btnSms"
@@ -29,7 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:background="@drawable/custom_button"
-        android:text="sms" />
+        android:text="@string/button.text.sms" />
 
     <Button
         android:id="@+id/btnSendMail"
@@ -37,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:background="@drawable/custom_button"
-        android:text="send mail" />
+        android:text="@string/button.text.sendMail" />
 
     <Button
         android:id="@+id/btnLaunchWeb"
@@ -45,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:background="@drawable/custom_button"
-        android:text="launch website" />
+        android:text="@string/button.text.launchWebsite" />
 
     <Button
         android:id="@+id/btnOpenCHPlay"
@@ -53,7 +42,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:background="@drawable/custom_button"
-        android:text="open ch play" />
+        android:text="@string/button.text.openCHPlay" />
 
     <Button
         android:id="@+id/btnOpenGgMap"
@@ -61,7 +50,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:background="@drawable/custom_button"
-        android:text="open gg map" />
+        android:text="@string/button.text.openMap" />
 
     <Button
         android:id="@+id/btnShowImg"
@@ -69,7 +58,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:background="@drawable/custom_button"
-        android:text="Show image" />
+        android:text="@string/button.text.showImage" />
 
     <Button
         android:id="@+id/btnCamera"
@@ -77,5 +66,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:background="@drawable/custom_button"
-        android:text="camera" />
+        android:text="@string/button.text.camera" />
+
+    <ImageView
+        android:id="@+id/imgView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 </LinearLayout>

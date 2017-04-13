@@ -2,8 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="2dp"
     android:layout_margin="5dp"
+    android:layout_marginBottom="2dp"
     android:layout_marginTop="2dp"
     android:background="@drawable/custom_button"
     android:orientation="horizontal">
@@ -15,8 +15,8 @@
         android:layout_centerVertical="true"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:src="@drawable/ic_logo"
-        android:contentDescription="@string/textView.text.name" />
+        android:contentDescription="@string/textView.text.name"
+        android:src="@drawable/ic_logo" />
 
     <RelativeLayout
         android:id="@+id/rlContainer"
@@ -53,7 +53,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_margin="20dp"
-            android:src="@drawable/select_favorite"
-            android:contentDescription="@string/textView.text.name" />
+            android:contentDescription="@string/textView.text.name"
+            android:src="@drawable/select_favorite" />
     </RelativeLayout>
 </RelativeLayout>

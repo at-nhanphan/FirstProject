@@ -28,6 +28,7 @@ import java.util.ArrayList;
  */
 
 public class UserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+
     private ArrayList<User> mLists = new ArrayList<>();
     private final Context mContext;
     private final int VIEW_PROGRESS = 0;
@@ -37,11 +38,6 @@ public class UserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private int mTotalItemCount;
     private OnLoadMoreListener mOnLoadMoreListener;
     private final MyOnClickListener mMyOnClickListener;
-    private ArrayList<User> mFavorites = new ArrayList<>();
-
-    public ArrayList<User> getLists() {
-        return mLists;
-    }
 
     public UserAdapter(Context context, ArrayList<User> lists, RecyclerView recyclerView, MyOnClickListener listener) {
         this.mContext = context;
@@ -99,7 +95,7 @@ public class UserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         } else if (holder instanceof ViewHolder) {
             if (object instanceof User) {
                 User user = (User) object;
-                if (!TextUtils.isEmpty(user.getImage())){
+                if (!TextUtils.isEmpty(user.getImage())) {
                     Picasso.with(mContext)
                             .load(user.getImage())
                             .fit()
@@ -182,13 +178,13 @@ public class UserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         }
     }
 
-    public void setOnLoadMoreListener(OnLoadMoreListener mOnLoadMoreListener) {
-        this.mOnLoadMoreListener = mOnLoadMoreListener;
-    }
-
-    public void setLoaded() {
-        mLoading = false;
-    }
+//    public void setOnLoadMoreListener(OnLoadMoreListener mOnLoadMoreListener) {
+//        this.mOnLoadMoreListener = mOnLoadMoreListener;
+//    }
+//
+//    public void setLoaded() {
+//        mLoading = false;
+//    }
 
     @Override
     public int getItemViewType(int position) {

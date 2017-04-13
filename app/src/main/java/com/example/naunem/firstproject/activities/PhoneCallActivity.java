@@ -112,6 +112,7 @@ public class PhoneCallActivity extends AppCompatActivity {
 
     @Click(R.id.imgBackspace)
     void clickBackspace() {
+        //noinspection ResultOfMethodCallIgnored
         mText.trim();
         if (mText.length() == mEdtShow.getSelectionStart()) {
             mText = mText.substring(0, mText.length() - 1);

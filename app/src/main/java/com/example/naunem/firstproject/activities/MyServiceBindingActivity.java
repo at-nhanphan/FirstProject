@@ -11,6 +11,7 @@ import com.example.naunem.firstproject.R;
 import com.example.naunem.firstproject.services.MyService;
 
 /**
+ * MyServiceBindingActivity class
  * Created by naunem on 27/03/2017.
  */
 
@@ -18,6 +19,7 @@ public class MyServiceBindingActivity extends AppCompatActivity implements View.
 
     private Button mBtnStart;
     private Button mBtnStop;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

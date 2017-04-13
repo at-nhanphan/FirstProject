@@ -1,45 +1,45 @@
 package com.example.naunem.firstproject.fragments;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.naunem.firstproject.MockData;
 import com.example.naunem.firstproject.R;
 import com.example.naunem.firstproject.models.MarkerData;
 
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.EFragment;
+import org.androidannotations.annotations.ViewById;
+
 import java.util.ArrayList;
 
 /**
- *
+ * InfoMapFragment class
  * Created by naunem on 31/03/2017.
  */
 
+@EFragment(R.layout.item_layout_map_info)
 public class InfoMapFragment extends Fragment {
 
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.item_layout_map_info, container, false);
-        TextView mTvName = (TextView) view.findViewById(R.id.tvName);
-        TextView mTvAddress = (TextView) view.findViewById(R.id.tvAddress);
+    @ViewById(R.id.tvName)
+    TextView mTvName;
+    @ViewById(R.id.tvAddress)
+    TextView mTvAddress;
 
-        int position = getArguments().getInt("position");
-        ArrayList<MarkerData> markers = MockData.getAllMarkers();
-        mTvName.setText(markers.get(position).getTitle());
-        mTvAddress.setText(markers.get(position).getLatitude() + ", " + markers.get(position).getLongitude());
-        return view;
+    private int mPosition = getArguments().getInt("mPosition");
+    private final ArrayList<MarkerData> markers = MockData.getAllMarkers();
+
+    @AfterViews
+    void init() {
+        mTvName.setText(markers.get(mPosition).getTitle());
+        mTvAddress.setText(markers.get(mPosition).getLatitude() + ", " + markers.get(mPosition).getLongitude());
     }
 
     public static InfoMapFragment newInstance(int position) {
         InfoMapFragment fragment = new InfoMapFragment();
         Bundle bundle = new Bundle();
-        bundle.putInt("position", position);
+        bundle.putInt("mPosition", position);
         fragment.setArguments(bundle);
         return fragment;
     }

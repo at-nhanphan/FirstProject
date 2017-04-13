@@ -15,7 +15,7 @@ import org.androidannotations.annotations.ViewById;
 import java.util.ArrayList;
 
 /**
- *
+ * PageAFragment class
  * Created by naunem on 23/03/2017.
  */
 
@@ -27,6 +27,7 @@ public class PageAFragment extends Fragment {
 
     @ViewById(R.id.viewPager)
     ViewPager mViewPager;
+
     @AfterViews
     void init() {
         mDatabase = new UserDatabase(getContext());
